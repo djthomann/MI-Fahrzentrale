@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'Titillium';
+    src: url(/fonts/TitilliumWeb-Regular.ttf) format(ttf);
+}
+
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.form-wrapper {
+    background-color: rgb(224, 238, 242);
+    border-radius: 20px;
+    /*border: 2px solid #000;*/
+    -webkit-box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.25); 
+    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.25);
+}
+
+.form-header {
+    background: rgb(0,193,181);
+    background: linear-gradient(90deg,rgba(0,145,175,1) 0%,  #00b7c1 100%);
+    padding: 25px;
+    border-radius: 20px 20px 0 0;
+    color: white;
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+
+.form-submit {
+    background-color: #0091af;
+    font-weight: bold;
+    color: white;
+    border: none;
+    height: 45px;
+    cursor: pointer;
+}
+
+.form-two-column-span {
+    grid-column: 1 / 3;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 0.2fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px; 
+    width: 500px;
+    padding: 20px 20px 0 20px;
+}
+
+input {
+    margin: 5px 0;
+    padding-left: 8px;
+    height: 30px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-complex-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.small-label {
+    font-size: 8pt;
+    font-weight: normal;
+    float: right;
+}
+
+.likes-flexbox {
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+}
+
+.likes-input-wrapper ul {
+    margin-top: 20px;
+}

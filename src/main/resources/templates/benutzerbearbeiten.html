@@ -3,58 +3,78 @@
     <head>
 
         <title>MItfahrgemeinschaft</title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="stylesheet" href="/fonts/TitilliumWeb-Regular.ttf" type="font/ttf">
         <!--<link rel="icon" type="image/jpeg" href="/icons/hsrm-icon.jpg">-->
-        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"/>
 
     </head>
 
     <body>
-        <h1>Benutzer <span th:text="${bnummer}">Platzhalter</span> bearbeiten</h1>
+        
+        <div class="form-wrapper">
 
-        <form th:action="@{#}" th:object="${formular}" method="post">
-
-            <label for="name">Name</label><br>
-            <input th:field="*{name}" type="text" name="name" placeholder="Max Mustermann"><br>
-
-            <label for="mail">E-Mail</label><br>
-            <input th:field="*{mail}"  type="text" name="mail" placeholder="max.mustermann@musterseite.de"><br>
-
-            <label for="birthday">Geburtstag</label><br>
-            <input type="date" name="birthday"><br>
-
-            <div class="likes-flexbox">
-
-                <div class="likes-input-wrapper">
-
-                    <label for="dislike"><span>Mag ich</span></label><br>
-                    <input type="text" id="like" name="like" placeholder="Eine tolle Sache"><br>
-                    <label for="dislike"><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
-
-                    <ul>
-                        <li th:each="ele,status : *{likes}" th:text="${ele}" class="like-listelement">Coffee</li>
-                    </ul> 
-    
-                </div>
-    
-                <div class="likes-input-wrapper">
-    
-                    <label for="dislike"><span>Mag ich nicht</span></label><br>
-                    <input type="text" id="dislike" name="dislike" placeholder="Eine blöde Sache">
-                    <label for="dislike"><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
-
-                    <ul>
-                        <li th:each="ele,status : *{dislikes}" th:text="${ele}" class="like-listelement">Coffee</li>
-                    </ul> 
-    
-                </div>
-
+            <div class="form-header">
+                Benutzer <span th:text="${bnummer}">Platzhalter</span> bearbeiten
             </div>
 
-            <label for="password">Passwort</label><br>
-            <input type="text" name="password" placeholder="Musterpasswort..."><br>
+            <form th:action="@{#}" th:object="${formular}" method="post">
 
-            <input type="submit" value="Speichern">
+                <div class="field-container">
+                    <label for="name">Vorname</label><br>
+                    <input th:field="*{name}" type="text" name="name" placeholder="Maximus"><br>
+                </div>
 
-        </form>
+                <div class="field-container">
+                    <label for="surname">Nachname</label><br>
+                    <input th:field="*{name}" type="text" name="surname" placeholder="Mustermann"><br>
+                </div>
+
+                <div>
+                    <label for="mail">E-Mail</label><br>
+                    <input th:field="*{mail}"  type="text" name="mail" placeholder="max.mustermann@musterseite.de"><br>    
+                </div>
+
+                <div>
+                    <label for="birthday">Geburtstag</label><br>
+                    <input type="date" name="birthday"><br>
+                </div>
+    
+                <div class="likes-flexbox">
+    
+                    <div>
+    
+                        <label class="form-complex-label" for="like"><span>Mag ich</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
+                        <input type="text" id="like" name="like" placeholder="Eine tolle Sache">
+    
+                        <ul>
+                            <li th:each="ele,status : *{likes}" th:text="${ele}" class="like-listelement">Coffee</li>
+                        </ul> 
+        
+                    </div>
+        
+                    <div>
+        
+                        <label class="form-complex-label" for="dislike"><span>Mag ich nicht</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
+                        <input type="text" id="dislike" name="dislike" placeholder="Eine blöde Sache">
+    
+                        <ul>
+                            <li th:each="ele,status : *{dislikes}" th:text="${ele}" class="like-listelement">Coffee</li>
+                        </ul> 
+        
+                    </div>
+    
+                </div>
+    
+                <div class="form-two-column-span">
+                    <label for="password">Passwort</label><br>
+                    <input type="text" name="password" placeholder="Musterpasswort..."><br>
+                </div>
+    
+                <input class="form-submit form-two-column-span" type="submit" value="Speichern">
+    
+            </form>
+
+        </div>
+    
     </body>
 </html>
