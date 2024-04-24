@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <h1>Benutzerprofil bearbeiten</h1>
+
+        <form>
+
+            <label for="name">Name</label><br>
+            <input type="text" id="name" name="name"><br>
+
+            <label for="mail">E-Mail</label><br>
+            <input type="text" id="mail" name="mail"><br>
+
+            <label for="birthday">Geburtstag</label><br>
+            <input type="date" id="birthday" name="birthday"><br>
+
+            <label for="password">Passwort</label><br>
+            <input type="text" id="password" name="password"><br>
+
+            <div style="display: flex; justify-content:space-between;">
+
+                <div style="width: 40%;">
+
+                    <label for="likes"><h2>Mag</h2></label><br>
+                    <input style="width: 100%;" type="text" id="likes" name="likes"><br>
+
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul>
+    
+                </div>
+    
+                <div style="width: 40%;">
+    
+                    <label for="dislikes"><h2>Mag nicht</h2></label><br>
+                    <input style="width: 100%;"type="text" id="dislikes" name="dislikes"><br>
+
+                    <ul>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ul> 
+    
+                </div>
+
+            </div>
+
+            <input type="submit" value="Speichern">
+
+        </form>
+
+        <style>
+
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 30%;
+            }
+
+            input {
+                margin: 0 0 10px 0;
+            }
+
+        </style>
+    </body>
+</html>
