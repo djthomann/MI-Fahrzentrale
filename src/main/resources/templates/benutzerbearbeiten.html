@@ -1,5 +1,12 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <title>MItfahrgemeinschaft</title>
+        <link rel="stylesheet" type="text/css" href="/style.css"/>
+
+    </head>
+
     <body>
         <h1>Benutzer <span th:text="${bnummer}">Platzhalter</span> bearbeiten</h1>
 
@@ -21,7 +28,7 @@ xmlns:th="http://www.thymeleaf.org">
 
                 <div style="width: 40%;">
 
-                    <label for="like"><span>Mag (max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label><br>
+                    <label for="like"><span>Mag ich<br> (max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label><br>
                     <input style="width: 100%;" type="text" id="like" name="like"><br>
 
                     <ul>
@@ -34,7 +41,7 @@ xmlns:th="http://www.thymeleaf.org">
     
                 <div style="width: 40%;">
     
-                    <label for="dislike"><span>Mag nicht (max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label><br>
+                    <label for="dislike"><span>Mag ich nicht <br>(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label><br>
                     <input style="width: 100%;"type="text" id="dislike" name="dislike"><br>
 
                     <ul>
@@ -50,25 +57,5 @@ xmlns:th="http://www.thymeleaf.org">
             <input type="submit" value="Speichern">
 
         </form>
-
-        <style>
-
-            body {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            form {
-                display: flex;
-                flex-direction: column;
-                width: 50%;
-            }
-
-            input {
-                margin: 0 0 10px 0;
-            }
-
-        </style>
     </body>
 </html>
