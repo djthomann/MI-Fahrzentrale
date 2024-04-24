@@ -15,14 +15,24 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 @Controller
-@SessionAttributes(names = {"formular"})
+@SessionAttributes(names = {"formular", "maxwunsch"})
 public class BenutzerController {
     
+    public final int MAXWUNSCH = 5;
+
     Logger logger = LoggerFactory.getLogger(BenutzerController.class);
 
     @ModelAttribute("formular")
     public void initForm(Model m) {
+
+        // logger.info("formular init");
+
         m.addAttribute("formular", new BenutzerFormular());
+    }
+
+    @ModelAttribute("maxwunsch")
+    public void initMaxwunsch(Model m) {
+        m.addAttribute("maxwunsch", MAXWUNSCH);
     }
 
     @GetMapping("/benutzer/{bnummer}")
@@ -31,7 +41,6 @@ public class BenutzerController {
         logger.info("bnummer = {}", bnummer);
         
         m.addAttribute("bnummer", bnummer);
-        m.addAttribute("formular", new BenutzerFormular());
         return "benutzerbearbeiten";
     }
 
@@ -39,6 +48,8 @@ public class BenutzerController {
     public String postMethodName(
     @RequestParam("name") String name,
     @RequestParam("mail") String mail,
+    @RequestParam("like") String like,
+    @RequestParam("dislike") String dislike,
     @PathVariable("bnummer") long bnummer, 
     @ModelAttribute("formular") BenutzerFormular formular, 
     Model m) {
@@ -46,8 +57,18 @@ public class BenutzerController {
         formular.setMail(mail);
         formular.setName(name);
 
-        logger.info("mail = {}", mail);
-        logger.info("name = {}", name);
+        if(like != "" && formular.likeAmount() < MAXWUNSCH) {
+            formular.addLike(like);
+            logger.info("like added: {}", like);
+        }
+
+        if(dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
+            formular.addDislike(dislike);
+            logger.info("dislike added: {}", dislike);
+        }
+
+        logger.info("mail = {}", formular.getMail());
+        logger.info("name = {}", formular.getName());
         
         return "benutzerbearbeiten";
     }

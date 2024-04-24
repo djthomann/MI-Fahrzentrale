@@ -1,10 +1,16 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BenutzerFormular {
     
     private String name;
     private String mail;
     private String birthday;
+
+    private List<String> likes = new ArrayList<>();
+    private List<String> dislikes = new ArrayList<>();
     
     public String getName() {
         return name;
@@ -23,6 +29,22 @@ public class BenutzerFormular {
     }
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public void addLike(String s) {
+        likes.add(s);
+    }
+
+    public void addDislike(String s) {
+        dislikes.add(s);
+    }
+
+    public int likeAmount() {
+        return likes.size();
+    }
+
+    public int dislikeAmount() {
+        return dislikes.size();
     }
 
 }
