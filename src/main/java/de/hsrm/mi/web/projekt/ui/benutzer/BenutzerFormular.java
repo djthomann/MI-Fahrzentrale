@@ -8,6 +8,7 @@ import java.util.Iterator;
 public class BenutzerFormular {
     
     private String name;
+    private String surname;
     private String mail;
     private String birthday;
 
@@ -19,6 +20,12 @@ public class BenutzerFormular {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public String getSurname() {
+        return surname;
+    }
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
     public String getMail() {
         return mail;
