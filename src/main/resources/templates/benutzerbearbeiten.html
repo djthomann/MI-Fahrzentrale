@@ -3,13 +3,13 @@ xmlns:th="http://www.thymeleaf.org">
     <body>
         <h1>Benutzer <span th:text="${bnummer}">Platzhalter</span> bearbeiten</h1>
 
-        <form action="/benutzer" method="post">
+        <form th:action="@{#}" th:object="${formular}" method="post">
 
             <label for="name">Name</label><br>
-            <input type="text" id="name" name="name"><br>
+            <input th:field="*{name}" type="text" id="name" name="name"><br>
 
             <label for="mail">E-Mail</label><br>
-            <input type="text" id="mail" name="mail"><br>
+            <input th:field="*{mail}"  type="text" id="mail" name="mail"><br>
 
             <label for="birthday">Geburtstag</label><br>
             <input type="date" id="birthday" name="birthday"><br>
