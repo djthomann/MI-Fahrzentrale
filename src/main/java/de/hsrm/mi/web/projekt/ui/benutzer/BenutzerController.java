@@ -60,11 +60,13 @@ public class BenutzerController {
         if(like != "" && formular.likeAmount() < MAXWUNSCH) {
             formular.addLike(like);
             logger.info("like added: {}", like);
+            like = "";
         }
 
         if(dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
             formular.addDislike(dislike);
             logger.info("dislike added: {}", dislike);
+            dislike = "";
         }
 
         logger.info("mail = {}", formular.getMail());

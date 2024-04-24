@@ -2,6 +2,8 @@ package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.List;
+import java.util.Iterator;
 
 public class BenutzerFormular {
     
@@ -29,6 +31,14 @@ public class BenutzerFormular {
     }
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public Iterator<String> getLikes() {
+        return likes.iterator();
+    }
+
+    public Iterator<String> getDislikes() {
+        return dislikes.iterator();
     }
 
     public void addLike(String s) {
