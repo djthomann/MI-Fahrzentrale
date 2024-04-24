@@ -26,7 +26,7 @@
 
                 <div class="field-container">
                     <label for="surname">Nachname</label><br>
-                    <input th:field="*{name}" type="text" name="surname" placeholder="Mustermann"><br>
+                    <input th:field="*{surname}" type="text" name="surname" placeholder="Mustermann"><br>
                 </div>
 
                 <div>
@@ -46,8 +46,8 @@
                         <label class="form-complex-label" for="like"><span>Mag ich</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
                         <input type="text" id="like" name="like" placeholder="Eine tolle Sache">
     
-                        <ul>
-                            <li th:each="ele,status : *{likes}" th:text="${ele}" class="like-listelement">Coffee</li>
+                        <ul class="likes-list">
+                            <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : *{likes}" th:text="${ele}">Coffee</li>
                         </ul> 
         
                     </div>
@@ -57,8 +57,8 @@
                         <label class="form-complex-label" for="dislike"><span>Mag ich nicht</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
                         <input type="text" id="dislike" name="dislike" placeholder="Eine blöde Sache">
     
-                        <ul>
-                            <li th:each="ele,status : *{dislikes}" th:text="${ele}" class="like-listelement">Coffee</li>
+                        <ul class="likes-list">
+                            <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : *{dislikes}" th:text="${ele}">Coffee</li>
                         </ul> 
         
                     </div>

@@ -66,6 +66,7 @@ input {
 }
 
 label {
+    /*padding-left: 4px;*/
     font-weight: bold;
 }
 
@@ -88,6 +89,23 @@ label {
     grid-column-gap: 20px;
 }
 
-.likes-input-wrapper ul {
-    margin-top: 20px;
+.likes-list {
+    margin: 0;
+    padding: 0;
+    border-radius: 4px;
+    border: 1px solid gray;
+    overflow: hidden;
+    list-style-type: none;
+}
+
+.likes-list li {
+    padding: 4px 8px;
+}
+
+.odd-li {
+    background-color: #c5d8d9;
+}
+
+.even-li {
+    background-color: azure;
 }
