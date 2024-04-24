@@ -6,10 +6,10 @@ xmlns:th="http://www.thymeleaf.org">
         <form th:action="@{#}" th:object="${formular}" method="post">
 
             <label for="name">Name</label><br>
-            <input th:field="*{name}" type="text" id="name" name="name"><br>
+            <input th:field="*{name}" type="text" id="name" name="name" placeholder="Max Mustermann"><br>
 
             <label for="mail">E-Mail</label><br>
-            <input th:field="*{mail}"  type="text" id="mail" name="mail"><br>
+            <input th:field="*{mail}"  type="text" id="mail" name="mail" placeholder="max.mustermann@musterseite.de"><br>
 
             <label for="birthday">Geburtstag</label><br>
             <input type="date" id="birthday" name="birthday"><br>
@@ -21,8 +21,8 @@ xmlns:th="http://www.thymeleaf.org">
 
                 <div style="width: 40%;">
 
-                    <label for="likes"><h2>Mag</h2></label><br>
-                    <input style="width: 100%;" type="text" id="likes" name="likes"><br>
+                    <label for="like"><span>Mag (max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label><br>
+                    <input style="width: 100%;" type="text" id="like" name="like"><br>
 
                     <ul>
                         <li>Coffee</li>
@@ -34,8 +34,8 @@ xmlns:th="http://www.thymeleaf.org">
     
                 <div style="width: 40%;">
     
-                    <label for="dislikes"><h2>Mag nicht</h2></label><br>
-                    <input style="width: 100%;"type="text" id="dislikes" name="dislikes"><br>
+                    <label for="dislike"><span>Mag nicht (max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label><br>
+                    <input style="width: 100%;"type="text" id="dislike" name="dislike"><br>
 
                     <ul>
                         <li>Coffee</li>
@@ -62,7 +62,7 @@ xmlns:th="http://www.thymeleaf.org">
             form {
                 display: flex;
                 flex-direction: column;
-                width: 30%;
+                width: 50%;
             }
 
             input {
