@@ -40,12 +40,12 @@ public class BenutzerFormular {
         this.birthday = birthday;
     }
 
-    public Iterator<String> getLikes() {
-        return likes.iterator();
+    public List<String> getLikes() {
+        return likes;
     }
 
-    public Iterator<String> getDislikes() {
-        return dislikes.iterator();
+    public List<String> getDislikes() {
+        return dislikes;
     }
 
     public void addLike(String s) {
