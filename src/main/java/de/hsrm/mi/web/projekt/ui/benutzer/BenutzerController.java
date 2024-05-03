@@ -57,20 +57,23 @@ public class BenutzerController {
         formular.setMail(mail);
         formular.setName(name);
 
-        if(like != "" && formular.likeAmount() < MAXWUNSCH) {
+        logger.info("like is: {}", like);
+        logger.info("dislike is: {}", dislike);
+
+        if(like != null && like != "" && formular.likeAmount() < MAXWUNSCH) {
             formular.addLike(like);
             logger.info("like added: {}", like);
             like = "";
         }
 
-        if(dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
+        if(dislike != null && dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
             formular.addDislike(dislike);
             logger.info("dislike added: {}", dislike);
             dislike = "";
         }
 
-        logger.info("mail = {}", formular.getMail());
-        logger.info("name = {}", formular.getName());
+        // logger.info("mail = {}", formular.getMail());
+        // logger.info("name = {}", formular.getName());
         
         return "benutzerbearbeiten";
     }
