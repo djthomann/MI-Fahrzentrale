@@ -1,5 +1,7 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import java.time.LocalDate;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -48,6 +50,7 @@ public class BenutzerController {
     public String postMethodName(
     @RequestParam("name") String name,
     @RequestParam("mail") String mail,
+    @RequestParam("birthday") LocalDate birthday,
     @RequestParam("like") String like,
     @RequestParam("dislike") String dislike,
     @PathVariable("bnummer") long bnummer, 
@@ -56,6 +59,7 @@ public class BenutzerController {
         
         formular.setMail(mail);
         formular.setName(name);
+        formular.setBirthday(birthday);
 
         logger.info("like is: {}", like);
         logger.info("dislike is: {}", dislike);
@@ -74,6 +78,8 @@ public class BenutzerController {
 
         // logger.info("mail = {}", formular.getMail());
         // logger.info("name = {}", formular.getName());
+        logger.info("birthday = {}", birthday);
+        logger.info("birthday = {}", formular.getBirthday());
         
         return "benutzerbearbeiten";
     }

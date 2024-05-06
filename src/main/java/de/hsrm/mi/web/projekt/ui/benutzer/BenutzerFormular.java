@@ -1,19 +1,22 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.List;
-import java.util.Iterator;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class BenutzerFormular {
     
     private String name;
     private String surname;
     private String mail;
-    private String birthday;
+    @DateTimeFormat(iso = ISO.DATE)
+    private LocalDate birthday;
 
-    private List<String> likes = new ArrayList<>();
-    private List<String> dislikes = new ArrayList<>();
+    private Set<String> likes = new HashSet<>();
+    private Set<String> dislikes = new HashSet<>();
     
     public String getName() {
         return name;
@@ -33,18 +36,18 @@ public class BenutzerFormular {
     public void setMail(String mail) {
         this.mail = mail;
     }
-    public String getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
-    public void setBirthday(String birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
-    public List<String> getLikes() {
+    public Set<String> getLikes() {
         return likes;
     }
 
-    public List<String> getDislikes() {
+    public Set<String> getDislikes() {
         return dislikes;
     }
 
