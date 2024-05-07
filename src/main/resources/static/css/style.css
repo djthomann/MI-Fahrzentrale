@@ -40,6 +40,12 @@ body {
     border: none;
     height: 45px;
     cursor: pointer;
+    transition-duration: 200ms;
+    transition-property: background-color;
+}
+
+.form-submit:hover {
+    background-color: #0e5563;
 }
 
 .form-two-column-span {
