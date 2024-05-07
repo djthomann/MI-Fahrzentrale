@@ -44,7 +44,7 @@
                     <div>
 
                         <label class="form-complex-label" for="like"><span>Mag ich</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
-                        <input th:classappend="${#lists.size(formular.likes) lt 5} ? '' : 'input-invisible'" type="text" id="like" name="like" placeholder="Eine tolle Sache">
+                        <input th:classappend="${#lists.size(formular.likes) lt maxwunsch} ? '' : 'input-invisible'" type="text" id="like" name="like" placeholder="Eine tolle Sache">
     
                         <ul th:classappend="${#lists.size(formular.likes) gt 0} ? 'likes-border' : ''" class="likes-list">
                             <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${#lists.sort(formular.likes)}" th:text="${ele}">Coffee</li>
@@ -55,7 +55,7 @@
                     <div>
         
                         <label class="form-complex-label" for="dislike"><span>Mag ich nicht</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
-                        <input th:classappend="${#lists.size(formular.dislikes) lt 5} ? '' : 'input-invisible'" type="text" id="dislike" name="dislike" placeholder="Eine blöde Sache">
+                        <input th:classappend="${#lists.size(formular.dislikes) lt maxwunsch} ? '' : 'input-invisible'" type="text" id="dislike" name="dislike" placeholder="Eine blöde Sache">
     
                         <ul th:classappend="${#lists.size(formular.dislikes) gt 0} ? 'likes-border' : ''" class="likes-list">
                             <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${#lists.sort(formular.dislikes)}" th:text="${ele}">Coffee</li>
