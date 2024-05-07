@@ -50,7 +50,7 @@ public class BenutzerController {
     public String postMethodName(
     @RequestParam("name") String name,
     @RequestParam("mail") String mail,
-    @RequestParam("birthday") LocalDate birthday,
+    @RequestParam(required = false, name = "birthday") LocalDate birthday,
     @RequestParam("like") String like,
     @RequestParam("dislike") String dislike,
     @PathVariable("bnummer") long bnummer, 
