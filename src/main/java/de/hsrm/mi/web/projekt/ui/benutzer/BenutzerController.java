@@ -43,7 +43,7 @@ public class BenutzerController {
     @GetMapping("/benutzer/{bnummer}")
     public String getBenutzer(@PathVariable("bnummer") long bnummer, Model m) {
         
-        logger.info("bnummer = {}", bnummer);
+        // logger.info("bnummer = {}", bnummer);
         
         m.addAttribute("bnummer", bnummer);
         return "benutzerbearbeiten";
@@ -66,21 +66,21 @@ public class BenutzerController {
         String like = formular.getLike();
         if(like != null && like != "" && formular.likeAmount() < MAXWUNSCH) {
             formular.addLike(like);
-            logger.info("like added: {}", like);
+            // logger.info("like added: {}", like);
             formular.setLike("");
         }
 
         String dislike = formular.getDislike();
         if(dislike != null && dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
             formular.addDislike(dislike);
-            logger.info("dislike added: {}", dislike);
+            // logger.info("dislike added: {}", dislike);
             formular.setDislike("");
         }
 
         // logger.info("mail = {}", formular.getMail());
         // logger.info("name = {}", formular.getName());
         // logger.info("birthday = {}", birthday);
-        logger.info("birthday = {}", formular.getBirthday());
+        // logger.info("birthday = {}", formular.getBirthday());
 
         m.addAttribute("bnummer", bnummer);
 
