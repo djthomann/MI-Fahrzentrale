@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -32,6 +33,9 @@ public class BenutzerFormular {
 
     private Set<String> likes = new HashSet<>();
     private Set<String> dislikes = new HashSet<>();
+
+    @GutesPasswort
+    private String password;
     
     public String getName() {
         return name;
@@ -68,6 +72,12 @@ public class BenutzerFormular {
     }
     public void setDislike(String dislike) {
         this.dislike = dislike;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
     public Set<String> getLikes() {
         return likes;
