@@ -11,6 +11,20 @@
 
     <body>
         
+        <header>
+
+            <h1>Das ist mein Header</h1>
+
+            <nav>
+
+                <a href="@{?sprache=de}">DE</a>
+                <a href="@{?sprache=nl}">NL</a>
+                <a href="@{?sprache=en}">EN</a>
+
+            </nav>
+
+        </header>
+
         <div class="form-wrapper">
 
             <div class="form-header">
@@ -21,17 +35,20 @@
 
                 <div class="field-container">
                     <label for="name">Vorname</label><br>
-                    <input th:field="*{name}" type="text" name="name" placeholder="Maximus"><br>
+                    <input th:errorclass="input-error" th:field="*{name}" type="text" name="name" placeholder="Maximus"><br>
+                    <label th:if="*{#fields.hasErrors('name')}" th:each="err : *{#fields.errors('name')}" th:text="${err}" class="label-error" for="name">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div class="field-container">
                     <label for="surname">Nachname</label><br>
-                    <input th:field="*{surname}" type="text" name="surname" placeholder="Mustermann"><br>
+                    <input th:errorclass="input-error" th:field="*{surname}" type="text" name="surname" placeholder="Mustermann"><br>
+                    <label th:if="*{#fields.hasErrors('surname')}" th:each="err : *{#fields.errors('surname')}" th:text="${err}" class="label-error" for="surname">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div>
                     <label for="mail">E-Mail</label><br>
-                    <input th:field="*{mail}"  type="text" name="mail" placeholder="max.mustermann@musterseite.de"><br>    
+                    <input th:errorclass="input-error" th:field="*{mail}"  type="text" name="mail" placeholder="max.mustermann@musterseite.de"><br>    
+                    <label th:if="*{#fields.hasErrors('mail')}" th:each="err : *{#fields.errors('mail')}" th:text="${err}" class="label-error" for="mail">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div>

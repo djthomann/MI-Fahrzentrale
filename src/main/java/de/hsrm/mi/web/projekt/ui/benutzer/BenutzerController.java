@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import jakarta.validation.Valid;
 
 
 
@@ -48,39 +51,38 @@ public class BenutzerController {
 
     @PostMapping("/benutzer/{bnummer}")
     public String postMethodName(
-    @RequestParam("name") String name,
-    @RequestParam("mail") String mail,
-    @RequestParam(required = false, name = "birthday") LocalDate birthday,
-    @RequestParam("like") String like,
-    @RequestParam("dislike") String dislike,
-    @PathVariable("bnummer") long bnummer, 
-    @ModelAttribute("formular") BenutzerFormular formular, 
-    Model m) {
+        @PathVariable("bnummer") long bnummer,
+        @Valid @ModelAttribute("formular") BenutzerFormular formular, 
+        BindingResult formularFehler,
+        Model m) {
         
-        formular.setMail(mail);
-        formular.setName(name);
-        formular.setBirthday(birthday);
+        // formular.setMail();
+        // formular.setName("name");
+        // formular.setBirthday("birthday");
 
-        logger.info("like is: {}", like);
-        logger.info("dislike is: {}", dislike);
+        // logger.info("like is: {}", "like");
+        // logger.info("dislike is: {}", "dislike");
 
-        if(like != null && like != "" && formular.likeAmount() < MAXWUNSCH) {
-            formular.addLike(like);
-            logger.info("like added: {}", like);
-            like = "";
+        /*
+        if("like" != null && "like" != "" && formular.likeAmount() < MAXWUNSCH) {
+            formular.addLike("like");
+            logger.info("like added: {}", "like");
+            "like" = "";
         }
 
-        if(dislike != null && dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
-            formular.addDislike(dislike);
-            logger.info("dislike added: {}", dislike);
-            dislike = "";
+        if("dislike" != null && "dislike" != "" && formular.dislikeAmount() < MAXWUNSCH) {
+            formular.addDislike("dislike");
+            logger.info("dislike added: {}", "dislike");
+            "dislike" = "";
         }
 
         // logger.info("mail = {}", formular.getMail());
         // logger.info("name = {}", formular.getName());
         logger.info("birthday = {}", birthday);
         logger.info("birthday = {}", formular.getBirthday());
-        
+        */
+        m.addAttribute("bnummer", bnummer);
+
         return "benutzerbearbeiten";
     }
     

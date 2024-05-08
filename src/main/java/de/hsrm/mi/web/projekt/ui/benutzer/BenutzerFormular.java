@@ -7,12 +7,24 @@ import java.util.Set;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 public class BenutzerFormular {
     
+    @NotNull @Size(min=3, max=80)
     private String name;
+
+    @NotNull @Size(min=3, max=80)
     private String surname;
+
+    @Email
     private String mail;
+
     @DateTimeFormat(iso = ISO.DATE)
+    @Past
     private LocalDate birthday;
 
     private Set<String> likes = new HashSet<>();
