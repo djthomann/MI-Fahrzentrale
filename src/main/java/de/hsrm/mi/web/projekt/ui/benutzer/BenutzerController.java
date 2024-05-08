@@ -52,7 +52,7 @@ public class BenutzerController {
     @PostMapping("/benutzer/{bnummer}")
     public String postMethodName(
         @PathVariable("bnummer") long bnummer,
-        @Valid @ModelAttribute("formular") BenutzerFormular formular, 
+        @Valid @ModelAttribute("formular") BenutzerFormular formular,
         BindingResult formularFehler,
         Model m) {
         
@@ -63,24 +63,25 @@ public class BenutzerController {
         // logger.info("like is: {}", "like");
         // logger.info("dislike is: {}", "dislike");
 
-        /*
-        if("like" != null && "like" != "" && formular.likeAmount() < MAXWUNSCH) {
-            formular.addLike("like");
-            logger.info("like added: {}", "like");
-            "like" = "";
+        String like = formular.getLike();
+        if(like != null && like != "" && formular.likeAmount() < MAXWUNSCH) {
+            formular.addLike(like);
+            logger.info("like added: {}", like);
+            formular.setLike("");
         }
 
-        if("dislike" != null && "dislike" != "" && formular.dislikeAmount() < MAXWUNSCH) {
-            formular.addDislike("dislike");
-            logger.info("dislike added: {}", "dislike");
-            "dislike" = "";
+        String dislike = formular.getDislike();
+        if(dislike != null && dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
+            formular.addDislike(dislike);
+            logger.info("dislike added: {}", dislike);
+            formular.setDislike("");
         }
 
         // logger.info("mail = {}", formular.getMail());
         // logger.info("name = {}", formular.getName());
-        logger.info("birthday = {}", birthday);
+        // logger.info("birthday = {}", birthday);
         logger.info("birthday = {}", formular.getBirthday());
-        */
+
         m.addAttribute("bnummer", bnummer);
 
         return "benutzerbearbeiten";

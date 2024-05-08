@@ -27,6 +27,9 @@ public class BenutzerFormular {
     @Past
     private LocalDate birthday;
 
+    private String like;
+    private String dislike;
+
     private Set<String> likes = new HashSet<>();
     private Set<String> dislikes = new HashSet<>();
     
@@ -54,7 +57,18 @@ public class BenutzerFormular {
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
-
+    public String getLike() {
+        return like;
+    }
+    public void setLike(String like) {
+        this.like = like;
+    }
+    public String getDislike() {
+        return dislike;
+    }
+    public void setDislike(String dislike) {
+        this.dislike = dislike;
+    }
     public Set<String> getLikes() {
         return likes;
     }
