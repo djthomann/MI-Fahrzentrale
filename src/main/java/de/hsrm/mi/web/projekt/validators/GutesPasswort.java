@@ -14,7 +14,7 @@ import java.lang.annotation.Documented;
 @Constraint(validatedBy = PasswordValidator.class)
 @Documented
 public @interface GutesPasswort {
-    String message() default "Das ist kein \"Gutes\" Passwort";
+    String message() default "{gutespasswort.fehler}";
     // optionale Zusatzinfos
     Class<? extends Payload>[] payload() default { };
     // Zuordnung zu Validierungsgruppen?

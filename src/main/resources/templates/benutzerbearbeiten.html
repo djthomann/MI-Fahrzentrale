@@ -15,7 +15,7 @@
 
             <div>
                 <img th:src="@{/icons/Logo-Hochschule-RheinMain.png}"/>
-                <h3>Benutzer bearbeiten</h3>
+                <h3 th:text="#{kopf.benutzer}">Benutzer bearbeiten</h3>
             </div>
 
             <nav>
@@ -31,13 +31,13 @@
         <div class="form-wrapper">
 
             <div class="form-header">
-                Benutzer <span th:text="${bnummer}">Platzhalter</span> bearbeiten
+                <span th:text="#{kopf.benutzer}">Benutzer</span> <span th:text="${bnummer}">Platzhalter</span> bearbeiten
             </div>
 
             <form th:action="@{#}" th:object="${formular}" method="post">
 
                 <div class="field-container">
-                    <label for="name">Vorname</label><br>
+                    <label th:text="#{benutzer.name}" for="name">Vorname</label><br>
                     <input th:errorclass="input-error" th:field="*{name}" type="text" name="name" placeholder="Maximus"><br>
                     <label th:if="*{#fields.hasErrors('name')}" th:each="err : *{#fields.errors('name')}" th:text="${err}" class="label-error" for="name">So sieht ein Fehler aus</label><br>
                 </div>

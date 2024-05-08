@@ -1,0 +1,18 @@
+propertyname;de;en;nl
+
+# Kopf-/Fusszeile
+kopf.benutzer;Benutzer;Users;Gebruikers
+fuss.impressum;Impressum;imprint;afdruk
+fuss.kontakt;Kontakt;contact;contact
+
+# Benutzer-Formular
+benutzer.name;Name;Name;Naam
+benutzer.email;E-Mail;E-mail;E-mail
+benutzer.passwort;Passwort;Password;Wachtwoord
+benutzer.geburtstag;Geburtstag;Date of birth;Geboortedatum
+benutzer.magich;Ich mag;I like;Ik hou van
+benutzer.magichnicht;Ich mag nicht;I don't like;Ik hou niet van
+benutzerprofil.titel;Benutzerprofil {0} bearbeiten;Edit user profile {0};Gebruikersprofiel {0} bewerken
+
+# GutesPasswort-Validator
+gutespasswort.fehler;Das ist kein gutes Passwort;This is not a good password;Dit is geen goed wachtwoord
