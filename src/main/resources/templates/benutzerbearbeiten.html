@@ -13,7 +13,10 @@
         
         <header>
 
-            <h1>Das ist mein Header</h1>
+            <div>
+                <img th:src="@{/icons/hsrm-icon.jpg}"/>
+                <h3>Benutzer bearbeiten</h3>
+            </div>
 
             <nav>
 
@@ -84,7 +87,8 @@
     
                 <div class="form-two-column-span">
                     <label for="password">Passwort</label><br>
-                    <input type="password" name="password" placeholder="Musterpasswort..."><br>
+                    <input th:errorclass="input-error" type="password" name="password" placeholder="Musterpasswort..."><br>
+                    <label th:if="*{#fields.hasErrors('password')}" th:each="err : *{#fields.errors('password')}" th:text="${err}" class="label-error" for="password">So sieht ein Fehler aus</label><br>
                 </div>
     
                 <input class="form-submit form-two-column-span" type="submit" value="Speichern">
