@@ -35,8 +35,11 @@ for line in lines:
 for language in languages:
     f = open(filepath + "messages_{}.properties".format(language), "x")
     pairs = messages[language]
-    for pair in pairs:
-        # print(pair)
-        f.write(pair[0] + "=" + pair[1] + "\n")
+    for i, pair in enumerate(pairs):
+        if i == len(pairs)- 1:  
+            f.write(pair[0] + "=" + pair[1])  
+        else:
+            f.write(pair[0] + "=" + pair[1] + "\n")  
+    
     f.close()
     
