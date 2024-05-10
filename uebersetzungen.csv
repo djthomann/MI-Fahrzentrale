@@ -1,28 +1,28 @@
-propertyname,de,en,nl,he
-,,,,
-# Kopf-/Fusszeile,,,,
-kopf.benutzer,Benutzer,Users,Gebruikers,Benudser
-fuss.impressum,Impressum,imprint,afdruk,Imbressum
-fuss.kontakt,Kontakt,contact,contact,Gondagd
-,,,,
-# Benutzer-Formular,,,,
-benutzer.vorname,Vorname,First Name,Voornaam,Vonaam
-benutzer.nachname,Nachname,Surname,Achternaam,Nachnaam
-benutzer.email,E-Mail,E-mail,E-mail,E-Mail
-benutzer.passwort,Passwort,Password,Wachtwoord,Passwodd
-benutzer.geburtstag,Geburtstag,Date of birth,Geboortedatum,Gebuddsdaach
-benutzer.magich,Ich mag,I like,Ik hou van,Des mag isch
-benutzer.magichnicht,Ich mag nicht,I don't like,Ik hou niet van,Des mag isch nedd
-benutzerprofil.speichern,Speichern,Save,Opslaan,Schbeichere
-benutzerprofil.titel,Benutzerprofil {0} bearbeiten,Edit user profile {0},Gebruikersprofiel {0} bewerken,Benudserbrowil {0} beabbeide
-,,,,
-# GutesPasswort-Validator,,,,
-gutespasswort.fehler,Das ist kein “gutes” Passwort,This is not a “good” password,Dit is geen “goed” wachtwoord,Des is keen “gudes” passwodd
-,,,,
-#Benutzer-Platzhalter,,,,
-platzhalter.vorname,Max,Joe,Jan,Maggus
-platzhalter.nachname,Mustermann,Doe,Modaal,Mussdabub
-platzhalter.email,max.mustermann@musterseite.de,joe.doe@samplepage.us,jan.modall@monsterpagina.nl,maggus.mussderbub@mussderseide.he
-platzhalter.passwort,Ein “gutes” Passwort,A “good” password,Een “goed” wachtwoord,En “gudes” Passwodd
-platzhalter.magich,Eine tolle Sache,A great thing,Een groot ding,Ne subbä Sach’
-platzhalter.magichnicht,Eine blöde Sache,A silly thing,Een stom ding,Ne miese Sach’
+propertyname,de,en,nl,he,by
+,,,,,
+# Kopf-/Fusszeile,,,,,
+kopf.benutzer,Benutzer,Users,Gebruikers,Benudser,Benudzoa
+fuss.impressum,Impressum,imprint,afdruk,Imbressum,Impressum
+fuss.kontakt,Kontakt,contact,contact,Gondagd,Kondogd
+,,,,,
+# Benutzer-Formular,,,,,
+benutzer.vorname,Vorname,First Name,Voornaam,Vonaam,Voanome
+benutzer.nachname,Nachname,Surname,Achternaam,Nachnaam,Nochnome
+benutzer.email,E-Mail,E-mail,E-mail,E-Mail,E-Mail
+benutzer.passwort,Passwort,Password,Wachtwoord,Passwodd,Passwoad
+benutzer.geburtstag,Geburtstag,Date of birth,Geboortedatum,Gebuddsdaach,Gebuardsdoag
+benutzer.magich,Ich mag,I like,Ik hou van,Des mag isch,Des g’fulld ma
+benutzer.magichnicht,Ich mag nicht,I don't like,Ik hou niet van,Des mag isch nedd,Des is ma Wurschd
+benutzerprofil.speichern,Speichern,Save,Opslaan,Schbeichere,Spoichern
+benutzerprofil.titel,Benutzerprofil {0} bearbeiten,Edit user profile {0},Gebruikersprofiel {0} bewerken,Benudserbrowil {0} beabbeide,Benudzoaprofiel {0} beoabeidn
+,,,,,
+# GutesPasswort-Validator,,,,,
+gutespasswort.fehler,Das ist kein “gutes” Passwort,This is not a “good” password,Dit is geen “goed” wachtwoord,Des is keen “gudes” passwodd,Des is koa “guades” Passwoad
+,,,,,
+#Benutzer-Platzhalter,,,,,
+platzhalter.vorname,Max,Joe,Jan,Mischel,Maggus
+platzhalter.nachname,Mustermann,Doe,Modaal,Mussdabub,Söder
+platzhalter.email,max.mustermann@musterseite.de,joe.doe@samplepage.us,jan.modall@monsterpagina.nl,mischel.mussderbub@mussderseide.he,maggus.soeder@musdoaseide.by
+platzhalter.passwort,Ein “gutes” Passwort,A “good” password,Een “goed” wachtwoord,En “gudes” Passwodd,A “guads” Passwoad
+platzhalter.magich,Eine tolle Sache,A great thing,Een groot ding,Ne subbä Sache,A guade G’schicht
+platzhalter.magichnicht,Eine blöde Sache,A silly thing,Een stom ding,Ne miese Sache,A bleda G’schicht
