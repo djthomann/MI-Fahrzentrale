@@ -10,37 +10,37 @@
     </head>
 
     <body>
-        
+
         <th:block th:replace="~{fragments/kopffuss :: kopf}"></th:block>
 
         <div class="form-wrapper">
 
             <div class="form-header">
-                <span th:text="#{kopf.benutzer}">Benutzer</span> <span th:text="${bnummer}">Platzhalter</span> bearbeiten
+                <span th:text="#{benutzerprofil.titel(${bnummer})}">Benutzer bearbeiten</span>
             </div>
 
             <form th:action="@{#}" th:object="${formular}" method="post">
 
                 <div class="field-container">
-                    <label th:text="#{benutzer.name}" for="name">Vorname</label><br>
-                    <input th:errorclass="input-error" th:field="*{name}" type="text" name="name" placeholder="Maximus"><br>
+                    <label th:text="#{benutzer.vorname}" for="name">Vorname</label><br>
+                    <input th:errorclass="input-error" th:field="*{name}" type="text" name="name" th:placeholder="#{platzhalter.vorname}"><br>
                     <label th:if="*{#fields.hasErrors('name')}" th:each="err : *{#fields.errors('name')}" th:text="${err}" class="label-error" for="name">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div class="field-container">
-                    <label for="surname">Nachname</label><br>
-                    <input th:errorclass="input-error" th:field="*{surname}" type="text" name="surname" placeholder="Mustermann"><br>
+                    <label th:text="#{benutzer.nachname}" for="surname">Nachname</label><br>
+                    <input th:errorclass="input-error" th:field="*{surname}" type="text" name="surname" th:placeholder="#{platzhalter.nachname}"><br>
                     <label th:if="*{#fields.hasErrors('surname')}" th:each="err : *{#fields.errors('surname')}" th:text="${err}" class="label-error" for="surname">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div>
-                    <label for="mail">E-Mail</label><br>
-                    <input th:errorclass="input-error" th:field="*{mail}"  type="text" name="mail" placeholder="max.mustermann@musterseite.de"><br>    
+                    <label th:text="#{benutzer.email}" for="mail">E-Mail</label><br>
+                    <input th:errorclass="input-error" th:field="*{mail}"  type="text" name="mail" th:placeholder="#{platzhalter.email}"><br>    
                     <label th:if="*{#fields.hasErrors('mail')}" th:each="err : *{#fields.errors('mail')}" th:text="${err}" class="label-error" for="mail">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div>
-                    <label for="birthday">Geburtstag</label><br>
+                    <label th:text="#{benutzer.geburtstag}" for="birthday">Geburtstag</label><br>
                     <input th:field="*{birthday}" type="date" name="birthday"><br>
                 </div>
     
@@ -48,8 +48,8 @@
     
                     <div>
 
-                        <label class="form-complex-label" for="like"><span>Mag ich</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
-                        <input th:classappend="${#lists.size(formular.likes) lt maxwunsch} ? '' : 'input-invisible'" type="text" id="like" name="like" placeholder="Eine tolle Sache">
+                        <label th:text="#{benutzer.magich}" class="form-complex-label" for="like"><span>Mag ich</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
+                        <input th:classappend="${#lists.size(formular.likes) lt maxwunsch} ? '' : 'input-invisible'" type="text" id="like" name="like" th:placeholder="#{platzhalter.magich}">
     
                         <ul th:classappend="${#lists.size(formular.likes) gt 0} ? 'likes-border' : ''" class="likes-list">
                             <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${#lists.sort(formular.likes)}" th:text="${ele}">Coffee</li>
@@ -59,8 +59,8 @@
         
                     <div>
         
-                        <label class="form-complex-label" for="dislike"><span>Mag ich nicht</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
-                        <input th:classappend="${#lists.size(formular.dislikes) lt maxwunsch} ? '' : 'input-invisible'" type="text" id="dislike" name="dislike" placeholder="Eine blöde Sache">
+                        <label th:text="#{benutzer.magichnicht}" class="form-complex-label" for="dislike"><span>Mag ich nicht</span><span class="small-label">(max: <span th:text="${maxwunsch}">Platzhalter</span>)</span></label>
+                        <input th:classappend="${#lists.size(formular.dislikes) lt maxwunsch} ? '' : 'input-invisible'" type="text" id="dislike" name="dislike" th:placeholder="#{platzhalter.magichnicht}">
     
                         <ul th:classappend="${#lists.size(formular.dislikes) gt 0} ? 'likes-border' : ''" class="likes-list">
                             <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${#lists.sort(formular.dislikes)}" th:text="${ele}">Coffee</li>
@@ -71,12 +71,12 @@
                 </div>
     
                 <div class="form-two-column-span">
-                    <label for="password">Passwort</label><br>
-                    <input th:errorclass="input-error" type="password" name="password" placeholder="Musterpasswort..."><br>
+                    <label th:text="#{benutzer.passwort}" for="password">Passwort</label><br>
+                    <input th:errorclass="input-error" type="password" name="password" th:placeholder="#{platzhalter.passwort}"><br>
                     <label th:if="*{#fields.hasErrors('password')}" th:each="err : *{#fields.errors('password')}" th:text="${err}" class="label-error" for="password">So sieht ein Fehler aus</label><br>
                 </div>
     
-                <input class="form-submit form-two-column-span" type="submit" value="Speichern">
+                <input class="form-submit form-two-column-span" type="submit" th:value="#{benutzerprofil.speichern}">
     
             </form>
 
