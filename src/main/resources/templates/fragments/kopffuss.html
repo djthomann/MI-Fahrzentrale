@@ -1,0 +1,31 @@
+<th:block th:fragment="kopf">
+
+    <header>
+
+        <div>
+            <img th:src="@{/icons/Logo-Hochschule-RheinMain.png}"/>
+            <h3 th:text="#{kopf.benutzer}">Benutzer bearbeiten</h3>
+        </div>
+
+        <nav>
+
+            <a th:href="@{?sprache=de}">DE</a>
+            <a th:href="@{?sprache=he}">HE</a>
+            <a th:href="@{?sprache=nl}">NL</a>
+            <a th:href="@{?sprache=en}">EN</a>
+
+        </nav>
+
+    </header>
+
+</th:block>
+
+<th:block th:fragment="fuss">
+
+    <footer>
+
+        <a href="https://google.com" target="_blank" th:text="#{fuss.impressum}">Impressum</a>
+
+    </footer>
+
+</th:block>

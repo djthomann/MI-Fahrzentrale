@@ -11,22 +11,7 @@
 
     <body>
         
-        <header>
-
-            <div>
-                <img th:src="@{/icons/Logo-Hochschule-RheinMain.png}"/>
-                <h3 th:text="#{kopf.benutzer}">Benutzer bearbeiten</h3>
-            </div>
-
-            <nav>
-
-                <a href="@{?sprache=de}">DE</a>
-                <a href="@{?sprache=nl}">NL</a>
-                <a href="@{?sprache=en}">EN</a>
-
-            </nav>
-
-        </header>
+        <th:block th:replace="~{fragments/kopffuss :: kopf}"></th:block>
 
         <div class="form-wrapper">
 
@@ -96,6 +81,8 @@
             </form>
 
         </div>
+
+        <th:block th:replace="~{fragments/kopffuss :: fuss}"></th:block>
     
     </body>
 </html>
