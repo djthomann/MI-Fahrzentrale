@@ -7,10 +7,11 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
-    display: flex;
+    background-color: rgb(224, 238, 242);
+    /*display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center;*/
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -27,8 +28,6 @@ header {
     width: 100%;
     background: linear-gradient(90deg,rgba(0,145,175,1) 0%,  #00b7c1 100%);
     height: 7.5%;
-    position: absolute;
-    top: 0;
 }
 
 footer {
@@ -49,7 +48,6 @@ footer a {
 header div {
     display: flex;
     align-items: center;
-    justify-content: center;
     margin: 0 2% 0 2%;
     height: 100%;
 }
@@ -76,25 +74,21 @@ header nav a {
 }
 
 .form-wrapper {
-    background-color: rgb(224, 238, 242);
-    border-radius: 20px;
-    /*border: 2px solid #000;*/
-    -webkit-box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.25); 
-    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.25);
+    margin-top: 5%;
+    width: 80%;
 }
 
 .form-header {
-    background: rgb(0,193,181);
-    background: linear-gradient(90deg,rgba(0,145,175,1) 0%,  #00b7c1 100%);
     padding: 25px;
-    border-radius: 20px 20px 0 0;
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 20pt;
 }
 
 
 .form-submit {
+    width: 100%;
+    height: 100%;
     background-color: #0091af;
     font-weight: bold;
     color: white;
@@ -109,17 +103,24 @@ header nav a {
     background-color: #0e5563;
 }
 
-.form-two-column-span {
+.form-first-two-column-span {
     grid-column: 1 / 3;
+}
+
+.form-second-two-column-span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 3 / 5;
 }
 
 form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 0.2fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 0.2fr);
     grid-column-gap: 20px;
     grid-row-gap: 10px; 
-    width: 600px;
+    
     padding: 20px 20px 0 20px;
 }
 
@@ -171,7 +172,8 @@ label {
 }
 
 .likes-flexbox {
-    grid-column: 1 / 3;
+    grid-column: 3 / 5;
+    grid-row: 1 / 3;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 20px;
