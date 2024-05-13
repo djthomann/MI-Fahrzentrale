@@ -1,0 +1,129 @@
+form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 0.2fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px; 
+    padding: 20px 20px 0 20px;
+}
+
+.form-wrapper {
+    margin-top: 5%;
+    width: 80%;
+}
+
+.form-header {
+    padding: 25px;
+    color: black;
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+
+.form-submit {
+    width: 100%;
+    height: 100%;
+    background-color: #0091af;
+    font-weight: bold;
+    color: white;
+    border: none;
+    height: 45px;
+    cursor: pointer;
+    transition-duration: 200ms;
+    transition-property: background-color;
+}
+
+.form-submit:hover {
+    background-color: #0e5563;
+}
+
+.form-first-two-column-span {
+    grid-column: 1 / 3;
+}
+
+.form-second-two-column-span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 3 / 5;
+}
+
+.field-container {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin: 5px 0;
+    padding-left: 8px;
+    height: 30px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+.input-invisible {
+    display: none;
+}
+
+.input-error {
+    border-color: purple;
+    border-width: 2px;
+    background-color: rgb(255, 213, 255);
+}
+
+label {
+    /*padding-left: 4px;*/
+    font-weight: bold;
+}
+
+.label-error {
+    font-weight: normal;
+    font-size: 10pt;
+    color: purple;
+}
+
+.form-complex-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.small-label {
+    font-size: 8pt;
+    font-weight: normal;
+    float: right;
+}
+
+.likes-flexbox {
+    grid-column: 3 / 5;
+    grid-row: 1 / 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+}
+
+.likes-list {
+    margin: 5px 0 0 0;
+    padding: 0;
+    border-radius: 4px;
+    /* border: 1px solid gray; */
+    overflow: hidden;
+    list-style-type: none;
+}
+
+.likes-border {
+    border: 1px solid gray;
+}
+
+.likes-list li {
+    padding: 4px 8px;
+}
+
+.odd-li {
+    background-color: #c5d8d9;
+}
+
+.even-li {
+    background-color: azure;
+}
