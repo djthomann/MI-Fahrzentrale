@@ -3,7 +3,8 @@
     <header>
 
         <div>
-            <img th:src="@{/icons/Logo-Hochschule-RheinMain.png}"/>
+            <a th:href="@{~/benutzer}"><img th:src="@{/icons/Logo-Hochschule-RheinMain.png}"/></a>
+            
             <h3 th:text="#{kopf.benutzer}">Benutzer bearbeiten</h3>
         </div>
 
@@ -25,7 +26,8 @@
 
     <footer>
 
-        <a href="https://google.com" target="_blank" th:text="#{fuss.impressum}">Impressum</a>
+        <a th:href="@{~/kontakt}" th:text="#{fuss.kontakt}">Kontakt</a>
+        <a th:href="@{~/impressum}" th:text="#{fuss.impressum}">Impressum</a>
 
     </footer>
 
