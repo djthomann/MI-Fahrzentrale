@@ -67,9 +67,9 @@ input {
 }
 
 .input-error {
-    border-color: purple;
+    border-color: red;
     border-width: 2px;
-    background-color: rgb(255, 213, 255);
+    background-color: rgb(255, 221, 221);
 }
 
 label {
@@ -80,7 +80,7 @@ label {
 .label-error {
     font-weight: normal;
     font-size: 10pt;
-    color: purple;
+    color: red;
 }
 
 .form-complex-label {
