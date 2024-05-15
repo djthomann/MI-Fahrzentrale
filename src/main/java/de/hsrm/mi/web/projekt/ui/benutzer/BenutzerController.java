@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 
 
 @Controller
-@SessionAttributes(names = {"benutzer", "formular", "maxwunsch"})
+@SessionAttributes(names = {"benutzer", "formular", "info","maxwunsch"})
 public class BenutzerController {
     
     @Autowired BenutzerService benutzerService;

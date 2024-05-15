@@ -1,3 +1,11 @@
+.info-box {
+    color: red;
+    padding: 0 20px;
+    background-color: rgb(255, 213, 213);
+    font-size: 14pt;
+    font-weight: bold;
+}
+
 header {
     display: flex;
     align-items: center;
