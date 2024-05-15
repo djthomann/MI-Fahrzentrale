@@ -24,8 +24,8 @@ public class Benutzer {
     @GeneratedValue
     private long id;
 
-    @GeneratedValue
-    private long version;
+    // @GeneratedValue
+    // private long version;
 
     @NotNull @Size(min=3, max=80)
     private String name;
@@ -58,9 +58,9 @@ public class Benutzer {
         return id;
     }
 
-    public long getVersion() {
+    /* public long getVersion() {
         return version;
-    }
+    } */
 
     public String getName() {
         return name;
