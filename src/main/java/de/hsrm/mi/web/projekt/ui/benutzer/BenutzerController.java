@@ -22,12 +22,13 @@ import jakarta.validation.Valid;
 
 
 @Controller
-@SessionAttributes(names = {"benutzer", "formular", "info","maxwunsch"})
+@SessionAttributes(names = {"benutzer", "formular", "maxwunsch"})
 public class BenutzerController {
     
     @Autowired BenutzerService benutzerService;
 
     public final int MAXWUNSCH = 5;
+    private BenutzerFormular benutzerFormular;
 
     Logger logger = LoggerFactory.getLogger(BenutzerController.class);
 
@@ -35,8 +36,9 @@ public class BenutzerController {
     public void initForm(Model m) {
 
         // logger.info("formular init");
+        benutzerFormular = new BenutzerFormular();
 
-        m.addAttribute("formular", new BenutzerFormular());
+        m.addAttribute("formular", benutzerFormular);
     }
 
     @ModelAttribute("maxwunsch")
@@ -50,7 +52,6 @@ public class BenutzerController {
         logger.info("GetMapping: /benutzer/bnummer = {}", bnummer);
         
         m.addAttribute("bnummer", bnummer);
-        m.addAttribute("info", null);
 
         if(bnummer == 0) {
             // Neuen Benutzer anlegen
@@ -58,8 +59,6 @@ public class BenutzerController {
 
             m.addAttribute("benutzerformular", new BenutzerFormular());
             m.addAttribute("benutzer", new Benutzer());
-
-            logger.info(m.getAttribute("benutzerformular").toString());
 
 
         } else if(bnummer > 0) {
@@ -69,7 +68,6 @@ public class BenutzerController {
             Optional<Benutzer> optionalBenutzer = benutzerService.holeBenutzerMitId(bnummer);
             if(optionalBenutzer.isEmpty()) {
                 logger.info("Benutzer konnte nicht gefunden werden");
-                m.addAttribute("info", "Benutzer konnte nicht gefunden werden");
                 return "kontakt";
             } else {
                 Benutzer benutzer = optionalBenutzer.get();
@@ -95,8 +93,6 @@ public class BenutzerController {
         BindingResult formularFehler,
         Model m) {
 
-            logger.info("PostMapping: /benutzer/bnummer = {}", bnummer);
-
         if(formularFehler.hasErrors()) {
             // Zurück ins Formular schicken
 
@@ -111,16 +107,9 @@ public class BenutzerController {
                 benutzer.setPassword(formular.getPassword());
             }
 
-            try {
-                benutzer = benutzerService.speichereBenutzer(benutzer);
-                bnummer = benutzer.getId();
-                logger.info("bnummer", bnummer);
-                return "impressum";
-            } catch(Exception e) {
-                logger.error("Fehler beim Speichern", e);
-                m.addAttribute("info", e.getMessage());
-                return "benutzerbearbeiten";
-            }
+            benutzer = benutzerService.speichereBenutzer(benutzer);
+
+            bnummer = benutzer.getId();
         }
 
         String like = formular.getLike();
