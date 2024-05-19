@@ -1,0 +1,89 @@
+.list-wrapper {
+    margin: 5%;
+    width: 80%;
+}
+
+.list-wrapper h2 {
+    padding: 0;
+    font-size: 20pt;
+}
+
+.list-wrapper ul {
+    margin: 0 0 25px 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    border-radius: 4px;
+    border: 1px solid gray;
+    background-color: white;
+    overflow: hidden;
+}
+
+.list-wrapper li {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(4, 1fr) repeat(2, 0.75fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 0px; 
+    width: 100%;
+    padding: 7px;
+    border-bottom: 1px solid black;
+}
+
+.list-wrapper li:last-child {
+    border-bottom: none;
+}
+
+.list-wrapper li span {
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+}
+
+.list-wrapper li div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.even-li {
+    
+    background-color: #c5d8d9;
+}
+
+.odd-li {
+    background-color: azure;
+}
+
+.list-wrapper li span {
+    text-align: center;
+}
+
+.list-link {
+    transition-duration: 200ms;
+    transition-property: background-color;
+    border-radius: 4px;
+    font-weight: bold;
+    border: none;
+}
+
+.add {
+    padding: 14px;
+    background-color: #0091af;
+    color: white;
+}
+
+.delete {
+    font-size: 13px;
+    padding: 6px 10px;
+    background-color: red;
+    color: black;
+}
+
+.edit {
+    font-size: 13px;
+    padding: 6px 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid black
+}

@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <title>MItfahrgemeinschaft</title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/header.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/list.css"/>
+        <link rel="stylesheet" href="/fonts/TitilliumWeb-Regular.ttf" type="font/ttf">
+        <!--<link rel="icon" type="image/jpeg" href="/icons/hsrm-icon.jpg">-->
+
+    </head>
+
+    <body>
+
+        <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
+
+        <div class="list-wrapper"> 
+            <h2>Benutzerliste</h2>
+            <ul>
+
+                <li class="even-li">
+                    <span>ID</span>
+                    <span>Vorname</span>
+                    <span>Nachname</span>
+                    <span>E-Mail</span>
+                    <span>Geburtstag</span>
+                    <div><a class="list-link edit" href="benutzer">Bearbeiten</a></div>
+                    <div><a class="list-link delete" href="benutzer">Löschen</a></div>
+                </li>
+
+                <li class="odd-li">
+                    <span>ID</span>
+                    <span>Vorname</span>
+                    <span>Nachname</span>
+                    <span>E-Mail</span>
+                    <span>Geburtstag</span>
+                    <div><a class="list-link edit" href="benutzer">Bearbeiten</a></div>
+                    <div><a class="list-link delete" href="benutzer">Löschen</a></div>
+                </li>
+
+                <li class="even-li">
+                    <span>ID</span>
+                    <span>Vorname</span>
+                    <span>Nachname</span>
+                    <span>E-Mail</span>
+                    <span>Geburtstag</span>
+                    <div><a class="list-link edit" href="benutzer">Bearbeiten</a></div>
+                    <div><a class="list-link delete" href="benutzer">Löschen</a></div>
+                </li>
+
+            </ul>
+            <a class="list-link add" href="benutzer">Neuer Benutzer</a>
+        </div>
+
+        <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>
+    
+    </body>
+</html>

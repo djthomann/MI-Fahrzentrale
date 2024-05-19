@@ -4,16 +4,15 @@ form {
     grid-template-rows: repeat(3, 0.2fr);
     grid-column-gap: 20px;
     grid-row-gap: 10px; 
-    padding: 20px 20px 0 20px;
 }
 
 .form-wrapper {
-    margin-top: 5%;
+    margin: 5%;
     width: 80%;
 }
 
 .form-header {
-    padding: 25px;
+    padding: 0 0 25px 0;
     color: black;
     font-weight: bold;
     font-size: 20pt;

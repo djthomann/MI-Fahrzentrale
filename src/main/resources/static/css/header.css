@@ -10,7 +10,7 @@ header {
 header div {
     display: flex;
     align-items: center;
-    margin: 0 2% 0 2%;
+    margin: 0 5%;
     height: 100%;
 }
 
@@ -22,7 +22,7 @@ header div h3 {
 
 header div a img {
     position: relative;
-    height: 6.5vh;
+    height: 5vh;
 }
 
 header nav {

@@ -46,8 +46,14 @@ public class BenutzerController {
         m.addAttribute("maxwunsch", MAXWUNSCH);
     }
 
+    @GetMapping("/benutzer")
+    public String getBenutzerListe(Model m) {
+        return "benutzerliste";
+    }
+    
+
     @GetMapping("/benutzer/{bnummer}")
-    public String getBenutzer(@PathVariable("bnummer") long bnummer, Model m) {
+    public String getBenutzerBearbeiten(@PathVariable("bnummer") long bnummer, Model m) {
         
         logger.info("GetMapping: /benutzer/bnummer = {}", bnummer);
         
@@ -86,7 +92,7 @@ public class BenutzerController {
     }
 
     @PostMapping("/benutzer/{bnummer}")
-    public String postMethodName(
+    public String postBenutzerBearbeiten(
         @PathVariable("bnummer") long bnummer,
         @SessionAttribute("benutzer") Benutzer benutzer,
         @Valid @ModelAttribute("formular") BenutzerFormular formular,
@@ -110,6 +116,8 @@ public class BenutzerController {
             benutzer = benutzerService.speichereBenutzer(benutzer);
 
             bnummer = benutzer.getId();
+            String forward = "forward:/benutzer/" + bnummer;
+            logger.info("Would redirect to: " + forward);
         }
 
         String like = formular.getLike();
