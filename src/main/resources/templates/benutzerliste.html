@@ -17,7 +17,7 @@
         <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
 
         <div class="list-wrapper"> 
-            <h2>Benutzerliste</h2>
+            <h2 th:text="#{benutzerliste.titel}">Benutzerliste</h2>
             <ul>
 
                 <li class="even-li">
@@ -26,8 +26,8 @@
                     <span>Nachname</span>
                     <span>E-Mail</span>
                     <span>Geburtstag</span>
-                    <div><a class="list-link edit" href="benutzer">Bearbeiten</a></div>
-                    <div><a class="list-link delete" href="benutzer">Löschen</a></div>
+                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" href="benutzer">Bearbeiten</a></div>
+                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" href="benutzer">Löschen</a></div>
                 </li>
 
                 <li class="odd-li">
@@ -36,8 +36,8 @@
                     <span>Nachname</span>
                     <span>E-Mail</span>
                     <span>Geburtstag</span>
-                    <div><a class="list-link edit" href="benutzer">Bearbeiten</a></div>
-                    <div><a class="list-link delete" href="benutzer">Löschen</a></div>
+                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" href="benutzer">Bearbeiten</a></div>
+                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" href="benutzer">Löschen</a></div>
                 </li>
 
                 <li class="even-li">
@@ -46,12 +46,12 @@
                     <span>Nachname</span>
                     <span>E-Mail</span>
                     <span>Geburtstag</span>
-                    <div><a class="list-link edit" href="benutzer">Bearbeiten</a></div>
-                    <div><a class="list-link delete" href="benutzer">Löschen</a></div>
+                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" href="benutzer">Bearbeiten</a></div>
+                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" href="benutzer">Löschen</a></div>
                 </li>
 
             </ul>
-            <a class="list-link add" href="benutzer">Neuer Benutzer</a>
+            <a th:text="#{benutzerliste.neu}" class="list-link add" href="benutzer">Neuer Benutzer</a>
         </div>
 
         <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>

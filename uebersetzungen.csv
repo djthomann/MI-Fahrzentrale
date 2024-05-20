@@ -28,3 +28,9 @@ platzhalter.email,max.mustermann@musterseite.de,joe.doe@samplepage.us,jan.modall
 platzhalter.passwort,Ein “gutes” Passwort,A “good” password,Een “goed” wachtwoord,En “gudes” Passwodd,A “guads” Passwoad
 platzhalter.magich,Eine tolle Sache,A great thing,Een groot ding,Ne subbä Sache,A guade G’schicht
 platzhalter.magichnicht,Eine blöde Sache,A silly thing,Een stom ding,Ne miese Sache,A bleda G’schicht
+,,,,,
+#Benutzer-Liste,,,,,
+benutzerliste.titel,Benutzerliste,User list,Gebruikerslijst,Benudserlisde,Benudzoalistn
+benutzerliste.neu,Benutzer hinzufügen,Add User,Gebruiker toevoegen,Benudser hinzufüsche,Benudzoa hinzuafügn
+benutzerliste.bearbeiten,bearbeiten,edit,bewerken,beabbeide,beoabeidn
+benutzerliste.loeschen,löschen,delete,verwijderen,lösche,löschn
