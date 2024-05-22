@@ -17,14 +17,14 @@
         <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
 
         <div class="list-wrapper"> 
-            <h2>Ortliste</h2>
+            <h2 th:text="#{ortliste.titel}">Ortliste</h2>
             <ul>
 
                 <li class="odd-li">
                     <span>ID</span>
-                    <span>Name</span>
-                    <span>Geobreite</span>
-                    <span>Geolänge</span>
+                    <span th:text="#{ort.name}">Name</span>
+                    <span th:text="#{ort.geobreite}">Geobreite</span>
+                    <span th:text="#{ort.geolaenge}">Geolänge</span>
                 </li>
 
                 <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${orte}" class="even-li">
@@ -32,12 +32,12 @@
                     <span th:text="${ele.name}">Name</span>
                     <span th:text="${ele.geobreite}">Geobreite</span>
                     <span th:text="${ele.geolaenge}">Geolaenge</span>
-                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" th:href="@{ort/{id}(id=${ele.id})}">Bearbeiten</a></div>
-                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" th:href="@{ort/{id}/del(id=${ele.id})}">Löschen</a></div>
+                    <div><a th:text="#{liste.bearbeiten}" class="list-link edit" th:href="@{ort/{id}(id=${ele.id})}">Bearbeiten</a></div>
+                    <div><a th:text="#{liste.loeschen}" class="list-link delete" th:href="@{ort/{id}/del(id=${ele.id})}">Löschen</a></div>
                 </li>
 
             </ul>
-            <a class="list-link add" th:href="@{ort/0}">Neuer Ort</a>
+            <a th:text="#{ortliste.neu}" class="list-link add" th:href="@{ort/0}">Neuer Ort</a>
         </div>
 
         <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>

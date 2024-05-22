@@ -22,10 +22,10 @@
 
                 <li class="odd-li">
                     <span>ID</span>
-                    <span>Vorname</span>
-                    <span>Nachname</span>
-                    <span>E-Mail</span>
-                    <span>Geburtstag</span>
+                    <span th:text="#{benutzer.vorname}">Vorname</span>
+                    <span th:text="#{benutzer.nachname}">Nachname</span>
+                    <span th:text="#{benutzer.email}">E-Mail</span>
+                    <span th:text="#{benutzer.geburtstag}">Geburtstag</span>
                 </li>
 
                 <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${benutzer}" class="even-li">
@@ -34,8 +34,8 @@
                     <span th:text="${ele.surname}">Nachname</span>
                     <span th:text="${ele.mail}">E-Mail</span>
                     <span th:text="${ele.birthday}">Geburtstag</span>
-                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" th:href="@{benutzer/{id}(id=${ele.id})}">Bearbeiten</a></div>
-                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" th:href="@{benutzer/{id}/del(id=${ele.id})}">Löschen</a></div>
+                    <div><a th:text="#{liste.bearbeiten}" class="list-link edit" th:href="@{benutzer/{id}(id=${ele.id})}">Bearbeiten</a></div>
+                    <div><a th:text="#{liste.loeschen}" class="list-link delete" th:href="@{benutzer/{id}/del(id=${ele.id})}">Löschen</a></div>
                 </li>
 
             </ul>

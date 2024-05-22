@@ -17,14 +17,14 @@
         <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
 
         <div class="list-wrapper"> 
-            <h2>Tourenliste</h2>
+            <h2 th:text="#{tourliste.titel}">Tourenliste</h2>
             <ul>
 
                 <li class="odd-li">
                     <span>ID</span>
-                    <span>Abfahrt</span>
-                    <span>Preis</span>
-                    <span>Plätze</span>
+                    <span th:text="#{tour.abfahrt}">Abfahrt</span>
+                    <span th:text="#{tour.preis}">Preis</span>
+                    <span th:text="#{tour.plaetze}">Plätze</span>
                 </li>
 
                 <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${touren}" class="even-li">
@@ -32,12 +32,12 @@
                     <span th:text="${ele.abfahrDateTime}">Abfahrt</span>
                     <span th:text="${ele.preis}">Preis</span>
                     <span th:text="${ele.plaetze}">Plätze</span>
-                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" th:href="@{tour/{id}(id=${ele.id})}">Bearbeiten</a></div>
-                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" th:href="@{tour/{id}/del(id=${ele.id})}">Löschen</a></div>
+                    <div><a th:text="#{liste.bearbeiten}" class="list-link edit" th:href="@{tour/{id}(id=${ele.id})}">Bearbeiten</a></div>
+                    <div><a th:text="#{liste.loeschen}" class="list-link delete" th:href="@{tour/{id}/del(id=${ele.id})}">Löschen</a></div>
                 </li>
 
             </ul>
-            <a class="list-link add" th:href="@{tour/0}">Neue Tour</a>
+            <a th:text="#{tourliste.neu}" class="list-link add" th:href="@{tour/0}">Neue Tour</a>
         </div>
 
         <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>
