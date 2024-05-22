@@ -25,11 +25,11 @@ public class BenutzerServiceImpl implements BenutzerService {
     public List<Benutzer> holeAlleBenutzer() {
         List<Benutzer> benutzer =  benutzerRepository.findAll(Sort.by("name"));
 
-        if(benutzer.isEmpty()) {
+        /*if(benutzer.isEmpty()) {
             logger.info("No Benutzer found, Database is empty");
         } else {
             logger.info("Retrieved Benutzer from Database" + benutzer.toString());
-        }
+        }*/
 
         return benutzer;
     }

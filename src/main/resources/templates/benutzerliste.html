@@ -26,8 +26,6 @@
                     <span>Nachname</span>
                     <span>E-Mail</span>
                     <span>Geburtstag</span>
-                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" href="benutzer">Bearbeiten</a></div>
-                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" href="benutzer">Löschen</a></div>
                 </li>
 
                 <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${benutzer}" class="even-li">

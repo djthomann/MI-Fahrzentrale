@@ -38,7 +38,6 @@ public class BenutzerFormular {
     @GutesPasswort
     private String password;
 
-
     public void toBenutzer(Benutzer b) {
         b.setName(name);
         b.setSurname(surname);

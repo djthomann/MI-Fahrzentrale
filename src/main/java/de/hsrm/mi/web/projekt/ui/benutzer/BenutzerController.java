@@ -19,13 +19,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
-
 
 @Controller
-@SessionAttributes(names = {"benutzer", "formular", "info","maxwunsch"})
+@SessionAttributes(names = {"benutzer", "formular", "info", "maxwunsch"})
 public class BenutzerController {
     
     @Autowired BenutzerService benutzerService;
@@ -59,7 +55,7 @@ public class BenutzerController {
     }
 
     @GetMapping("/benutzer/{bnummer}/del")
-    public String getMethodName(@PathVariable("bnummer") long bnummer, Model m) {
+    public String deleteBenutzer(@PathVariable("bnummer") long bnummer, Model m) {
         
         benutzerService.loescheBenutzerMitId(bnummer);
 
@@ -80,6 +76,7 @@ public class BenutzerController {
             // Neuen Benutzer anlegen
             logger.info("Neuen Benutzer anlegen");
 
+            // TODO: Müsste es nicht 'formular' sein?
             m.addAttribute("benutzerformular", new BenutzerFormular());
             m.addAttribute("benutzer", new Benutzer());
 
