@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <title>MItfahrgemeinschaft</title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/header.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/list.css"/>
+        <link rel="stylesheet" href="/fonts/TitilliumWeb-Regular.ttf" type="font/ttf">
+        <!--<link rel="icon" type="image/jpeg" href="/icons/hsrm-icon.jpg">-->
+
+    </head>
+
+    <body>
+
+        <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
+
+        <div class="list-wrapper"> 
+            <h2>Tourenliste</h2>
+            <ul>
+
+                <li class="odd-li">
+                    <span>ID</span>
+                    <span>Abfahrt</span>
+                    <span>Preis</span>
+                    <span>Plätze</span>
+                </li>
+
+                <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${touren}" class="even-li">
+                    <span th:text="${ele.id}">ID</span>
+                    <span th:text="${ele.abfahrDateTime}">Abfahrt</span>
+                    <span th:text="${ele.preis}">Preis</span>
+                    <span th:text="${ele.plaetze}">Plätze</span>
+                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" th:href="@{tour/{id}(id=${ele.id})}">Bearbeiten</a></div>
+                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" th:href="@{tour/{id}/del(id=${ele.id})}">Löschen</a></div>
+                </li>
+
+            </ul>
+            <a class="list-link add" th:href="@{tour/0}">Neue Tour</a>
+        </div>
+
+        <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>
+    
+    </body>
+</html>

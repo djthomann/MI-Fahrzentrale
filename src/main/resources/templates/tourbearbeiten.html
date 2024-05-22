@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <title>MItfahrgemeinschaft</title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/header.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/form.css"/>
+        <link rel="stylesheet" href="/fonts/TitilliumWeb-Regular.ttf" type="font/ttf">
+        <!--<link rel="icon" type="image/jpeg" href="/icons/hsrm-icon.jpg">-->
+
+    </head>
+
+    <body>
+
+        <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
+
+        <div class="form-wrapper">
+
+            <div class="form-header">
+                <!--<span th:if="${bnummer} gt 0" th:text="#{benutzerprofil.titel(${bnummer})}">Benutzer bearbeiten</span>
+                <span th:if="${bnummer} eq 0" th:text="#{benutzerprofil.neu}">Neuer Benutzer</span>-->
+                <span>Neue Tour</span>
+            </div>
+
+            <form th:action="@{#}" th:object="${formular}" method="post">
+
+                <div class="field-container">
+                    <label for="abfahrDateTime">Abfahrt</label><br>
+                    <input th:errorclass="input-error" th:field="*{abfahrDateTime}" type="datetime-local" name="abfahrDateTime" th:placeholder="#{platzhalter.vorname}"><br>
+                    <label th:if="*{#fields.hasErrors('abfahrDateTime')}" th:each="err : *{#fields.errors('abfahrDateTime')}" th:text="${err}" class="label-error" for="abfahrDateTime">So sieht ein Fehler aus</label><br>
+                </div>
+
+                <div class="field-container">
+                    <label for="preis">Preis</label><br>
+                    <input th:errorclass="input-error" th:field="*{preis}" type="text" name="preis" th:placeholder="#{platzhalter.nachname}"><br>
+                </div>
+
+                <div>
+                    <label for="plaetze">Plätze</label><br>
+                    <input th:errorclass="input-error" th:field="*{plaetze}"  type="text" name="plaetze" th:placeholder="#{platzhalter.email}"><br>    
+                </div>
+    
+                <div class="form-first-two-column-span">
+                    <input class="form-submit" type="submit" text="Speichern">
+                </div>
+    
+            </form>
+
+        </div>
+        
+        <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>
+    
+    </body>
+</html>

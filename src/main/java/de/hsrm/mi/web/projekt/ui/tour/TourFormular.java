@@ -1,24 +1,18 @@
-package de.hsrm.mi.web.projekt.entities.tour;
+package de.hsrm.mi.web.projekt.ui.tour;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
+import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
-@Entity
-public class Tour {
-    
-    @Id
-    @GeneratedValue
-    private long id;
+public class TourFormular {
 
-    // @GeneratedValue
-    // private long version;
-
+    @Future
     private LocalDateTime abfahrDateTime;
 
     @PositiveOrZero
@@ -30,12 +24,18 @@ public class Tour {
     @Size(max=400)
     private String info;
 
-    public long getId() {
-        return id;
+    public void toTour(Tour t) {
+        t.setAbfahrDateTime(abfahrDateTime);
+        t.setPreis(preis);
+        t.setPlaetze(plaetze);
+        t.setInfo(info);
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void fromTour(Tour t) {
+        abfahrDateTime = t.getAbfahrDateTime();
+        preis = t.getPreis();
+        plaetze = t.getPlaetze();
+        info = t.getInfo();
     }
 
     public LocalDateTime getAbfahrDateTime() {
@@ -72,7 +72,7 @@ public class Tour {
 
     @Override
     public String toString() {
-        return "Tour [id=" + id + ", abfahrDateTime=" + abfahrDateTime + ", preis=" + preis + ", plaetze=" + plaetze
+        return "TourFormular [abfahrDateTime=" + abfahrDateTime + ", preis=" + preis + ", plaetze=" + plaetze
                 + ", info=" + info + "]";
     }
 
