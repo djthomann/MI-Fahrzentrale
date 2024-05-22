@@ -5,6 +5,11 @@ kopf.benutzer,Benutzer,Users,Gebruikers,Benudser,Benudzoa
 fuss.impressum,Impressum,imprint,afdruk,Imbressum,Impressum
 fuss.kontakt,Kontakt,contact,contact,Gondagd,Kondogd
 ,,,,,
+# Listen,,,,,
+liste.bearbeiten,bearbeiten,edit,bewerken,beabbeide,beoabeidn
+liste.loeschen,löschen,delete,verwijderen,lösche,löschn
+,,,,,
+,,,,,
 # Benutzer-Formular,,,,,
 benutzer.vorname,Vorname,First Name,Voornaam,Vonaam,Voanome
 benutzer.nachname,Nachname,Surname,Achternaam,Nachnaam,Nochnome
@@ -21,7 +26,7 @@ benutzerprofil.neu,Neuen Benutzer anlegen,Add new User,Nieuwe gebruiker aanmaken
 # GutesPasswort-Validator,,,,,
 gutespasswort.fehler,Das ist kein “gutes” Passwort,This is not a “good” password,Dit is geen “goed” wachtwoord,Des is keen “gudes” passwodd,Des is koa “guades” Passwoad
 ,,,,,
-#Benutzer-Platzhalter,,,,,
+# Benutzer-Platzhalter,,,,,
 platzhalter.vorname,Max,Joe,Jan,Mischel,Maggus
 platzhalter.nachname,Mustermann,Doe,Modaal,Mussdabub,Söder
 platzhalter.email,max.mustermann@musterseite.de,joe.doe@samplepage.us,jan.modall@monsterpagina.nl,mischel.mussderbub@mussderseide.he,maggus.soeder@musdoaseide.by
@@ -29,8 +34,37 @@ platzhalter.passwort,Ein “gutes” Passwort,A “good” password,Een “goed�
 platzhalter.magich,Eine tolle Sache,A great thing,Een groot ding,Ne subbä Sache,A guade G’schicht
 platzhalter.magichnicht,Eine blöde Sache,A silly thing,Een stom ding,Ne miese Sache,A bleda G’schicht
 ,,,,,
-#Benutzer-Liste,,,,,
+# Benutzer-Liste,,,,,
 benutzerliste.titel,Benutzerliste,User list,Gebruikerslijst,Benudserlisde,Benudzoalistn
 benutzerliste.neu,Benutzer hinzufügen,Add User,Gebruiker toevoegen,Benudser hinzufüsche,Benudzoa hinzuafügn
-benutzerliste.bearbeiten,bearbeiten,edit,bewerken,beabbeide,beoabeidn
-benutzerliste.loeschen,löschen,delete,verwijderen,lösche,löschn
+,,,,,
+,,,,,
+# Ort-Formular,,,,,
+ort.name,Ortsname,Place name,Plaatsnaam,Oddsnaam,Oadsnome
+ort.geobreite,Breitengrad,Latitude,Breedtegraad,Breidegrad,Breitngroad
+ort.geolaenge,Längengrad,Longitude,Lengtegraad,Längegrad,Längngroad
+,,,,,
+# Ort-Platzhalter,,,,,
+platzhalter.stadtname,Musterstadt,Sample location,Voorbeeldlocatie,Mussderstadd,München
+platzhalter.geobreite,0,0,0,0,0
+platzhalter.geolaenge,0,0,0,0,0
+,,,,,
+# Ort-Liste,,,,,
+ortliste.titel,Ortsliste,Place list,Plaatslijst,Oddslisde,Oadslistn
+ortliste.neu,Ort hinzufügen,Add Place,Locatie toevoegen,Odd hinzufüsche,Oad hinzuafügn
+,,,,,
+,,,,,
+# Tour-Formular,,,,,
+tour.abfahrt,Abfahrt,Departure,Vertrek,Abwaad,Oabfadd
+tour.preis,Preis / €,Price / €,Prijs / €,Breis / €,Breis / €
+tour.plaetze,Plätze,Seats,Zitplaatsen,Bledze,Blädze
+tour.info,Beschreibung,Tour description,Tour beschrijving,Beschreibung,Beschraibung
+,,,,,
+# Tour-Platzhalter,,,,,
+platzhalter.preis,0.00€,€ 0.00,0.00€,0.00€,0.00€
+platzhalter.plaetze,0,0,0,0,0
+platzhalter.info,Beschreibung der Tour,Tour description,Beschrijving van de tour,Beschreibung von de Dour,Beschaibung von der Toua
+,,,,,
+# Tour-Liste,,,,,
+tourliste.titel,Tourenliste,Tour list,Tourlijst,Tourelisde,Touarenlistn
+tourliste.neu,Tour hinzufügen,Add Tour,Tour toevoegen,Tour hinzufüsche,Toua hinzuafügn
