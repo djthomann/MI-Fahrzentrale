@@ -22,13 +22,14 @@ header div {
     height: 100%;
 }
 
-header div h3 {
+header div a {
     color: white;
     margin-left: 10px;
+    padding: 0 20px;
 }
 
 
-header div a img {
+header div img {
     position: relative;
     height: 5vh;
 }
