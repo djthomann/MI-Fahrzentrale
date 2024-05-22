@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.benutzer.BenutzerRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class BenutzerServiceImpl implements BenutzerService {
@@ -20,6 +21,7 @@ public class BenutzerServiceImpl implements BenutzerService {
     Logger logger = LoggerFactory.getLogger(BenutzerServiceImpl.class);
 
     @Override
+    @Transactional
     public List<Benutzer> holeAlleBenutzer() {
         List<Benutzer> benutzer =  benutzerRepository.findAll(Sort.by("name"));
 
@@ -33,6 +35,7 @@ public class BenutzerServiceImpl implements BenutzerService {
     }
 
     @Override
+    @Transactional
     public Optional<Benutzer> holeBenutzerMitId(long id) {
 
         Optional<Benutzer> benutzer = benutzerRepository.findById(id);
@@ -47,6 +50,7 @@ public class BenutzerServiceImpl implements BenutzerService {
     }
 
     @Override
+    @Transactional
     public Benutzer speichereBenutzer(Benutzer b) {
 
         logger.info("Saving Benutzer: " + b.toString());
@@ -59,6 +63,7 @@ public class BenutzerServiceImpl implements BenutzerService {
     }
 
     @Override
+    @Transactional
     public void loescheBenutzerMitId(long id) {
 
         logger.info("Deleting Benutzer with id: " + id);
