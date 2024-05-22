@@ -20,16 +20,6 @@
             <h2 th:text="#{benutzerliste.titel}">Benutzerliste</h2>
             <ul>
 
-                <li class="even-li">
-                    <span>ID</span>
-                    <span>Vorname</span>
-                    <span>Nachname</span>
-                    <span>E-Mail</span>
-                    <span>Geburtstag</span>
-                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" href="benutzer">Bearbeiten</a></div>
-                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" href="benutzer">Löschen</a></div>
-                </li>
-
                 <li class="odd-li">
                     <span>ID</span>
                     <span>Vorname</span>
@@ -40,18 +30,18 @@
                     <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" href="benutzer">Löschen</a></div>
                 </li>
 
-                <li class="even-li">
-                    <span>ID</span>
-                    <span>Vorname</span>
-                    <span>Nachname</span>
-                    <span>E-Mail</span>
-                    <span>Geburtstag</span>
-                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" href="benutzer">Bearbeiten</a></div>
-                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" href="benutzer">Löschen</a></div>
+                <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${benutzer}" class="even-li">
+                    <span th:text="${ele.id}">ID</span>
+                    <span th:text="${ele.name}">Vorname</span>
+                    <span th:text="${ele.surname}">Nachname</span>
+                    <span th:text="${ele.mail}">E-Mail</span>
+                    <span th:text="${ele.birthday}">Geburtstag</span>
+                    <div><a th:text="#{benutzerliste.bearbeiten}" class="list-link edit" th:href="@{benutzer/{id}(id=${ele.id})}">Bearbeiten</a></div>
+                    <div><a th:text="#{benutzerliste.loeschen}" class="list-link delete" th:href="@{benutzer/{id}/del(id=${ele.id})}">Löschen</a></div>
                 </li>
 
             </ul>
-            <a th:text="#{benutzerliste.neu}" class="list-link add" href="benutzer">Neuer Benutzer</a>
+            <a th:text="#{benutzerliste.neu}" class="list-link add" th:href="@{benutzer/0}">Neuer Benutzer</a>
         </div>
 
         <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>

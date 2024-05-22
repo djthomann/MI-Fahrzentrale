@@ -1,5 +1,6 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -46,8 +49,23 @@ public class BenutzerController {
 
     @GetMapping("/benutzer")
     public String getBenutzerListe(Model m) {
+
+        m.addAttribute("info", null);
+        List<Benutzer> benutzer = benutzerService.holeAlleBenutzer();
+        logger.info("Get Benutzer, Länge: " + benutzer.size());
+        m.addAttribute("benutzer", benutzer);
+
         return "benutzerliste";
     }
+
+    @GetMapping("/benutzer/{bnummer}/del")
+    public String getMethodName(@PathVariable("bnummer") long bnummer, Model m) {
+        
+        benutzerService.loescheBenutzerMitId(bnummer);
+
+        return "redirect:/benutzer";
+    }
+    
     
 
     @GetMapping("/benutzer/{bnummer}")
@@ -118,10 +136,10 @@ public class BenutzerController {
             }
 
             try {
-                benutzer = benutzerService.speichereBenutzer(benutzer);
-                bnummer = benutzer.getId();
-                logger.info("bnummer", bnummer);
-                return "impressum";
+                Benutzer benutzerNeu = benutzerService.speichereBenutzer(benutzer);
+                long bnummerNeu = benutzerNeu.getId();
+                logger.info("bnummer", bnummerNeu);
+                return "redirect:/benutzer/" + bnummerNeu;
             } catch(Exception e) {
                 logger.error("Fehler beim Speichern", e);
                 m.addAttribute("info", e.getMessage());
