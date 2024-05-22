@@ -3,9 +3,10 @@
     <header>
 
         <div>
-            <a th:href="@{~/benutzer}"><img th:src="@{/icons/Logo-Hochschule-RheinMain.png}"/></a>
-            
-            <h3 th:text="#{kopf.benutzer}">Benutzer bearbeiten</h3>
+            <img th:src="@{/icons/Logo-Hochschule-RheinMain.png}"/></a>
+            <a th:href="@{~/benutzer}" th:text="#{kopf.benutzer}">Benutzer bearbeiten</a>
+            <a th:href="@{~/ort}" >Orte</a>
+            <a th:href="@{~/tour}" >Touren</a>
         </div>
 
         <div class="info-box" th:text="${info}" th:if="${info} != null">Es gibt Informationen</div>
