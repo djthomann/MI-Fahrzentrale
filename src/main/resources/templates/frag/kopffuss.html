@@ -9,8 +9,6 @@
             <a th:href="@{~/tour}" >Touren</a>
         </div>
 
-        <div class="info-box" th:text="${info}" th:if="${info} != null">Es gibt Informationen</div>
-
         <nav>
 
             <a th:href="@{?sprache=de}">DE</a>
@@ -22,6 +20,8 @@
         </nav>
 
     </header>
+
+    <span class="info-box" th:text="${info}" th:if="${info} != null">Es gibt Informationen</span>
 
 </th:block>
 
