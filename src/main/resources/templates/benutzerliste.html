@@ -20,7 +20,7 @@
             <h2 th:text="#{benutzerliste.titel}">Benutzerliste</h2>
             <ul>
 
-                <li class="odd-li">
+                <li class="header-li">
                     <span>ID</span>
                     <span th:text="#{benutzer.vorname}">Vorname</span>
                     <span th:text="#{benutzer.nachname}">Nachname</span>
@@ -28,7 +28,7 @@
                     <span th:text="#{benutzer.geburtstag}">Geburtstag</span>
                 </li>
 
-                <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${benutzer}" class="even-li">
+                <li th:classappend="${status.odd}? even-li : odd-li" th:each="ele,status : ${benutzer}" class="even-li">
                     <span th:text="${ele.id}">ID</span>
                     <span th:text="${ele.name}">Vorname</span>
                     <span th:text="${ele.surname}">Nachname</span>

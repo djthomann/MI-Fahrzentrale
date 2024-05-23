@@ -46,6 +46,12 @@
     justify-content: center;
 }
 
+.header-li {
+    background-color: #0091af;
+    font-weight: bold;
+    color: white;
+}
+
 .even-li {
     
     background-color: #c5d8d9;
