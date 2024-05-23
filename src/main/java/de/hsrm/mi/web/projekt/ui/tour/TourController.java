@@ -1,6 +1,7 @@
 package de.hsrm.mi.web.projekt.ui.tour;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,17 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
 import de.hsrm.mi.web.projekt.services.tour.TourService;
-import de.hsrm.mi.web.projekt.ui.ort.OrtFormular;
 import jakarta.validation.Valid;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 
 @Controller
@@ -58,8 +56,13 @@ public class TourController {
     }
 
     @GetMapping("/tour/{tnummer}")
-    public String getOrtBearbeiten(@PathVariable("tnummer") long tnummer, Model m) {
-        
+    public String getTourBearbeiten(@PathVariable("tnummer") long tnummer, Model m) {
+
+        logger.info("GetMapping: /tour/tnummer = {}", tnummer);
+
+        m.addAttribute("info", null);
+        m.addAttribute("tnummer", tnummer);
+
         if(tnummer == 0) {
             // Neuen Ort anlegen
             logger.info("Neue Tour anlegen");
@@ -72,10 +75,43 @@ public class TourController {
 
             // logger.info(neuesFormular.toString());
             // logger.info(neueTour.toString());
+            return "tourbearbeiten";
 
+        } else if(tnummer > 0) {
+            // Bestehende Tour bearbeiten
+
+            logger.info("Get: Bestehende Tour bearbeiten");
+
+            Optional<Tour> optionalTour = tourService.holeTourMitId(tnummer);
+            if(optionalTour.isEmpty()) {
+                logger.info("Tour konnte nicht gefunden werden");
+                m.addAttribute("info", "Tour konnte nicht gefunden werden");
+                return "tourliste";
+            } else {
+                Tour tour = optionalTour.get();
+                TourFormular tourFormular = new TourFormular();
+                tourFormular.fromTour(tour);
+
+                m.addAttribute("tour", tour);
+                m.addAttribute("formular", tourFormular);
+
+                logger.info("Tour Formular: " + tourFormular.toString());
+                return "tourbearbeiten";
+            }
+
+        } else {
+            m.addAttribute("info", "Invalide Tour ID");
+            return "tourbearbeiten";
         }
+    }
+
+    @GetMapping("/tour/{tnummer}/del")
+    public String deleteTour(@PathVariable("tnummer") long tnummer, Model m) {
         
-        return "tourbearbeiten";
+        logger.info("Trying to delete tour with id: " + tnummer);
+        tourService.loescheTourMitId(tnummer);
+
+        return "redirect:/tour";
     }
 
     @PostMapping("/tour/{tnummer}")
@@ -97,6 +133,7 @@ public class TourController {
                 return "tourbearbeiten";
             } catch(Exception e) {
                 m.addAttribute("info", e.getMessage());
+                e.printStackTrace();
             }
         }
         
