@@ -28,18 +28,20 @@
 
                 <div class="field-container">
                     <label for="abfahrDateTime">Abfahrt</label><br>
-                    <input th:errorclass="input-error" th:field="*{abfahrDateTime}" type="datetime-local" name="abfahrDateTime" th:placeholder="#{platzhalter.vorname}"><br>
+                    <input th:errorclass="input-error" th:field="*{abfahrDateTime}" type="datetime-local" name="abfahrDateTime"><br>
                     <label th:if="*{#fields.hasErrors('abfahrDateTime')}" th:each="err : *{#fields.errors('abfahrDateTime')}" th:text="${err}" class="label-error" for="abfahrDateTime">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div class="field-container">
                     <label for="preis">Preis</label><br>
                     <input th:errorclass="input-error" th:field="*{preis}" type="text" name="preis" th:placeholder="#{platzhalter.nachname}"><br>
+                    <label th:if="*{#fields.hasErrors('preis')}" th:each="err : *{#fields.errors('preis')}" th:text="${err}" class="label-error" for="preis">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div>
                     <label for="plaetze">Plätze</label><br>
                     <input th:errorclass="input-error" th:field="*{plaetze}"  type="text" name="plaetze" th:placeholder="#{platzhalter.email}"><br>    
+                    <label th:if="*{#fields.hasErrors('plaetze')}" th:each="err : *{#fields.errors('plaetze')}" th:text="${err}" class="label-error" for="plaetze">So sieht ein Fehler aus</label><br>
                 </div>
     
                 <div class="form-first-two-column-span">
