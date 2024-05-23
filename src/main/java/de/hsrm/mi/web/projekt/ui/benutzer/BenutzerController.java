@@ -62,7 +62,6 @@ public class BenutzerController {
         return "redirect:/benutzer";
     }
     
-    
 
     @GetMapping("/benutzer/{bnummer}")
     public String getBenutzerBearbeiten(@PathVariable("bnummer") long bnummer, Model m) {
@@ -76,12 +75,11 @@ public class BenutzerController {
             // Neuen Benutzer anlegen
             logger.info("Neuen Benutzer anlegen");
 
-            // TODO: Müsste es nicht 'formular' sein?
-            m.addAttribute("benutzerformular", new BenutzerFormular());
+            m.addAttribute("formular", new BenutzerFormular());
             m.addAttribute("benutzer", new Benutzer());
 
-            logger.info(m.getAttribute("benutzerformular").toString());
-
+            logger.info(m.getAttribute("formular").toString());
+            return "benutzerbearbeiten";
 
         } else if(bnummer > 0) {
             // Bestehenden Benutzer bearbeiten
@@ -91,7 +89,7 @@ public class BenutzerController {
             if(optionalBenutzer.isEmpty()) {
                 logger.info("Benutzer konnte nicht gefunden werden");
                 m.addAttribute("info", "Benutzer konnte nicht gefunden werden");
-                return "kontakt";
+                return "benutzerliste";
             } else {
                 Benutzer benutzer = optionalBenutzer.get();
                 BenutzerFormular benutzerFormular = new BenutzerFormular();
@@ -99,13 +97,14 @@ public class BenutzerController {
 
                 m.addAttribute("benutzer", benutzer);
                 m.addAttribute("formular", benutzerFormular);
+                return "benutzerbearbeiten";
             }
             
         } else {
-            // bnummer < 0 --> Was tun?
+            m.addAttribute("info", "Invalide Benutzer ID");
+            return "benutzerbearbeiten";
         }
 
-        return "benutzerbearbeiten";
     }
 
     @PostMapping("/benutzer/{bnummer}")
@@ -114,35 +113,10 @@ public class BenutzerController {
         @SessionAttribute("benutzer") Benutzer benutzer,
         @Valid @ModelAttribute("formular") BenutzerFormular formular,
         BindingResult formularFehler,
-        Model m) {
+        Model m) 
+        {
 
-            logger.info("PostMapping: /benutzer/bnummer = {}", bnummer);
-
-        if(formularFehler.hasErrors()) {
-            // Zurück ins Formular schicken
-
-        } else {
-            // An die Datenbank schicken
-            logger.info("Controller versucht speichern zu lassen");
-            logger.info("Passwort = {}", formular.getPassword());
-
-            // Benutzer-Entity setzen
-            formular.toBenutzer(benutzer);
-            if(formular.getPassword() != null) {
-                benutzer.setPassword(formular.getPassword());
-            }
-
-            try {
-                Benutzer benutzerNeu = benutzerService.speichereBenutzer(benutzer);
-                long bnummerNeu = benutzerNeu.getId();
-                logger.info("bnummer", bnummerNeu);
-                return "redirect:/benutzer/" + bnummerNeu;
-            } catch(Exception e) {
-                logger.error("Fehler beim Speichern", e);
-                m.addAttribute("info", e.getMessage());
-                return "benutzerbearbeiten";
-            }
-        }
+        logger.info("PostMapping: /benutzer/bnummer = {}", bnummer);
 
         String like = formular.getLike();
         if(like != null && like != "" && formular.likeAmount() < MAXWUNSCH) {
@@ -158,9 +132,32 @@ public class BenutzerController {
             formular.setDislike("");
         }
 
-        return "benutzerbearbeiten";
-    }
-    
-    
+        if(formularFehler.hasErrors()) {
+            // Zurück ins Formular schicken
+            return "benutzerbearbeiten";
+        } else {
+            // An die Datenbank schicken
 
+            logger.info("Controller versucht speichern zu lassen");
+            logger.info("Passwort = {}", formular.getPassword());
+
+            // Benutzer-Entity setzen
+            formular.toBenutzer(benutzer);
+            if(formular.getPassword() != "") {
+                benutzer.setPassword(formular.getPassword());
+            }
+
+            try {
+                Benutzer benutzerNeu = benutzerService.speichereBenutzer(benutzer);
+                long bnummerNeu = benutzerNeu.getId();
+                logger.info("bnummer", bnummerNeu);
+                return "redirect:/benutzer/" + bnummerNeu;
+            } catch(Exception e) {
+                logger.error("Fehler beim Speichern", e);
+                m.addAttribute("info", e.getMessage());
+                return "benutzerbearbeiten";
+            }
+        }
+
+    }
 }
