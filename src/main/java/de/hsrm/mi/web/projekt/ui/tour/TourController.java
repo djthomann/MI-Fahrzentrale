@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import de.hsrm.mi.web.projekt.entities.ort.Ort;
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
+import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
 import de.hsrm.mi.web.projekt.services.tour.TourService;
 import de.hsrm.mi.web.projekt.ui.ort.OrtFormular;
 import jakarta.validation.Valid;
@@ -25,10 +26,18 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 
 @Controller
-@SessionAttributes(names = {"tour", "formular", "info"})
+@SessionAttributes(names = {"tour", "benutzer", "formular", "info"})
 public class TourController {
     
     @Autowired TourService tourService; 
+    @Autowired BenutzerService benutzerService;
+
+    @ModelAttribute("benutzer")
+    public void initBenutzer(Model m) {
+        List<Benutzer> benutzer = benutzerService.holeAlleBenutzer();
+        m.addAttribute("benutzer", benutzer);
+        logger.info("loaded Benutzer for select box", benutzer.toString());
+    }
 
     Logger logger = LoggerFactory.getLogger(TourController.class);
 

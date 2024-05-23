@@ -2,9 +2,12 @@ package de.hsrm.mi.web.projekt.entities.tour;
 
 import java.time.LocalDateTime;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
@@ -29,6 +32,18 @@ public class Tour {
 
     @Size(max=400)
     private String info;
+
+    @NotNull
+    @ManyToOne
+    private Benutzer anbieter;
+
+    public Benutzer getAnbieter() {
+        return anbieter;
+    }
+
+    public void setAnbieter(Benutzer anbieter) {
+        this.anbieter = anbieter;
+    }
 
     public long getId() {
         return id;

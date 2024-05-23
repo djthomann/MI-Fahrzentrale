@@ -2,10 +2,13 @@ package de.hsrm.mi.web.projekt.ui.tour;
 
 import java.time.LocalDateTime;
 
+import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
@@ -13,6 +16,7 @@ import jakarta.validation.constraints.Size;
 public class TourFormular {
 
     @Future
+    @NotNull
     private LocalDateTime abfahrDateTime;
 
     @PositiveOrZero
@@ -24,11 +28,15 @@ public class TourFormular {
     @Size(max=400)
     private String info;
 
+    @NotNull
+    private Benutzer anbieter;
+
     public void toTour(Tour t) {
         t.setAbfahrDateTime(abfahrDateTime);
         t.setPreis(preis);
         t.setPlaetze(plaetze);
         t.setInfo(info);
+        t.setAnbieter(anbieter);
     }
 
     public void fromTour(Tour t) {
@@ -36,6 +44,7 @@ public class TourFormular {
         preis = t.getPreis();
         plaetze = t.getPlaetze();
         info = t.getInfo();
+        anbieter = t.getAnbieter();
     }
 
     public LocalDateTime getAbfahrDateTime() {
@@ -73,7 +82,15 @@ public class TourFormular {
     @Override
     public String toString() {
         return "TourFormular [abfahrDateTime=" + abfahrDateTime + ", preis=" + preis + ", plaetze=" + plaetze
-                + ", info=" + info + "]";
+                + ", info=" + info + ", anbieter=" + anbieter + "]";
+    }
+
+    public Benutzer getAnbieter() {
+        return anbieter;
+    }
+
+    public void setAnbieter(Benutzer anbieter) {
+        this.anbieter = anbieter;
     }
 
     

@@ -1,17 +1,20 @@
 package de.hsrm.mi.web.projekt.entities.benutzer;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -47,6 +50,9 @@ public class Benutzer {
 
     @NotNull @GutesPasswort
     private String password;
+
+    @OneToMany(mappedBy = "anbieter")
+    private Collection<Tour> touren;
 
     @Override
     public String toString() {
