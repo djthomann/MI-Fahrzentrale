@@ -22,6 +22,7 @@
 
                 <li class="header-li">
                     <span>ID</span>
+                    <span>Anbieter</span>
                     <span th:text="#{tour.abfahrt}">Abfahrt</span>
                     <span th:text="#{tour.preis}">Preis</span>
                     <span th:text="#{tour.plaetze}">Plätze</span>
@@ -29,6 +30,7 @@
 
                 <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${touren}" class="even-li">
                     <span th:text="${ele.id}">ID</span>
+                    <span th:text="${ele.anbieter.surname}">Anbieter</span>
                     <span th:text="${ele.abfahrDateTime}">Abfahrt</span>
                     <span th:text="${ele.preis}">Preis</span>
                     <span th:text="${ele.plaetze}">Plätze</span>
