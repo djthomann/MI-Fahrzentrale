@@ -12,6 +12,15 @@ public class OrtFormular {
     private double geobreite;
     private double geolaenge;
 
+    private static final double OFFSET_X = 0.163;
+    private static final double OFFSET_Y = 0.065;
+
+    private double minX;
+    private double minY;
+
+    private double maxX;
+    private double maxY;
+
     public void toOrt(Ort o) {
         o.setName(name);
         o.setGeobreite(geobreite);
@@ -22,6 +31,15 @@ public class OrtFormular {
         name = o.getName();
         geobreite = o.getGeobreite();
         geolaenge = o.getGeolaenge();
+        computeBoundingBox();
+    }
+
+    public void computeBoundingBox() {
+        // 50.0805/8.2480
+        minX = geobreite - OFFSET_X;
+        minY = geolaenge - OFFSET_Y;
+        maxX = geobreite + OFFSET_X;
+        maxY = geolaenge + OFFSET_Y;
     }
 
     public String getName() {
@@ -48,6 +66,36 @@ public class OrtFormular {
         this.geolaenge = geolaenge;
     }
 
-    
+    public double getMinX() {
+        return minX;
+    }
+
+    public void setMinX(double minX) {
+        this.minX = minX;
+    }
+
+    public double getMinY() {
+        return minY;
+    }
+
+    public void setMinY(double minY) {
+        this.minY = minY;
+    }
+
+    public double getMaxX() {
+        return maxX;
+    }
+
+    public void setMaxX(double maxX) {
+        this.maxX = maxX;
+    }
+
+    public double getMaxY() {
+        return maxY;
+    }
+
+    public void setMaxY(double maxY) {
+        this.maxY = maxY;
+    }
 
 }

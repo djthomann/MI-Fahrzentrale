@@ -49,8 +49,8 @@
 
         </div>
 
-        <a th:href="|https://www.openstreetmap.org/#map=14/${formular.geobreite}/${formular.geolaenge}|"target="_blank">Karte</a>
-        
+        <iframe width="425" height="350" th:src="@{https://www.openstreetmap.org/export/embed.html?bbox={minX}%2C{minY}%2C{maxX}%2C{maxY}&amp;layer=mapnik(minX=${formular.minX},minY=${formular.minY},maxX=${formular.maxX},maxY=${formular.maxY})}" style="border: 1px solid black"></iframe><br/><small><a th:href="|https://www.openstreetmap.org/#map=14/${formular.geobreite}/${formular.geolaenge}|">Karte anzeigen</a></small>
+
         <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>
     
     </body>
