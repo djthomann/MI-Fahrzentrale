@@ -3,6 +3,7 @@ package de.hsrm.mi.web.projekt.entities.tour;
 import java.time.LocalDateTime;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
+import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -36,6 +37,30 @@ public class Tour {
     @NotNull
     @ManyToOne
     private Benutzer anbieter;
+
+    @NotNull
+    @ManyToOne
+    private Ort start;
+
+    @NotNull
+    @ManyToOne
+    private Ort ziel;
+
+    public Ort getStart() {
+        return start;
+    }
+
+    public void setStart(Ort start) {
+        this.start = start;
+    }
+
+    public Ort getZiel() {
+        return ziel;
+    }
+
+    public void setZiel(Ort ziel) {
+        this.ziel = ziel;
+    }
 
     public Benutzer getAnbieter() {
         return anbieter;

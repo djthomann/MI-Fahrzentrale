@@ -42,6 +42,28 @@
                 </div>
 
                 <div class="field-container">
+                    <label for="start">Start</label><br>
+                    <select th:field="*{start}" th:errorclass="input-error" name="start">
+                        <option th:if="${tnummer} eq 0" th:text="---" th:value="0">Invalid</option>
+                        <option th:each="o: ${orte}" th:value="${o.id}" th:text="${o.name}"></option>
+                    </select>
+                    <!--<label th:if="*{#fields.hasErrors('anbieter')}" th:each="err : *{#fields.errors('anbieter')}" th:text="${err}" class="label-error" for="anbieter">So sieht ein Fehler aus</label><br>-->
+                </div>
+
+                <div class="field-container">
+                    <label for="ziel">Ziel</label><br>
+                    <select th:field="*{ziel}" th:errorclass="input-error" name="ziel">
+                        <option th:if="${tnummer} eq 0" th:text="---" th:value="0">Invalid</option>
+                        <option th:each="o: ${orte}" th:value="${o.id}" th:text="${o.name}"></option>
+                    </select>
+                    <!--<label th:if="*{#fields.hasErrors('anbieter')}" th:each="err : *{#fields.errors('anbieter')}" th:text="${err}" class="label-error" for="anbieter">So sieht ein Fehler aus</label><br>-->
+                </div>
+    
+                <div class="form-first-two-column-span">
+                    <input class="form-submit" type="submit" th:value="#{benutzerprofil.speichern}">
+                </div>
+
+                <div class="field-container">
                     <label for="preis">Preis</label><br>
                     <input th:errorclass="input-error" th:field="*{preis}" type="text" name="preis" th:placeholder="#{platzhalter.nachname}"><br>
                     <label th:if="*{#fields.hasErrors('preis')}" th:each="err : *{#fields.errors('preis')}" th:text="${err}" class="label-error" for="preis">So sieht ein Fehler aus</label><br>
@@ -51,10 +73,6 @@
                     <label for="plaetze">Plätze</label><br>
                     <input th:errorclass="input-error" th:field="*{plaetze}"  type="text" name="plaetze" th:placeholder="#{platzhalter.email}"><br>    
                     <label th:if="*{#fields.hasErrors('plaetze')}" th:each="err : *{#fields.errors('plaetze')}" th:text="${err}" class="label-error" for="plaetze">So sieht ein Fehler aus</label><br>
-                </div>
-    
-                <div class="form-first-two-column-span">
-                    <input class="form-submit" type="submit" th:value="#{benutzerprofil.speichern}">
                 </div>
     
             </form>

@@ -3,6 +3,7 @@ package de.hsrm.mi.web.projekt.ui.tour;
 import java.time.LocalDateTime;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
+import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -31,12 +32,20 @@ public class TourFormular {
     @NotNull
     private Benutzer anbieter;
 
+    @NotNull
+    private Ort start;
+
+    @NotNull
+    private Ort ziel;
+
     public void toTour(Tour t) {
         t.setAbfahrDateTime(abfahrDateTime);
         t.setPreis(preis);
         t.setPlaetze(plaetze);
         t.setInfo(info);
         t.setAnbieter(anbieter);
+        t.setStart(start);
+        t.setZiel(ziel);
     }
 
     public void fromTour(Tour t) {
@@ -45,6 +54,8 @@ public class TourFormular {
         plaetze = t.getPlaetze();
         info = t.getInfo();
         anbieter = t.getAnbieter();
+        start = t.getStart();
+        ziel = t.getZiel();
     }
 
     public LocalDateTime getAbfahrDateTime() {
@@ -91,6 +102,22 @@ public class TourFormular {
 
     public void setAnbieter(Benutzer anbieter) {
         this.anbieter = anbieter;
+    }
+
+    public Ort getStart() {
+        return start;
+    }
+
+    public void setStart(Ort start) {
+        this.start = start;
+    }
+
+    public Ort getZiel() {
+        return ziel;
+    }
+
+    public void setZiel(Ort ziel) {
+        this.ziel = ziel;
     }
 
     

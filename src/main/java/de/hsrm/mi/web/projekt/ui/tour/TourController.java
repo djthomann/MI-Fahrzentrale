@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
+import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
+import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import de.hsrm.mi.web.projekt.services.tour.TourService;
 import jakarta.validation.Valid;
 
@@ -29,12 +31,20 @@ public class TourController {
     
     @Autowired TourService tourService; 
     @Autowired BenutzerService benutzerService;
+    @Autowired OrtService ortService;
 
     @ModelAttribute("benutzer")
     public void initBenutzer(Model m) {
         List<Benutzer> benutzer = benutzerService.holeAlleBenutzer();
         m.addAttribute("benutzer", benutzer);
         logger.info("loaded Benutzer for select box", benutzer.toString());
+    }
+
+    @ModelAttribute("orte")
+    public void initOrte(Model m) {
+        List<Ort> orte = ortService.holeAlleOrt();
+        m.addAttribute("orte", orte);
+        logger.info("loaded Ort for select box", orte.toString());
     }
 
     Logger logger = LoggerFactory.getLogger(TourController.class);
@@ -123,16 +133,20 @@ public class TourController {
         Model m) 
         {
 
+            logger.info("PostMapping: tour/tnummer");
+
         if(formularFehler.hasErrors()) {
             return "tourbearbeiten";
         } else {
             formular.toTour(tour);
 
             try {
+                logger.info("Speicher Tour:", tour.toString());
                 Tour tourNeu = tourService.speichereTour(tour);
                 return "tourbearbeiten";
             } catch(Exception e) {
                 m.addAttribute("info", e.getMessage());
+                logger.error(String.format("Fehler beim Speichern einer Tour %s", tour.toString()), e.getMessage());
                 e.printStackTrace();
             }
         }
