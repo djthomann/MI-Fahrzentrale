@@ -1,6 +1,7 @@
 package de.hsrm.mi.web.projekt.ui.ort;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,9 +66,31 @@ public class OrtController {
             // Neuen Ort anlegen
             logger.info("Neuen Ort anlegen");
 
-            m.addAttribute("formular", new OrtFormular());
+            OrtFormular form = new OrtFormular();
+            form.computeBoundingBox();
+
+            m.addAttribute("formular", form);
             m.addAttribute("ort", new Ort());
 
+        } else if(onummer > 0) {
+            // Bestehenden Ort bearbeiten
+
+            logger.info("Get: Bestehenden Benutzer bearbeiten");
+
+            Optional<Ort> optionalOrt = ortService.holeOrtMitId(onummer);
+            if(optionalOrt.isEmpty()) {
+                logger.info("Ort konnte nicht gefunden werden");
+                m.addAttribute("info", "Ort konnte nicht gefunden werden");
+                return "ortliste";
+            } else {
+                Ort ort = optionalOrt.get();
+                OrtFormular ortFormular = new OrtFormular();
+                ortFormular.fromOrt(ort);
+
+                m.addAttribute("ort", ort);
+                m.addAttribute("formular", ortFormular);
+                return "ortbearbeiten";
+            }
         }
         
         return "ortbearbeiten";
@@ -81,6 +104,8 @@ public class OrtController {
         BindingResult formularFehler,
         Model m) 
         {
+
+            formular.computeBoundingBox();
 
         if(formularFehler.hasErrors()) {
             return "ortbearbeiten";
