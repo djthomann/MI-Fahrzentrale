@@ -26,32 +26,28 @@ import jakarta.validation.Valid;
 
 
 @Controller
-@SessionAttributes(names = {"tour", "benutzer", "formular", "info"})
+@SessionAttributes(names = {"tour", "formular", "info"})
 public class TourController {
     
     @Autowired TourService tourService; 
     @Autowired BenutzerService benutzerService;
     @Autowired OrtService ortService;
 
-    @ModelAttribute("benutzer")
-    public void initBenutzer(Model m) {
-        List<Benutzer> benutzer = benutzerService.holeAlleBenutzer();
-        m.addAttribute("benutzer", benutzer);
-        logger.info("loaded Benutzer for select box", benutzer.toString());
-    }
-
-    @ModelAttribute("orte")
-    public void initOrte(Model m) {
-        List<Ort> orte = ortService.holeAlleOrt();
-        m.addAttribute("orte", orte);
-        logger.info("loaded Ort for select box", orte.toString());
-    }
-
     Logger logger = LoggerFactory.getLogger(TourController.class);
 
     @ModelAttribute("formular")
     public void initForm(Model m) {
         m.addAttribute("formular", new TourFormular());
+    }
+
+    public void holeBenutzer(Model m) {
+        List<Benutzer> benutzer = benutzerService.holeAlleBenutzer();
+        m.addAttribute("benutzer", benutzer);
+    }
+
+    public void holeOrte(Model m) {
+        List<Ort> orte = ortService.holeAlleOrt();
+        m.addAttribute("orte", orte);
     }
 
     @GetMapping("/tour")
@@ -72,6 +68,8 @@ public class TourController {
 
         m.addAttribute("info", null);
         m.addAttribute("tnummer", tnummer);
+        holeBenutzer(m);
+        holeOrte(m);
 
         if(tnummer == 0) {
             // Neuen Ort anlegen
