@@ -11,12 +11,15 @@ import org.springframework.stereotype.Service;
 
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.entities.ort.OrtRepository;
+import de.hsrm.mi.web.projekt.services.geo.GeoAdresse;
+import de.hsrm.mi.web.projekt.services.geo.GeoService;
 import jakarta.transaction.Transactional;
 
 @Service
 public class OrtServiceImpl implements OrtService {
 
     @Autowired private OrtRepository ortRepository;
+    @Autowired private GeoService geoService;
 
     Logger logger = LoggerFactory.getLogger(OrtServiceImpl.class);
 
@@ -42,6 +45,15 @@ public class OrtServiceImpl implements OrtService {
     @Transactional
     public void loescheOrtMitId(long id) {
         ortRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Ort> findeOrtsvorschlaegeFuerAdresse(String ort) {
+        List<GeoAdresse> geoAdressen = geoService.findeAdressen(ort);
+        
+        // TODO: Convert Record to Entity
+        
+        return null;
     }
     
 }

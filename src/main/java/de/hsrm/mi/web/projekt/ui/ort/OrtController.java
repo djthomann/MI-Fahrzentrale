@@ -100,7 +100,16 @@ public class OrtController {
 
             formular.computeBoundingBox();
 
+            if(formular.getGeobreite() == 0 && formular.getGeolaenge() == 0) {
+                List<Ort> vorschlaege = ortService.findeOrtsvorschlaegeFuerAdresse(formular.getName());
+                Ort vorschlag1 = vorschlaege.get(0);
+                formular.setGeobreite(vorschlag1.getGeobreite());
+                formular.setGeolaenge(vorschlag1.getGeolaenge());
+                return "ortbearbeiten";
+            }
+
         if(formularFehler.hasErrors()) {
+
             return "ortbearbeiten";
         } else {
             formular.toOrt(ort);

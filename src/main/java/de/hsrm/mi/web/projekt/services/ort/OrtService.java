@@ -10,4 +10,5 @@ public interface OrtService {
     Optional<Ort> holeOrtMitId(long id);
     Ort speichereOrt(Ort o);
     void loescheOrtMitId(long id);
+    List<Ort> findeOrtsvorschlaegeFuerAdresse(String ort);
 }
