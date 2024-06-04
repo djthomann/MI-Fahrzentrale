@@ -15,6 +15,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -27,8 +28,8 @@ public class Benutzer {
     @GeneratedValue
     private long id;
 
-    // @GeneratedValue
-    // private long version;
+    @Version
+    private long version;
 
     @NotNull @Size(min=3, max=80)
     private String name;
