@@ -58,7 +58,7 @@ public class TourController {
         logger.info("Get Touren, Länge: " + touren.size());
         m.addAttribute("touren", touren);
 
-        return "tourliste";
+        return "tour/tourliste";
     }
 
     @GetMapping("/tour/{tnummer}")
