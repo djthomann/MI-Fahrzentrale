@@ -41,7 +41,7 @@ public class OrtController {
         logger.info("Get Orte, Länge: " + orte.size());
         m.addAttribute("orte", orte);
 
-        return "ortliste";
+        return "ort/ortliste";
     }
 
     @GetMapping("/ort/{onummer}/del")
@@ -74,7 +74,7 @@ public class OrtController {
             if(optionalOrt.isEmpty()) {
                 logger.info("Ort konnte nicht gefunden werden");
                 m.addAttribute("info", "Ort konnte nicht gefunden werden");
-                return "ortliste";
+                return "ort/ortliste";
             } else {
                 Ort ort = optionalOrt.get();
                 OrtFormular ortFormular = new OrtFormular();
@@ -82,11 +82,11 @@ public class OrtController {
 
                 m.addAttribute("ort", ort);
                 m.addAttribute("formular", ortFormular);
-                return "ortbearbeiten";
+                return "ort/ortbearbeiten";
             }
         }
         
-        return "ortbearbeiten";
+        return "ort/ortbearbeiten";
     }
 
     @PostMapping("/ort/{onummer}")
@@ -105,24 +105,24 @@ public class OrtController {
                 Ort vorschlag1 = vorschlaege.get(0);
                 formular.setGeobreite(vorschlag1.getGeobreite());
                 formular.setGeolaenge(vorschlag1.getGeolaenge());
-                return "ortbearbeiten";
+                return "ort/ortbearbeiten";
             }
 
         if(formularFehler.hasErrors()) {
 
-            return "ortbearbeiten";
+            return "ort/ortbearbeiten";
         } else {
             formular.toOrt(ort);
 
             try {
                 Ort ortNeu = ortService.speichereOrt(ort);
-                return "ortbearbeiten";
+                return "ort/ortbearbeiten";
             } catch(Exception e) {
                 m.addAttribute("info", e.getMessage());
             }
         }
         
-        return "ortliste";
+        return "ort/ortliste";
     }
     
     

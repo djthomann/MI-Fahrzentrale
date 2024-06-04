@@ -83,7 +83,7 @@ public class TourController {
 
             // logger.info(neuesFormular.toString());
             // logger.info(neueTour.toString());
-            return "tourbearbeiten";
+            return "tour/tourbearbeiten";
 
         } else if(tnummer > 0) {
             // Bestehende Tour bearbeiten
@@ -94,7 +94,7 @@ public class TourController {
             if(optionalTour.isEmpty()) {
                 logger.info("Tour konnte nicht gefunden werden");
                 m.addAttribute("info", "Tour konnte nicht gefunden werden");
-                return "tourliste";
+                return "tour/tourliste";
             } else {
                 Tour tour = optionalTour.get();
                 TourFormular tourFormular = new TourFormular();
@@ -104,12 +104,12 @@ public class TourController {
                 m.addAttribute("formular", tourFormular);
 
                 logger.info("Tour Formular: " + tourFormular.toString());
-                return "tourbearbeiten";
+                return "tour/tourbearbeiten";
             }
 
         } else {
             m.addAttribute("info", "Invalide Tour ID");
-            return "tourbearbeiten";
+            return "tour/tourbearbeiten";
         }
     }
 
@@ -134,14 +134,14 @@ public class TourController {
             logger.info("PostMapping: tour/tnummer");
 
         if(formularFehler.hasErrors()) {
-            return "tourbearbeiten";
+            return "tour/tourbearbeiten";
         } else {
             formular.toTour(tour);
 
             try {
                 logger.info("Speicher Tour:", tour.toString());
                 Tour tourNeu = tourService.speichereTour(tour);
-                return "tourbearbeiten";
+                return "tour/tourbearbeiten";
             } catch(Exception e) {
                 m.addAttribute("info", e.getMessage());
                 logger.error(String.format("Fehler beim Speichern einer Tour %s", tour.toString()), e.getMessage());
@@ -149,7 +149,7 @@ public class TourController {
             }
         }
         
-        return "tourliste";
+        return "tour/tourliste";
     }
     
 

@@ -51,7 +51,7 @@ public class BenutzerController {
         logger.info("Get Benutzer, Länge: " + benutzer.size());
         m.addAttribute("benutzer", benutzer);
 
-        return "benutzerliste";
+        return "benutzer/benutzerliste";
     }
 
     @GetMapping("/benutzer/{bnummer}/del")
@@ -79,7 +79,7 @@ public class BenutzerController {
             m.addAttribute("benutzer", new Benutzer());
 
             logger.info(m.getAttribute("formular").toString());
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
 
         } else if(bnummer > 0) {
             // Bestehenden Benutzer bearbeiten
@@ -89,7 +89,7 @@ public class BenutzerController {
             if(optionalBenutzer.isEmpty()) {
                 logger.info("Benutzer konnte nicht gefunden werden");
                 m.addAttribute("info", "Benutzer konnte nicht gefunden werden");
-                return "benutzerliste";
+                return "benutzer/benutzerliste";
             } else {
                 Benutzer benutzer = optionalBenutzer.get();
                 BenutzerFormular benutzerFormular = new BenutzerFormular();
@@ -97,12 +97,12 @@ public class BenutzerController {
 
                 m.addAttribute("benutzer", benutzer);
                 m.addAttribute("formular", benutzerFormular);
-                return "benutzerbearbeiten";
+                return "benutzer/benutzerbearbeiten";
             }
             
         } else {
             m.addAttribute("info", "Invalide Benutzer ID");
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         }
 
     }
@@ -134,7 +134,7 @@ public class BenutzerController {
 
         if(formularFehler.hasErrors()) {
             // Zurück ins Formular schicken
-            return "benutzerbearbeiten";
+            return "benutzer/benutzerbearbeiten";
         } else {
             // An die Datenbank schicken
 
@@ -155,7 +155,7 @@ public class BenutzerController {
             } catch(Exception e) {
                 logger.error("Fehler beim Speichern", e);
                 m.addAttribute("info", e.getMessage());
-                return "benutzerbearbeiten";
+                return "benutzer/benutzerbearbeiten";
             }
         }
 
