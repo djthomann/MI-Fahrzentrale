@@ -19,25 +19,25 @@
         <div class="form-wrapper">
 
             <div class="form-header">
-                <!--<span th:if="${bnummer} gt 0" th:text="#{benutzerprofil.titel(${bnummer})}">Benutzer bearbeiten</span>
-                <span th:if="${bnummer} eq 0" th:text="#{benutzerprofil.neu}">Neuer Benutzer</span>-->
-                <span>Neuer Ort</span>
+                <span th:if="${onummer} gt 0" th:text="#{ort.bearbeiten(${onummer})}">Ort bearbeiten</span>
+                <span th:if="${onummer} eq 0" th:text="#{ort.neu}">Neuer Ort</span>
+            
             </div>
 
             <form th:action="@{#}" th:object="${formular}" method="post">
 
                 <div class="field-container">
-                    <label for="name">Name</label><br>
+                    <label th:text="#{ort.name}" for="name">Name</label><br>
                     <input th:errorclass="input-error" th:field="*{name}" type="text" name="name" th:placeholder="#{platzhalter.vorname}"><br>
                 </div>
 
                 <div class="field-container">
-                    <label for="geobreite">Geobreite</label><br>
+                    <label th:text="#{ort.geobreite}" for="geobreite">Geobreite</label><br>
                     <input th:errorclass="input-error" th:field="*{geobreite}" type="text" name="geobreite" th:placeholder="#{platzhalter.nachname}"><br>
                 </div>
 
                 <div>
-                    <label for="geolaenge">Geolänge</label><br>
+                    <label th:text="#{ort.geolaenge}" for="geolaenge">Geolänge</label><br>
                     <input th:errorclass="input-error" th:field="*{geolaenge}"  type="text" name="geolaenge" th:placeholder="#{platzhalter.email}"><br>    
                 </div>
     

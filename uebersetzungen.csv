@@ -43,6 +43,8 @@ benutzerliste.neu,Benutzer hinzufügen,Add User,Gebruiker toevoegen,Benudser hin
 ort.name,Ortsname,Place name,Plaatsnaam,Oddsnaam,Oadsnome
 ort.geobreite,Breitengrad,Latitude,Breedtegraad,Breidegrad,Breitngroad
 ort.geolaenge,Längengrad,Longitude,Lengtegraad,Längegrad,Längngroad
+ort.neu,Neuen Ort anlegen,Create new location,Nieuwe locatie aanmaken,En neue Odd anlesche,Oan noin Oad oanlegn
+ort.bearbeiten,Ort {0} bearbeiten,Edit location {0},Locatie {0} bewerken,Odd {0} beabbeide,Oad {0} beoabeidn
 ,,,,,
 # Ort-Platzhalter,,,,,
 platzhalter.stadtname,Musterstadt,Sample location,Voorbeeldlocatie,Mussderstadd,München
@@ -59,6 +61,11 @@ tour.abfahrt,Abfahrt,Departure,Vertrek,Abwaad,Oabfadd
 tour.preis,Preis / €,Price / €,Prijs / €,Breis / €,Breis / €
 tour.plaetze,Plätze,Seats,Zitplaatsen,Bledze,Blädze
 tour.info,Beschreibung,Tour description,Tour beschrijving,Beschreibung,Beschraibung
+tour.anbieter,Anbieter,Provider,Aanbieder,Anbiedä,Oanbieta
+tour.start,Start,Start,Start,Stadd,Stoart
+tour.ziel,Ziel,Destination,Bestemming,Ziel,Zial
+tour.neu,Neue Tour anlegen,Create new tour,Nieuwe tour aanmaken,Ne neue Tour anlesche,Oa noie Toua oanlegn
+tour.bearbeiten,Tour {0} bearbeiten,Edit tour {0},Tour {0} bewerken,Tour {0} beabbeide,Toua {0} beoabeidn
 ,,,,,
 # Tour-Platzhalter,,,,,
 platzhalter.preis,0.00€,€ 0.00,0.00€,0.00€,0.00€

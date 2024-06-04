@@ -19,15 +19,14 @@
         <div class="form-wrapper">
 
             <div class="form-header">
-                <!--<span th:if="${bnummer} gt 0" th:text="#{benutzerprofil.titel(${bnummer})}">Benutzer bearbeiten</span>
-                <span th:if="${bnummer} eq 0" th:text="#{benutzerprofil.neu}">Neuer Benutzer</span>-->
-                <span>Neue Tour</span>
+                <span th:if="${tnummer} gt 0" th:text="#{tour.bearbeiten(${tnummer})}">Tour bearbeiten</span>
+                <span th:if="${tnummer} eq 0" th:text="#{tour.neu}">Neue Tour</span>
             </div>
 
             <form th:action="@{#}" th:object="${formular}" method="post">
 
                 <div class="field-container">
-                    <label for="anbieter">Anbieter</label><br>
+                    <label th:text="#{tour.anbieter}" for="anbieter">Anbieter</label><br>
                     <select th:field="*{anbieter}" th:errorclass="input-error" name="anbieter">
                         <option th:if="${tnummer} eq 0" th:text="---" th:value="0">Invalid</option>
                         <option th:each="b: ${benutzer}" th:value="${b.id}" th:text="${b.name + ' ' + b.surname}"></option>
@@ -36,13 +35,13 @@
                 </div>
 
                 <div class="field-container">
-                    <label for="abfahrDateTime">Abfahrt</label><br>
+                    <label th:text="#{tour.abfahrt}" for="abfahrDateTime">Abfahrt</label><br>
                     <input th:errorclass="input-error" th:field="*{abfahrDateTime}" type="datetime-local" name="abfahrDateTime"><br>
                     <label th:if="*{#fields.hasErrors('abfahrDateTime')}" th:each="err : *{#fields.errors('abfahrDateTime')}" th:text="${err}" class="label-error" for="abfahrDateTime">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div class="field-container">
-                    <label for="start">Start</label><br>
+                    <label th:text="#{tour.start}" for="start">Start</label><br>
                     <select th:field="*{start}" th:errorclass="input-error" name="start">
                         <option th:if="${tnummer} eq 0" th:text="---" th:value="0">Invalid</option>
                         <option th:each="o: ${orte}" th:value="${o.id}" th:text="${o.name}"></option>
@@ -51,7 +50,7 @@
                 </div>
 
                 <div class="field-container">
-                    <label for="ziel">Ziel</label><br>
+                    <label th:text="#{tour.ziel}" for="ziel">Ziel</label><br>
                     <select th:field="*{ziel}" th:errorclass="input-error" name="ziel">
                         <option th:if="${tnummer} eq 0" th:text="---" th:value="0">Invalid</option>
                         <option th:each="o: ${orte}" th:value="${o.id}" th:text="${o.name}"></option>
@@ -64,13 +63,13 @@
                 </div>
 
                 <div class="field-container">
-                    <label for="preis">Preis</label><br>
+                    <label th:text="#{tour.preis}" for="preis">Preis</label><br>
                     <input th:errorclass="input-error" th:field="*{preis}" type="text" name="preis" th:placeholder="#{platzhalter.nachname}"><br>
                     <label th:if="*{#fields.hasErrors('preis')}" th:each="err : *{#fields.errors('preis')}" th:text="${err}" class="label-error" for="preis">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div>
-                    <label for="plaetze">Plätze</label><br>
+                    <label th:text="#{tour.plaetze}" for="plaetze">Plätze</label><br>
                     <input th:errorclass="input-error" th:field="*{plaetze}"  type="text" name="plaetze" th:placeholder="#{platzhalter.email}"><br>    
                     <label th:if="*{#fields.hasErrors('plaetze')}" th:each="err : *{#fields.errors('plaetze')}" th:text="${err}" class="label-error" for="plaetze">So sieht ein Fehler aus</label><br>
                 </div>
