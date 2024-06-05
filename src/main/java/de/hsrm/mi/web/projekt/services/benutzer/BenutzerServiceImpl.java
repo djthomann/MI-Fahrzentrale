@@ -70,5 +70,26 @@ public class BenutzerServiceImpl implements BenutzerService {
 
         benutzerRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional
+    public Benutzer aktualisiereBenutzerAttribut(long id, String feldname, String wert) {
+        
+        Benutzer b = null;
+        Optional<Benutzer> optionalBenutzer = benutzerRepository.findById(id);
+        if(optionalBenutzer.isPresent()) {
+            b = optionalBenutzer.get();
+        } else {
+            return null;
+        }
+        
+        if(feldname.equals("email")) {
+            b.setMail(wert);
+        } else if(feldname.equals("name")) {
+            b.setName(wert);
+        }
+
+        return benutzerRepository.save(b);
+    }
     
 }

@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 @Controller
 @SessionAttributes(names = {"benutzer", "formular", "info", "maxwunsch"})
@@ -160,4 +165,37 @@ public class BenutzerController {
         }
 
     }
+
+    @GetMapping("/benutzer/{id}/hx/feld/{feldname}")
+    public String getMethodName(@PathVariable("id") long id, @PathVariable("feldname") String feldname, Model m) {
+        
+        Optional<Benutzer> optionalBenutzer = benutzerService.holeBenutzerMitId(id);
+        Benutzer b = optionalBenutzer.get();
+
+        if(feldname.equals("email")) {
+            m.addAttribute("wert", b.getMail());
+        } else if(feldname.equals("name")) {
+            m.addAttribute("wert", b.getName());
+        }
+
+        m.addAttribute("bnummer", id);
+
+        return "benutzer/benutzerliste-zeile :: feldbearbeiten";
+    }
+
+    @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
+    public String putMethodName(@RequestParam("wert") String wert, @PathVariable("id") long id, @PathVariable("feldname") String feldname, Model m) {
+        
+        m.addAttribute("bnummer", id);
+        try {
+            benutzerService.aktualisiereBenutzerAttribut(id, feldname, wert);
+            m.addAttribute("wert", wert);
+            return "benutzer/benutzerliste-zeile :: feldausgeben";
+        } catch(Exception e) {
+
+            m.addAttribute("wert", "Fehler");
+            return "benutzer/benutzerliste-zeile :: feldbearbeiten";
+        }
+    }
+    
 }
