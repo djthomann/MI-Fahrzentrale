@@ -1,5 +1,6 @@
 package de.hsrm.mi.web.projekt.entities.ort;
 
+import de.hsrm.mi.web.projekt.services.geo.GeoAdresse;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -23,6 +24,14 @@ public class Ort {
     private double geobreite;
 
     private double geolaenge;
+
+    public static Ort fromRecord(GeoAdresse a) {
+        Ort o = new Ort();
+        o.setName(a.name());
+        o.setGeobreite(a.lat());
+        o.setGeolaenge(a.lon());
+        return o;
+    }
 
     public long getId() {
         return id;
