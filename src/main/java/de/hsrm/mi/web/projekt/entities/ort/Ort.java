@@ -25,6 +25,19 @@ public class Ort {
 
     private double geolaenge;
 
+    public Ort(long id, String name, double geobreite, double geolaenge) {
+        this.id = id;
+        this.name = name;
+        this.geobreite = geobreite;
+        this.geolaenge = geolaenge;
+    }
+
+    public Ort() {
+        name = " ";
+        geobreite = 0;
+        geolaenge = 0;
+    }
+
     public static Ort fromRecord(GeoAdresse a) {
         Ort o = new Ort();
         o.setName(a.name());
