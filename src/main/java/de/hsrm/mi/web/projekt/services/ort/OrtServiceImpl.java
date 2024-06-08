@@ -2,6 +2,7 @@ package de.hsrm.mi.web.projekt.services.ort;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,9 +52,13 @@ public class OrtServiceImpl implements OrtService {
     public List<Ort> findeOrtsvorschlaegeFuerAdresse(String ort) {
         List<GeoAdresse> geoAdressen = geoService.findeAdressen(ort);
         
-        // TODO: Convert Record to Entity
-        
-        return null;
+        List<Ort> orte = new ArrayList<>();
+
+        for(GeoAdresse adresse : geoAdressen) {
+            orte.add(Ort.fromRecord(adresse));
+        }
+
+        return orte;
     }
     
 }

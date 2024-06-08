@@ -25,13 +25,12 @@ public class GeoServiceImpl implements GeoService {
             logger.error("null ist kein Ort");
             return Collections.emptyList();
         } else {
-            // Alles Records abrufen und der Liste hinzufügen
-            // GeoAdresse antwort = webClient.get().uri("?q={ort}&format=json&countrycodes=de", ort).retrieve().bodyToMono(GeoAdresse.class).block();
             
             List<GeoAdresse> antworten = webClient.get()
                 .uri("?q={ort}&format=json&countrycodes=de", ort)
                 .retrieve()
                 .bodyToFlux(GeoAdresse.class) // Flux statt Mono, weil Folge von Antworten erwartet
+                .doOnNext(geoAdresse -> System.out.println("Deserialisiert: " + geoAdresse))
                 .collectList() // aus Folge von Antworten Liste machen
                 .block();
             

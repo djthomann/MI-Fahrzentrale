@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import de.hsrm.mi.web.projekt.services.ort.OrtService;
+import de.hsrm.mi.web.projekt.services.ort.OrtServiceImpl;
 import jakarta.validation.Valid;
 
 @Controller
@@ -55,6 +56,8 @@ public class OrtController {
     @GetMapping("/ort/{onummer}")
     public String getOrtBearbeiten(@PathVariable("onummer") long onummer, Model m) {
         
+
+
         if(onummer == 0) {
             // Neuen Ort anlegen
             logger.info("Neuen Ort anlegen");
@@ -68,7 +71,7 @@ public class OrtController {
         } else if(onummer > 0) {
             // Bestehenden Ort bearbeiten
 
-            logger.info("Get: Bestehenden Benutzer bearbeiten");
+            logger.info("Get: Bestehenden Ort bearbeiten");
 
             Optional<Ort> optionalOrt = ortService.holeOrtMitId(onummer);
             if(optionalOrt.isEmpty()) {
@@ -102,9 +105,17 @@ public class OrtController {
 
             if(formular.getGeobreite() == 0 && formular.getGeolaenge() == 0) {
                 List<Ort> vorschlaege = ortService.findeOrtsvorschlaegeFuerAdresse(formular.getName());
-                Ort vorschlag1 = vorschlaege.get(0);
-                formular.setGeobreite(vorschlag1.getGeobreite());
-                formular.setGeolaenge(vorschlag1.getGeolaenge());
+        
+                if(vorschlaege.size() > 0) {
+                    Ort vorschlag1 = vorschlaege.get(0);
+                    formular.setGeobreite(vorschlag1.getGeobreite());
+                    formular.setGeolaenge(vorschlag1.getGeolaenge());
+                    formular.computeBoundingBox();
+                    m.addAttribute("info", "Bitte bestätigen Sie den Vorschlag");
+                } else {
+                    m.addAttribute("info", "Für den eingegebenen Name konnte kein Vorschlag gefunden werden");
+                }
+
                 return "ort/ortbearbeiten";
             }
 
