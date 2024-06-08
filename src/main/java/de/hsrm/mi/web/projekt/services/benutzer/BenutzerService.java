@@ -10,5 +10,5 @@ public interface BenutzerService {
     Optional<Benutzer> holeBenutzerMitId(long id);
     Benutzer speichereBenutzer(Benutzer b);
     void loescheBenutzerMitId(long id);
-    Benutzer aktualisiereBenutzerAttribut(long id, String feldname, String wert)
+    Benutzer aktualisiereBenutzerAttribut(long id, String feldname, String wert);
 }
