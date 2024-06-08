@@ -36,9 +36,9 @@
             <tbody>
                 <tr th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${benutzer}" class="even-li">
                     <td th:text="${ele.id}">ID</td>
-                    <td th:text="${ele.name}">Vorname</td>
-                    <td th:text="${ele.surname}">Nachname</td>
-                    <td th:text="${ele.mail}">E-Mail</td>
+                    <th:block th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(bnummer=${ele.id},feldname=name,wert=${ele.name})}">Nachname</th:block>
+                    <th:block th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(bnummer=${ele.id},feldname=surname,wert=${ele.surname})}">Nachname</th:block>
+                    <th:block th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(bnummer=${ele.id},feldname=email,wert=${ele.mail})}">E-Mail</th:block>
                     <td th:text="${ele.birthday}">Geburtstag</td>
                     <td><a th:text="#{liste.bearbeiten}" class="button edit" th:href="@{benutzer/{id}(id=${ele.id})}">Bearbeiten</a></td>
                     <td><a th:text="#{liste.loeschen}" class="button delete" th:href="@{benutzer/{id}/del(id=${ele.id})}">Löschen</a></td>

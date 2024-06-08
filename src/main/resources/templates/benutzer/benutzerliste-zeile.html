@@ -1,12 +1,14 @@
 <th:block th:fragment="feldausgeben(bnummer, feldname, wert)">
-    <span hx-swap="outerHTML" hx-target="closest span" th:hx-get="@{/benutzer/{bnummer}/hx/feld/{feldname}(bnummer=${bnummer},feldname=${feldname})}" th:text="${wert}"></span>
+    <td>
+        <span hx-target="closest td" hx-swap="outerHTML" th:hx-get="@{/benutzer/{bnummer}/hx/feld/{feldname}(bnummer=${bnummer},feldname=${feldname})}" th:text="${wert}"></span>
+    </td>    
 </th:block>
 
 <th:block th:fragment="feldbearbeiten(bnummer, feldname, wert)">
-    <span>
+    <td>
         <form>
             <input type="text" name="wert" th:value="${wert}"></input>
-            <input hx-swap="outerHTML" hx-target="closest span" th:hx-put="@{/benutzer/{bnummer}/hx/feld/{feldname}(bnummer=${bnummer},feldname=${feldname})}" type="submit" th:value="OK"></input>
+            <input hx-target="closest td" hx-swap="outerHTML" th:hx-put="@{/benutzer/{bnummer}/hx/feld/{feldname}(bnummer=${bnummer},feldname=${feldname})}" type="submit" th:value="OK"></input>
         </form>
-    </span>
+    </td>
 </th:block>

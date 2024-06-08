@@ -176,6 +176,8 @@ public class BenutzerController {
             m.addAttribute("wert", b.getMail());
         } else if(feldname.equals("name")) {
             m.addAttribute("wert", b.getName());
+        } else if(feldname.equals("surname")) {
+            m.addAttribute("wert", b.getSurname());
         }
 
         m.addAttribute("bnummer", id);
@@ -193,7 +195,17 @@ public class BenutzerController {
             return "benutzer/benutzerliste-zeile :: feldausgeben";
         } catch(Exception e) {
 
-            m.addAttribute("wert", "Fehler");
+            Optional<Benutzer> optionalBenutzer = benutzerService.holeBenutzerMitId(id);
+            Benutzer b = optionalBenutzer.get();
+
+            if(feldname.equals("email")) {
+                m.addAttribute("wert", b.getMail());
+            } else if(feldname.equals("name")) {
+                m.addAttribute("wert", b.getName());
+            } else if(feldname.equals("surname")) {
+                m.addAttribute("wert", b.getSurname());
+            }
+
             return "benutzer/benutzerliste-zeile :: feldbearbeiten";
         }
     }
