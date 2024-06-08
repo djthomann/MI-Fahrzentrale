@@ -141,7 +141,8 @@ public class TourController {
             try {
                 logger.info("Speicher Tour:", tour.toString());
                 Tour tourNeu = tourService.speichereTour(tour);
-                return "tour/tourbearbeiten";
+                long tnummerNeu = tourNeu.getId();
+                return "redirect:/tour/" + tnummerNeu;
             } catch(Exception e) {
                 m.addAttribute("info", e.getMessage());
                 logger.error(String.format("Fehler beim Speichern einer Tour %s", tour.toString()), e.getMessage());
