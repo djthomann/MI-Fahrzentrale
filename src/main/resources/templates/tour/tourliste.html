@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css"/>
         <link rel="stylesheet" type="text/css" href="/css/header.css"/>
         <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
-        <link rel="stylesheet" type="text/css" href="/css/list.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/table.css"/>
         <link rel="stylesheet" type="text/css" href="/css/tour.css"/>
         <link rel="stylesheet" href="/fonts/TitilliumWeb-Regular.ttf" type="font/ttf">
         <!--<link rel="icon" type="image/jpeg" href="/icons/hsrm-icon.jpg">-->
@@ -17,35 +17,36 @@
 
         <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
 
-        <div class="list-wrapper"> 
-            <h2 th:text="#{tourliste.titel}">Tourenliste</h2>
-            <ul>
-
-                <li class="header-li">
-                    <span>ID</span>
-                    <span>Anbieter</span>
-                    <span th:text="#{tour.abfahrt}">Abfahrt</span>
-                    <span>Start</span>
-                    <span>Ziel</span>
-                    <span th:text="#{tour.preis}">Preis</span>
-                    <span th:text="#{tour.plaetze}">Plätze</span>
-                </li>
-
-                <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${touren}" class="even-li">
-                    <span th:text="${ele.id}">ID</span>
-                    <span th:text="${ele.anbieter.surname}">Anbieter</span>
-                    <span th:text="${ele.abfahrDateTime}">Abfahrt</span>
-                    <span th:text="${ele.start.name}">Start</span>
-                    <span th:text="${ele.ziel.name}">Ziel</span>
-                    <span th:text="${ele.preis}">Preis</span>
-                    <span th:text="${ele.plaetze}">Plätze</span>
-                    <div><a th:text="#{liste.bearbeiten}" class="list-link edit" th:href="@{tour/{id}(id=${ele.id})}">Bearbeiten</a></div>
-                    <div><a th:text="#{liste.loeschen}" class="list-link delete" th:href="@{tour/{id}/del(id=${ele.id})}">Löschen</a></div>
-                </li>
-
-            </ul>
-            <a th:text="#{tourliste.neu}" class="list-link add" th:href="@{tour/0}">Neue Tour</a>
-        </div>
+        <h2 th:text="#{tourliste.titel}">Tourenliste</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="cell-small">ID</th>
+                    <th>Anbieter</th>
+                    <th th:text="#{tour.abfahrt}">Abfahrt</th>
+                    <th>Start</th>
+                    <th>Ziel</th>
+                    <th th:text="#{tour.preis}">Preis</th>
+                    <th th:text="#{tour.plaetze}">Plätze</th>
+                    <th class="cell-small"></th>
+                    <th class="cell-small"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${touren}" class="even-li">
+                    <td th:text="${ele.id}">ID</td>
+                    <td th:text="${ele.anbieter.surname}">Anbieter</td>
+                    <td th:text="${ele.abfahrDateTime}">Abfahrt</td>
+                    <td th:text="${ele.start.name}">Start</td>
+                    <td th:text="${ele.ziel.name}">Ziel</td>
+                    <td th:text="${ele.preis}">Preis</td>
+                    <td th:text="${ele.plaetze}">Plätze</td>
+                    <td><a th:text="#{liste.bearbeiten}" class="button edit" th:href="@{tour/{id}(id=${ele.id})}">Bearbeiten</a></div>
+                    <td><a th:text="#{liste.loeschen}" class="button delete" th:href="@{tour/{id}/del(id=${ele.id})}">Löschen</a></div>
+                </tr>
+            </tbody>
+        </table>
+        <a th:text="#{tourliste.neu}" class="button add" th:href="@{tour/0}">Neue Tour</a>
 
         <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>
     

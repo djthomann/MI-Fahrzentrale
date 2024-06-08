@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css"/>
         <link rel="stylesheet" type="text/css" href="/css/header.css"/>
         <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
-        <link rel="stylesheet" type="text/css" href="/css/list.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/table.css"/>
         <link rel="stylesheet" href="/fonts/TitilliumWeb-Regular.ttf" type="font/ttf">
         <!--<link rel="icon" type="image/jpeg" href="/icons/hsrm-icon.jpg">-->
         <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
@@ -19,32 +19,35 @@
 
         <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
 
-        <div class="list-wrapper"> 
-            <h2 th:text="#{benutzerliste.titel}">Benutzerliste</h2>
-            <ul>
+        <h2 th:text="#{benutzerliste.titel}">Benutzerliste</h2>
 
-                <li class="header-li">
-                    <span>ID</span>
-                    <span th:text="#{benutzer.vorname}">Vorname</span>
-                    <span th:text="#{benutzer.nachname}">Nachname</span>
-                    <span th:text="#{benutzer.email}">E-Mail</span>
-                    <span th:text="#{benutzer.geburtstag}">Geburtstag</span>
-                </li>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="cell-small">ID</th>
+                    <th th:text="#{benutzer.vorname}">Vorname</th>
+                    <th th:text="#{benutzer.nachname}">Nachname</th>
+                    <th th:text="#{benutzer.email}">E-Mail</th>
+                    <th th:text="#{benutzer.geburtstag}">Geburtstag</th>
+                    <th class="cell-small"></th>
+                    <th class="cell-small"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${benutzer}" class="even-li">
+                    <td th:text="${ele.id}">ID</td>
+                    <td th:text="${ele.name}">Vorname</td>
+                    <td th:text="${ele.surname}">Nachname</td>
+                    <td th:text="${ele.mail}">E-Mail</td>
+                    <td th:text="${ele.birthday}">Geburtstag</td>
+                    <td><a th:text="#{liste.bearbeiten}" class="button edit" th:href="@{benutzer/{id}(id=${ele.id})}">Bearbeiten</a></td>
+                    <td><a th:text="#{liste.loeschen}" class="button delete" th:href="@{benutzer/{id}/del(id=${ele.id})}">Löschen</a></td>
+                </tr>
+            </tbody>
+        </table>
 
-                <li th:classappend="${status.odd}? odd-li : even-li" th:each="ele,status : ${benutzer}" class="even-li">
-                    <span th:text="${ele.id}">ID</span>
-                    <span th:text="${ele.name}">Vorname</span>
-                    <span th:text="${ele.surname}">Nachname</span>
-                    <th:block th:replace="~{benutzer/benutzerliste-zeile :: feldausgeben(bnummer=${ele.id},feldname=email,wert=${ele.mail})}">E-Mail</th:block>
-                    <span th:text="${ele.birthday}">Geburtstag</span>
-                    <div><a th:text="#{liste.bearbeiten}" class="list-link edit" th:href="@{benutzer/{id}(id=${ele.id})}">Bearbeiten</a></div>
-                    <div><a th:text="#{liste.loeschen}" class="list-link delete" th:href="@{benutzer/{id}/del(id=${ele.id})}">Löschen</a></div>
-                </li>
-
-            </ul>
-            <a th:text="#{benutzerliste.neu}" class="list-link add" th:href="@{benutzer/0}">Neuer Benutzer</a>
-        </div>
-
+        <a th:text="#{benutzerliste.neu}" class="button add" th:href="@{benutzer/0}">Neuer Benutzer</a>
+        
         <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>
     
     </body>

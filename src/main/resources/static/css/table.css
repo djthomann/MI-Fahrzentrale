@@ -1,0 +1,78 @@
+h2 {
+    margin: 5% 5% 0 5%;
+    padding: 0;
+    font-size: 20pt;
+}
+
+table {
+    margin: 1.5% 5% 2% 5%;
+    width: 80%;
+    border-spacing: 0;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+thead {
+    background-color: #0091af;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+table thead tr th {
+    border: none;
+    font-weight: bold;
+    color: white;
+    padding: 0;
+    text-align: left;
+    padding: 10px;
+}
+
+tbody tr td {
+    padding: 10px;
+}
+
+.cell-small {
+    width: 1%;
+}
+
+.even-li {
+    background-color: #c5d8d9;
+}
+
+.odd-li {
+    background-color: azure;
+}
+
+.list-wrapper li span {
+    text-align: center;
+}
+
+.button {
+    transition-duration: 200ms;
+    transition-property: background-color;
+    border-radius: 4px;
+    font-weight: bold;
+    border: none;
+}
+
+.add {
+    margin: 2.5% 5%;
+    padding: 14px;
+    background-color: #0091af;
+    color: white;
+}
+
+.delete {
+    font-size: 13px;
+    padding: 6px 10px;
+    background-color: red;
+    color: black;
+}
+
+.edit {
+    font-size: 13px;
+    padding: 6px 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid black
+}
