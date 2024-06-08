@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -52,7 +53,7 @@ public class Benutzer {
     @NotNull @GutesPasswort
     private String password;
 
-    @OneToMany(mappedBy = "anbieter")
+    @OneToMany(cascade=CascadeType.PERSIST, orphanRemoval=true, mappedBy = "anbieter")
     private Collection<Tour> touren;
 
     @Override
