@@ -12,7 +12,7 @@ public class OrtFormular {
     private double geobreite;
     private double geolaenge;
 
-    private static final double OFFSET_X = 0.163;
+    private static final double OFFSET_X = 0.05;
     private static final double OFFSET_Y = 0.065;
 
     private double minX;
