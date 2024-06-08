@@ -1,4 +1,4 @@
-package de.hsrm.mi.web.projekt.info.impressum;
+package de.hsrm.mi.web.projekt.info;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
