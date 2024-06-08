@@ -25,6 +25,7 @@ public class BenutzerFormular {
     @Email
     private String mail;
 
+    @NotNull
     @DateTimeFormat(iso = ISO.DATE)
     @Past
     private LocalDate birthday;
