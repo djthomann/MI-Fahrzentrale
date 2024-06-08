@@ -71,7 +71,8 @@
 
                 <div>
                     <label th:text="#{benutzer.geburtstag}" for="birthday">Geburtstag</label><br>
-                    <input th:field="*{birthday}" type="date" name="birthday"><br>
+                    <input th:errorclass="input-error" th:field="*{birthday}" type="date" name="birthday"><br>
+                    <label th:if="*{#fields.hasErrors('birthday')}" th:each="err : *{#fields.errors('birthday')}" th:text="${err}" class="label-error" for="birthday">So sieht ein Fehler aus</label><br>
                 </div>
     
                 <div class="form-first-two-column-span">

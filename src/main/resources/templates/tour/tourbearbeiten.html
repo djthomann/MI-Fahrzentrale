@@ -46,7 +46,7 @@
                         <option th:if="${tnummer} eq 0" th:text="---" th:value="0">Invalid</option>
                         <option th:each="o: ${orte}" th:value="${o.id}" th:text="${o.name}"></option>
                     </select>
-                    <!--<label th:if="*{#fields.hasErrors('anbieter')}" th:each="err : *{#fields.errors('anbieter')}" th:text="${err}" class="label-error" for="anbieter">So sieht ein Fehler aus</label><br>-->
+                    <label th:if="*{#fields.hasErrors('start')}" th:each="err : *{#fields.errors('start')}" th:text="${err}" class="label-error" for="start">So sieht ein Fehler aus</label><br>
                 </div>
 
                 <div class="field-container">
@@ -55,7 +55,7 @@
                         <option th:if="${tnummer} eq 0" th:text="---" th:value="0">Invalid</option>
                         <option th:each="o: ${orte}" th:value="${o.id}" th:text="${o.name}"></option>
                     </select>
-                    <!--<label th:if="*{#fields.hasErrors('anbieter')}" th:each="err : *{#fields.errors('anbieter')}" th:text="${err}" class="label-error" for="anbieter">So sieht ein Fehler aus</label><br>-->
+                    <label th:if="*{#fields.hasErrors('ziel')}" th:each="err : *{#fields.errors('ziel')}" th:text="${err}" class="label-error" for="ziel">So sieht ein Fehler aus</label><br>
                 </div>
     
                 <div class="form-first-two-column-span">
