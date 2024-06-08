@@ -6,7 +6,7 @@ import java.util.Optional;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 
 public interface OrtService {
-    List<Ort> holeAlleOrt();
+    List<Ort> holeAlleOrte();
     Optional<Ort> holeOrtMitId(long id);
     Ort speichereOrt(Ort o);
     void loescheOrtMitId(long id);

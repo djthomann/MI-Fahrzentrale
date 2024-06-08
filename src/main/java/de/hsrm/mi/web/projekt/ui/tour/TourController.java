@@ -46,7 +46,7 @@ public class TourController {
     }
 
     public void holeOrte(Model m) {
-        List<Ort> orte = ortService.holeAlleOrt();
+        List<Ort> orte = ortService.holeAlleOrte();
         m.addAttribute("orte", orte);
     }
 

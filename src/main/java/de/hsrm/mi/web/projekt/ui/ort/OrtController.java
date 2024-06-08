@@ -38,7 +38,7 @@ public class OrtController {
     public String getOrte(Model m) {
 
         m.addAttribute("info", null);
-        List<Ort> orte = ortService.holeAlleOrt();
+        List<Ort> orte = ortService.holeAlleOrte();
         logger.info("Get Orte, Länge: " + orte.size());
         m.addAttribute("orte", orte);
 

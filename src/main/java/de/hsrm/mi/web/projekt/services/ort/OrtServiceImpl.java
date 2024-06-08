@@ -26,7 +26,7 @@ public class OrtServiceImpl implements OrtService {
 
     @Override
     @Transactional
-    public List<Ort> holeAlleOrt() {
+    public List<Ort> holeAlleOrte() {
         return ortRepository.findAll(Sort.by("name"));
     }
 
