@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller
-@SessionAttributes(names = {"benutzer", "formular", "info", "maxwunsch"})
+@SessionAttributes(names = {"benutzer", "formular", "maxwunsch"})
 public class BenutzerController {
     
     @Autowired BenutzerService benutzerService;

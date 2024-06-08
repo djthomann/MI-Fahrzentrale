@@ -26,7 +26,7 @@ import jakarta.validation.Valid;
 
 
 @Controller
-@SessionAttributes(names = {"tour", "formular", "info"})
+@SessionAttributes(names = {"tour", "formular"})
 public class TourController {
     
     @Autowired TourService tourService; 

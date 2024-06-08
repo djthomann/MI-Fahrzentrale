@@ -21,7 +21,7 @@ import de.hsrm.mi.web.projekt.services.ort.OrtService;
 import jakarta.validation.Valid;
 
 @Controller
-@SessionAttributes(names = {"ort", "formular", "info"})
+@SessionAttributes(names = {"ort", "formular"})
 public class OrtController {
     
     @Autowired OrtService ortService; 
