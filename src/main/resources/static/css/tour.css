@@ -1,3 +1,12 @@
-.list-wrapper li {
-    grid-template-columns: 0.5fr repeat(4, 1fr) repeat(4, 0.75fr);
+.field-container-large {
+    display: flex;
+    flex-direction: column;
+    grid-column: 3 / 5;
+    grid-row: 1 / 4;
 }
+
+.field-container-large textarea {
+    height: 100%;
+    resize: none;
+}
+

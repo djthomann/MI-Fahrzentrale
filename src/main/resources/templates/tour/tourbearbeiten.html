@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="/css/header.css"/>
         <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
         <link rel="stylesheet" type="text/css" href="/css/form.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/tour.css" />
         <link rel="stylesheet" href="/fonts/TitilliumWeb-Regular.ttf" type="font/ttf">
         <!--<link rel="icon" type="image/jpeg" href="/icons/hsrm-icon.jpg">-->
 
@@ -40,6 +41,13 @@
                     <label th:if="*{#fields.hasErrors('abfahrDateTime')}" th:each="err : *{#fields.errors('abfahrDateTime')}" th:text="${err}" class="label-error" for="abfahrDateTime">So sieht ein Fehler aus</label><br>
                 </div>
 
+                <div class="field-container-large">
+                    <label for="plaetze">Informationen</label><br>
+                    <textarea th:errorclass="input-error" type="text" name="plaetze" th:placeholder="#{platzhalter.email}"></textarea><br>
+                    <label th:if="*{#fields.hasErrors('plaetze')}" th:each="err : *{#fields.errors('plaetze')}" th:text="${err}"
+                        class="label-error" for="plaetze">So sieht ein Fehler aus</label><br>
+                </div>
+
                 <div class="field-container">
                     <label th:text="#{tour.start}" for="start">Start</label><br>
                     <select th:field="*{start}" th:errorclass="input-error" name="start">
@@ -57,10 +65,6 @@
                     </select>
                     <label th:if="*{#fields.hasErrors('ziel')}" th:each="err : *{#fields.errors('ziel')}" th:text="${err}" class="label-error" for="ziel">So sieht ein Fehler aus</label><br>
                 </div>
-    
-                <div class="form-first-two-column-span">
-                    <input class="form-submit" type="submit" th:value="#{benutzerprofil.speichern}">
-                </div>
 
                 <div class="field-container">
                     <label th:text="#{tour.preis}" for="preis">Preis</label><br>
@@ -68,10 +72,14 @@
                     <label th:if="*{#fields.hasErrors('preis')}" th:each="err : *{#fields.errors('preis')}" th:text="${err}" class="label-error" for="preis">So sieht ein Fehler aus</label><br>
                 </div>
 
-                <div>
+                <div class="field-container">
                     <label th:text="#{tour.plaetze}" for="plaetze">Plätze</label><br>
                     <input th:errorclass="input-error" th:field="*{plaetze}"  type="text" name="plaetze" th:placeholder="#{platzhalter.email}"><br>    
                     <label th:if="*{#fields.hasErrors('plaetze')}" th:each="err : *{#fields.errors('plaetze')}" th:text="${err}" class="label-error" for="plaetze">So sieht ein Fehler aus</label><br>
+                </div>
+
+                <div class="form-first-two-column-span">
+                    <input class="form-submit" type="submit" th:value="#{benutzerprofil.speichern}">
                 </div>
     
             </form>
