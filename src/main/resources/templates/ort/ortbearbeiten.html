@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="/css/header.css"/>
         <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
         <link rel="stylesheet" type="text/css" href="/css/form.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/ort.css" />
         <link rel="stylesheet" href="/fonts/TitilliumWeb-Regular.ttf" type="font/ttf">
         <!--<link rel="icon" type="image/jpeg" href="/icons/hsrm-icon.jpg">-->
 
@@ -16,41 +17,58 @@
 
         <th:block th:replace="~{frag/kopffuss :: kopf}"></th:block>
 
-        <div class="form-wrapper">
+        <div class="flex-wrapper">
 
-            <div class="form-header">
-                <span th:if="${onummer} gt 0" th:text="#{ort.bearbeiten(${onummer})}">Ort bearbeiten</span>
-                <span th:if="${onummer} eq 0" th:text="#{ort.neu}">Neuer Ort</span>
+            <div class="form-wrapper">
+            
+                <div class="form-header">
+                    <span th:if="${onummer} gt 0" th:text="#{ort.bearbeiten(${onummer})}">Ort bearbeiten</span>
+                    <span th:if="${onummer} eq 0" th:text="#{ort.neu}">Neuer Ort</span>
+            
+                </div>
+            
+                <form th:action="@{#}" th:object="${formular}" method="post">
+            
+                    <div class="field-container form-first-two-column-span">
+                        <label th:text="#{ort.name}" for="name">Name</label><br>
+                        <input th:errorclass="input-error" th:field="*{name}" type="text" name="name"
+                            th:placeholder="#{platzhalter.vorname}"><br>
+                        <label th:if="*{#fields.hasErrors('name')}" th:each="err : *{#fields.errors('name')}" th:text="${err}"
+                            class="label-error" for="name">So sieht ein Fehler aus</label><br>
+                    </div>
+            
+                    <div class="field-container">
+                        <label th:text="#{ort.geobreite}" for="geobreite">Geobreite</label><br>
+                        <input th:errorclass="input-error" th:field="*{geobreite}" type="text" name="geobreite"
+                            th:placeholder="#{platzhalter.geobreite}"><br>
+                    </div>
+            
+                    <div>
+                        <label th:text="#{ort.geolaenge}" for="geolaenge">Geolänge</label><br>
+                        <input th:errorclass="input-error" th:field="*{geolaenge}" type="text" name="geolaenge"
+                            th:placeholder="#{platzhalter.geolaenge}"><br>
+                    </div>
+            
+                    <div class="form-first-two-column-span">
+                        <input class="form-submit" type="submit" th:value="#{benutzerprofil.speichern}">
+                    </div>
+            
+                </form>
             
             </div>
 
-            <form th:action="@{#}" th:object="${formular}" method="post">
+            <div class="map">
+                <iframe 
+                    th:src="@{https://www.openstreetmap.org/export/embed.html?bbox={minY}%2C{minX}%2C{maxY}%2C{maxX}&amp;layer=mapnik(minX=${formular.minX},minY=${formular.minY},maxX=${formular.maxX},maxY=${formular.maxY})}">
+                </iframe>
+                <br />
+                <a th:href="|https://www.openstreetmap.org/#map=14/${formular.geobreite}/${formular.geolaenge}|">Karte
+                    anzeigen
+                </a>
 
-                <div class="field-container">
-                    <label th:text="#{ort.name}" for="name">Name</label><br>
-                    <input th:errorclass="input-error" th:field="*{name}" type="text" name="name" th:placeholder="#{platzhalter.vorname}"><br>
-                    <label th:if="*{#fields.hasErrors('name')}" th:each="err : *{#fields.errors('name')}" th:text="${err}" class="label-error" for="name">So sieht ein Fehler aus</label><br>
-                </div>
-
-                <div class="field-container">
-                    <label th:text="#{ort.geobreite}" for="geobreite">Geobreite</label><br>
-                    <input th:errorclass="input-error" th:field="*{geobreite}" type="text" name="geobreite" th:placeholder="#{platzhalter.geobreite}"><br>
-                </div>
-
-                <div>
-                    <label th:text="#{ort.geolaenge}" for="geolaenge">Geolänge</label><br>
-                    <input th:errorclass="input-error" th:field="*{geolaenge}"  type="text" name="geolaenge" th:placeholder="#{platzhalter.geolaenge}"><br>    
-                </div>
-    
-                <div class="form-first-two-column-span">
-                    <input class="form-submit" type="submit" th:value="#{benutzerprofil.speichern}">
-                </div>
-    
-            </form>
-
+            </div>
         </div>
-
-        <iframe width="425" height="350" th:src="@{https://www.openstreetmap.org/export/embed.html?bbox={minY}%2C{minX}%2C{maxY}%2C{maxX}&amp;layer=mapnik(minX=${formular.minX},minY=${formular.minY},maxX=${formular.maxX},maxY=${formular.maxY})}" style="border: 1px solid black"></iframe><br/><small><a th:href="|https://www.openstreetmap.org/#map=14/${formular.geobreite}/${formular.geolaenge}|">Karte anzeigen</a></small>
+        
         <th:block th:replace="~{frag/kopffuss :: fuss}"></th:block>
     
     </body>
