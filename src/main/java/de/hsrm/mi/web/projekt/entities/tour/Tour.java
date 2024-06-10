@@ -16,7 +16,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 public class Tour {
-    
+
     @Id
     @GeneratedValue
     private long id;
@@ -32,7 +32,7 @@ public class Tour {
     @Positive
     private int plaetze;
 
-    @Size(max=400)
+    @Size(max = 400)
     private String info;
 
     @NotNull
@@ -116,7 +116,5 @@ public class Tour {
         return "Tour [id=" + id + ", abfahrDateTime=" + abfahrDateTime + ", preis=" + preis + ", plaetze=" + plaetze
                 + ", info=" + info + "]";
     }
-
-    
 
 }

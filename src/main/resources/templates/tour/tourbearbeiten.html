@@ -43,8 +43,8 @@
 
                 <div class="field-container-large">
                     <label for="plaetze">Informationen</label><br>
-                    <textarea th:errorclass="input-error" type="text" name="plaetze" th:placeholder="#{platzhalter.email}"></textarea><br>
-                    <label th:if="*{#fields.hasErrors('plaetze')}" th:each="err : *{#fields.errors('plaetze')}" th:text="${err}"
+                    <textarea th:errorclass="input-error" th:field="*{info}" type="text" name="plaetze"></textarea><br>
+                    <label th:if="*{#fields.hasErrors('info')}" th:each="err : *{#fields.errors('info')}" th:text="${err}"
                         class="label-error" for="plaetze">So sieht ein Fehler aus</label><br>
                 </div>
 
