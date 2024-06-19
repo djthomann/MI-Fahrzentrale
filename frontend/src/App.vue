@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TourenListe from '@/views/TourenListeView.vue'
+import TourenListeView from '@/views/TourenListeView.vue'
 import { ref } from 'vue'
 
 const info = ref('Dies ist eine Nachricht')
