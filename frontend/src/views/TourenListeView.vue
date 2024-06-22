@@ -1,5 +1,5 @@
 <template>
-  <h1 class="title">Das aktuelle Mitfahrangebot</h1>
+  <h1>Das aktuelle Mitfahrangebot</h1>
 
   <TourenListe :touren="tourliste"></TourenListe>
 </template>
@@ -43,4 +43,8 @@ const tourliste = ref<ITourDTD[]>(
 )
 </script>
 
-<style scoped></style>
+<style scoped>
+h1 {
+  margin: 5% 0 0 5%;
+}
+</style>
