@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import TourenListeView from '@/views/TourenListeView.vue'
-import { ref } from 'vue'
+import { useInfo } from './composables/useInfo'
 
-const info = ref('Dies ist eine Nachricht')
-
-function infoAusblenden() {
-  info.value = ''
+var info = useInfo().info
+function loescheInfo() {
+  useInfo().loescheInfo()
 }
+function setzeInfo(msg: string) {
+  useInfo().setzeInfo(msg)
+}
+setzeInfo('Meine Nachricht')
 </script>
 
 <template>
@@ -28,8 +31,7 @@ function infoAusblenden() {
   </header>
 
   <span v-show="info !== ''" class="info-box"
-    >{{ info
-    }}<button class="info-button" v-on:click="infoAusblenden()" type="button">X</button></span
+    >{{ info }}<button class="info-button" v-on:click="loescheInfo" type="button">X</button></span
   >
 
   <TourenListeView></TourenListeView>
