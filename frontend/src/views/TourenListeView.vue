@@ -1,7 +1,10 @@
 <template>
-  <h1>Das aktuelle Mitfahrangebot</h1>
-
-  <TourenListe :touren="tourliste"></TourenListe>
+  <div class="header">
+    <h1>Das aktuelle Mitfahrangebot</h1>
+    <input type="text" v-model="search" />
+    <button v-on:click="resetSearch">Zurücksetzen</button>
+  </div>
+  <TourenListe :touren="tourliste" :search></TourenListe>
 </template>
 
 <script setup lang="ts">
@@ -10,6 +13,12 @@
  */
 import TourenListe from '@/components/tour/TourenListe.vue'
 import { ref } from 'vue'
+
+let search = ref('leer')
+
+function resetSearch() {
+  search.value = ''
+}
 
 export interface ITourDTD {
   id: number
@@ -44,7 +53,7 @@ const tourliste = ref<ITourDTD[]>(
 </script>
 
 <style scoped>
-h1 {
+.header {
   margin: 5% 0 0 5%;
 }
 </style>

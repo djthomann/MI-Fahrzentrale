@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TourenListeView from '@/views/TourenListeView.vue'
 import { useInfo } from './composables/useInfo'
+import router from './router'
 
 var info = useInfo().info
 function loescheInfo() {
@@ -34,7 +35,7 @@ setzeInfo('Meine Nachricht')
     >{{ info }}<button class="info-button" v-on:click="loescheInfo" type="button">X</button></span
   >
 
-  <TourenListeView></TourenListeView>
+  <RouterView></RouterView>
 
   <footer>
     <a th:href="@{~/kontakt}" th:text="#{fuss.kontakt}">Kontakt</a>

@@ -3,6 +3,7 @@
     th:classappend="${status.odd}? odd-li : even-li"
     th:each="ele,status : ${touren}"
     class="even-li"
+    v-if="search == 'leer'"
   >
     <td>{{ tour.id }}</td>
     <td>{{ tour.anbieterName }}</td>
@@ -22,7 +23,7 @@
 import { computed } from 'vue'
 import type { ITourDTD } from '@/views/TourenListeView.vue'
 
-const props = defineProps<{ tour: ITourDTD }>()
+const props = defineProps<{ tour: ITourDTD; search: String }>()
 
 var freiePlaetze = computed(() => props.tour.plaetze - props.tour.buchungen)
 </script>
