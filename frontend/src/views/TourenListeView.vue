@@ -4,7 +4,7 @@
     <input type="text" v-model="search" />
     <button v-on:click="resetSearch">Zurücksetzen</button>
   </div>
-  <TourenListe :touren="tourdata.state.tourliste" :search></TourenListe>
+  <TourenListe :touren="tourenGefiltert"></TourenListe>
 </template>
 
 <script setup lang="ts">
@@ -12,14 +12,22 @@
  * TourenListe-Komponente bitte in src/components/tour selbst implementieren
  */
 import TourenListe from '@/components/tour/TourenListe.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useTourenStore } from '@/stores/tourenstore'
 
 const { tourdata, updateTourListe } = useTourenStore()
 
 updateTourListe()
 
-let search = ref('leer')
+const search = ref('')
+
+const tourenGefiltert = computed(() => {
+  return tourdata.state.tourliste.filter(
+    (e) =>
+      e.startOrtName.toLowerCase().includes(search.value.toLowerCase()) ||
+      e.zielOrtName.toLowerCase().includes(search.value.toLowerCase())
+  )
+})
 
 function resetSearch() {
   search.value = ''
