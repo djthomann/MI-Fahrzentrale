@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TourenListeView from '@/views/TourenListeView.vue'
 import { useInfo } from './composables/useInfo'
 import router from './router'
+import TourView from './views/TourView.vue'
 
 var info = useInfo().info
 function loescheInfo() {
@@ -19,7 +19,7 @@ setzeInfo('Meine Nachricht')
       <img th:src="@{/icons/Logo-Hochschule-RheinMain.png}" />
       <a th:text="#{kopf.benutzer}">Benutzer bearbeiten</a>
       <a>Orte</a>
-      <a>Touren</a>
+      <RouterLink :to="{ name: 'TourenListeView' }">Touren</RouterLink>
     </div>
 
     <nav>

@@ -1,3 +1,4 @@
+import TourView from '@/views/TourView.vue'
 import TourenListeView from '@/views/TourenListeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -8,6 +9,12 @@ const router = createRouter({
       path: '/touren',
       name: 'TourenListeView',
       component: TourenListeView
+    },
+    {
+      path: '/tour/:tourid',
+      name: 'TourView',
+      component: TourView,
+      props: true
     },
     {
       path: '/',

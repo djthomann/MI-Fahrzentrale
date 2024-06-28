@@ -13,7 +13,7 @@
     <td>{{ tour.plaetze }}</td>
     <td>{{ freiePlaetze }}</td>
     <td>
-      <a class="button edit" th:href="@{tour/{id}(id=${ele.id})}">Details</a>
+      <RouterLink :to="{ name: 'TourView', params: { tourid: tour.id } }">Details</RouterLink>
     </td>
   </tr>
 </template>
