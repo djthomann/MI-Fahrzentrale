@@ -50,8 +50,4 @@ export interface ITourDTD {
 }
 </script>
 
-<style scoped>
-.header {
-  margin: 5% 0 0 5%;
-}
-</style>
+<style scoped></style>
