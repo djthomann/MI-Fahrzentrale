@@ -2,7 +2,6 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="cell-small">ID</th>
         <th>Anbieter</th>
         <th>Abfahrt</th>
         <th>Start</th>

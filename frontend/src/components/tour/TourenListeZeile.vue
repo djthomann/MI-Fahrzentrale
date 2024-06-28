@@ -4,7 +4,6 @@
     th:each="ele,status : ${touren}"
     class="even-li"
   >
-    <td>{{ tour.id }}</td>
     <td>{{ tour.anbieterName }}</td>
     <td>{{ tour.abfahrDateTime }}</td>
     <td>{{ tour.startOrtName }}</td>
