@@ -1,12 +1,15 @@
 package de.hsrm.mi.web.projekt.entities.tour;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.HashSet;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.entities.ort.Ort;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotNull;
@@ -46,6 +49,13 @@ public class Tour {
     @NotNull
     @ManyToOne
     private Ort ziel;
+
+    @ManyToMany
+    private Set<Benutzer> mitfahrgaeste = new HashSet<>();
+
+    public Set<Benutzer> getMitfahrgaeste() {
+        return mitfahrgaeste;
+    }
 
     public Ort getStart() {
         return start;

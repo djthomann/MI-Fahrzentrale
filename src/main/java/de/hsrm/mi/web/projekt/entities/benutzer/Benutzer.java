@@ -15,6 +15,7 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
@@ -32,29 +33,44 @@ public class Benutzer {
     @Version
     private long version;
 
-    @NotNull @Size(min=3, max=80)
+    @NotNull
+    @Size(min = 3, max = 80)
     private String name;
 
-    @NotNull @Size(min=3, max=80)
+    @NotNull
+    @Size(min = 3, max = 80)
     private String surname;
 
-    @NotNull @Email
+    @NotNull
+    @Email
     private String mail;
 
-    @NotNull @DateTimeFormat(iso = ISO.DATE) @Past
+    @NotNull
+    @DateTimeFormat(iso = ISO.DATE)
+    @Past
     private LocalDate birthday;
 
-    @NotNull @ElementCollection
+    @NotNull
+    @ElementCollection
     private Set<String> likes = new HashSet<>();
-    
-    @NotNull @ElementCollection
+
+    @NotNull
+    @ElementCollection
     private Set<String> dislikes = new HashSet<>();
 
-    @NotNull @GutesPasswort
+    @NotNull
+    @GutesPasswort
     private String password;
 
-    @OneToMany(cascade=CascadeType.PERSIST, orphanRemoval=true, mappedBy = "anbieter")
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "anbieter")
     private Collection<Tour> touren;
+
+    @ManyToMany()
+    private Set<Tour> gebuchteTouren = new HashSet<>();
+
+    public Set<Tour> getGebuchteTouren() {
+        return gebuchteTouren;
+    }
 
     @Override
     public String toString() {
@@ -66,9 +82,11 @@ public class Benutzer {
         return id;
     }
 
-    /* public long getVersion() {
-        return version;
-    } */
+    /*
+     * public long getVersion() {
+     * return version;
+     * }
+     */
 
     public String getName() {
         return name;
@@ -125,5 +143,5 @@ public class Benutzer {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
 }
