@@ -16,11 +16,22 @@ import { useTourenStore } from '@/stores/tourenstore'
 import { useInfo } from '@/composables/useInfo'
 import { computed } from 'vue'
 const { tourdata, updateTourListe } = useTourenStore()
-updateTourListe()
 const { info, loescheInfo, setzeInfo } = useInfo()
 loescheInfo()
 
 const props = defineProps<{ tourid: string }>()
+
+//setzeInfo(tourdata.state.ok)
+
+if (tourdata.state.ok == true) {
+  // setzeInfo('Tourdaten sind okay')
+} else {
+  updateTourListe()
+
+  // console.log('Hole Touren')
+}
+
+// setzeInfo(tourdata.state.ok)
 
 const tour = tourdata.state.tourliste.find((value) => value.id === parseInt(props.tourid))
 
@@ -34,8 +45,10 @@ if (tour) {
     )
   }
 } else {
-  setzeInfo('Tour konnte nicht gefunden werden')
+  //setzeInfo('Tour konnte nicht gefunden werden')
 }
+
+console.log(tourdata.state.ok)
 </script>
 
 <style scoped></style>
