@@ -18,7 +18,7 @@ public class FrontendNachrichtServiceImpl implements FrontendNachrichtService {
     @MessageMapping("/topic")
     public void sendEvent(FrontendNachrichtEvent ev) {
         messagingTemplate.convertAndSend("/topic", ev);
-        logger.info("Sending event" + ev);
+        logger.info("Sending event: " + ev.toString());
     }
 
 }
