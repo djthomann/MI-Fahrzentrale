@@ -43,18 +43,22 @@ public class TourServiceImpl implements TourService {
     @Override
     @Transactional
     public Tour speichereTour(Tour t) {
+        boolean isNew = (t.getId() == 0);
 
-        // Nicht immer ein Create!
-        nachrichtService.sendEvent(new FrontendNachrichtEvent(MessageType.TOUR, Operation.CREATE, t.getId()));
-        return tourRepository.save(t);
+        Tour ret = tourRepository.save(t);
+
+        Operation operation = isNew ? Operation.CREATE : Operation.UPDATE;
+        nachrichtService.sendEvent(new FrontendNachrichtEvent(MessageType.TOUR, operation, t.getId()));
+
+        return ret;
     }
 
     @Override
     @Transactional
     public void loescheTourMitId(long id) {
-
-        nachrichtService.sendEvent(new FrontendNachrichtEvent(MessageType.TOUR, Operation.DELETE, id));
+        logger.info("Loesche Tour");
         tourRepository.deleteById(id);
+        nachrichtService.sendEvent(new FrontendNachrichtEvent(MessageType.TOUR, Operation.DELETE, id));
     }
 
 }

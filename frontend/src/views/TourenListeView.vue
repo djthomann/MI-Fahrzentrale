@@ -22,7 +22,7 @@ updateTourListe()
 const search = ref('')
 
 const tourenGefiltert = computed(() => {
-  return tourdata.state.tourliste.filter(
+  return tourdata.tourliste.filter(
     (e) =>
       e.startOrtName.toLowerCase().includes(search.value.toLowerCase()) ||
       e.zielOrtName.toLowerCase().includes(search.value.toLowerCase())

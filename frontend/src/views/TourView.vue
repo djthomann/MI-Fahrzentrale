@@ -14,41 +14,40 @@
 <script setup lang="ts">
 import { useTourenStore } from '@/stores/tourenstore'
 import { useInfo } from '@/composables/useInfo'
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
+import type { ITourDTD } from './TourenListeView.vue'
+
 const { tourdata, updateTourListe } = useTourenStore()
 const { info, loescheInfo, setzeInfo } = useInfo()
 loescheInfo()
 
 const props = defineProps<{ tourid: string }>()
 
-//setzeInfo(tourdata.state.ok)
+const tour = ref<ITourDTD>()
 
-if (tourdata.state.ok == true) {
-  // setzeInfo('Tourdaten sind okay')
-} else {
-  updateTourListe()
-
-  // console.log('Hole Touren')
-}
-
-// setzeInfo(tourdata.state.ok)
-
-const tour = tourdata.state.tourliste.find((value) => value.id === parseInt(props.tourid))
-
-var freiePlaetze: any
-
-if (tour) {
-  freiePlaetze = computed(() => tour.plaetze - tour.buchungen)
-  if (tour.distanz > 300) {
-    setzeInfo(
-      `Achtung! Die Tour von ${tour.startOrtName} nach ${tour.zielOrtName} ist länger als 300km`
-    )
+const loadTour = async () => {
+  if (!tourdata.ok) {
+    await updateTourListe()
   }
-} else {
-  //setzeInfo('Tour konnte nicht gefunden werden')
+
+  tour.value = tourdata.tourliste.find((value) => value.id === parseInt(props.tourid))
+
+  if (tour.value) {
+    if (tour.value.distanz > 300) {
+      setzeInfo(
+        `Achtung! Die Tour von ${tour.value.startOrtName} nach ${tour.value.zielOrtName} ist länger als 300km`
+      )
+    }
+  } else {
+    setzeInfo('Tour konnte nicht gefunden werden')
+  }
 }
 
-console.log(tourdata.state.ok)
+onMounted(loadTour)
+
+const freiePlaetze = computed(() => {
+  return tour.value ? tour.value.plaetze - tour.value.buchungen : 0
+})
 </script>
 
 <style scoped></style>

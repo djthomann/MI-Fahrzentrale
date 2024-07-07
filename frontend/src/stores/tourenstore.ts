@@ -17,6 +17,7 @@ export const useTourenStore = defineStore('tourenstore', () => {
         throw new Error(resp.statusText)
       }
       const jsondata = await resp.json()
+      console.log(jsondata)
       state.tourliste = jsondata
       state.ok = true
     } catch (reason) {
@@ -26,7 +27,7 @@ export const useTourenStore = defineStore('tourenstore', () => {
   }
 
   return {
-    tourdata: reactive({ state }),
+    tourdata: state,
     updateTourListe
   }
 })
