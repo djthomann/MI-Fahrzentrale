@@ -18,7 +18,7 @@ const router = createRouter({
     },
     {
       path: '/',
-      redirect: '/touren'
+      redirect: '/admin/touren'
     }
   ]
 })

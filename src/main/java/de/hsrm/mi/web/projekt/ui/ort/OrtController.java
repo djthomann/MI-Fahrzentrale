@@ -53,7 +53,7 @@ public class OrtController {
 
         ortService.loescheOrtMitId(onummer);
 
-        return "redirect:/ort";
+        return "redirect:/admin/ort";
     }
 
     @GetMapping("/{onummer}")

@@ -123,7 +123,7 @@ public class TourController {
         logger.info("Trying to delete tour with id: " + tnummer);
         tourService.loescheTourMitId(tnummer);
 
-        return "redirect:/tour";
+        return "redirect:/admin/tour";
     }
 
     @PostMapping("/{tnummer}")
@@ -145,7 +145,7 @@ public class TourController {
                 logger.info("Speicher Tour:", tour.toString());
                 Tour tourNeu = tourService.speichereTour(tour);
                 long tnummerNeu = tourNeu.getId();
-                return "redirect:/tour/" + tnummerNeu;
+                return "redirect:/admin/tour/" + tnummerNeu;
             } catch (Exception e) {
                 m.addAttribute("info", e.getMessage());
                 logger.error(String.format("Fehler beim Speichern einer Tour %s", tour.toString()), e.getMessage());

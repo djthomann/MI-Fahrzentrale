@@ -65,7 +65,7 @@ public class BenutzerController {
 
         benutzerService.loescheBenutzerMitId(bnummer);
 
-        return "redirect:/benutzer";
+        return "redirect:/admin/benutzer";
     }
 
     @GetMapping("/{bnummer}")
@@ -155,7 +155,7 @@ public class BenutzerController {
                 Benutzer benutzerNeu = benutzerService.speichereBenutzer(benutzer);
                 long bnummerNeu = benutzerNeu.getId();
                 logger.info("bnummer", bnummerNeu);
-                return "redirect:/benutzer/" + bnummerNeu;
+                return "redirect:/admin/benutzer/" + bnummerNeu;
             } catch (Exception e) {
                 logger.error("Fehler beim Speichern", e);
                 m.addAttribute("info", e.getMessage());
