@@ -22,14 +22,15 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@SessionAttributes(names = {"benutzer", "formular", "maxwunsch"})
+@RequestMapping("/admin/benutzer")
+@SessionAttributes(names = { "benutzer", "formular", "maxwunsch" })
 public class BenutzerController {
-    
-    @Autowired BenutzerService benutzerService;
+
+    @Autowired
+    BenutzerService benutzerService;
 
     public final int MAXWUNSCH = 5;
 
@@ -48,7 +49,7 @@ public class BenutzerController {
         m.addAttribute("maxwunsch", MAXWUNSCH);
     }
 
-    @GetMapping("/benutzer")
+    @GetMapping("")
     public String getBenutzerListe(Model m) {
 
         m.addAttribute("info", null);
@@ -59,24 +60,23 @@ public class BenutzerController {
         return "benutzer/benutzerliste";
     }
 
-    @GetMapping("/benutzer/{bnummer}/del")
+    @GetMapping("/{bnummer}/del")
     public String deleteBenutzer(@PathVariable("bnummer") long bnummer, Model m) {
-        
+
         benutzerService.loescheBenutzerMitId(bnummer);
 
         return "redirect:/benutzer";
     }
-    
 
-    @GetMapping("/benutzer/{bnummer}")
+    @GetMapping("/{bnummer}")
     public String getBenutzerBearbeiten(@PathVariable("bnummer") long bnummer, Model m) {
-        
+
         logger.info("GetMapping: /benutzer/bnummer = {}", bnummer);
-        
+
         m.addAttribute("bnummer", bnummer);
         m.addAttribute("info", null);
 
-        if(bnummer == 0) {
+        if (bnummer == 0) {
             // Neuen Benutzer anlegen
             logger.info("Neuen Benutzer anlegen");
 
@@ -86,12 +86,12 @@ public class BenutzerController {
             logger.info(m.getAttribute("formular").toString());
             return "benutzer/benutzerbearbeiten";
 
-        } else if(bnummer > 0) {
+        } else if (bnummer > 0) {
             // Bestehenden Benutzer bearbeiten
             logger.info("Get: Bestehenden Benutzer bearbeiten");
 
             Optional<Benutzer> optionalBenutzer = benutzerService.holeBenutzerMitId(bnummer);
-            if(optionalBenutzer.isEmpty()) {
+            if (optionalBenutzer.isEmpty()) {
                 logger.info("Benutzer konnte nicht gefunden werden");
                 m.addAttribute("info", "Benutzer konnte nicht gefunden werden");
                 return "benutzer/benutzerliste";
@@ -104,7 +104,7 @@ public class BenutzerController {
                 m.addAttribute("formular", benutzerFormular);
                 return "benutzer/benutzerbearbeiten";
             }
-            
+
         } else {
             m.addAttribute("info", "Invalide Benutzer ID");
             return "benutzer/benutzerbearbeiten";
@@ -112,32 +112,31 @@ public class BenutzerController {
 
     }
 
-    @PostMapping("/benutzer/{bnummer}")
+    @PostMapping("/{bnummer}")
     public String postBenutzerBearbeiten(
-        @PathVariable("bnummer") long bnummer,
-        @SessionAttribute("benutzer") Benutzer benutzer,
-        @Valid @ModelAttribute("formular") BenutzerFormular formular,
-        BindingResult formularFehler,
-        Model m) 
-        {
+            @PathVariable("bnummer") long bnummer,
+            @SessionAttribute("benutzer") Benutzer benutzer,
+            @Valid @ModelAttribute("formular") BenutzerFormular formular,
+            BindingResult formularFehler,
+            Model m) {
 
         logger.info("PostMapping: /benutzer/bnummer = {}", bnummer);
 
         String like = formular.getLike();
-        if(like != null && like != "" && formular.likeAmount() < MAXWUNSCH) {
+        if (like != null && like != "" && formular.likeAmount() < MAXWUNSCH) {
             formular.addLike(like);
             logger.info("like added: {}", like);
             formular.setLike("");
         }
 
         String dislike = formular.getDislike();
-        if(dislike != null && dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
+        if (dislike != null && dislike != "" && formular.dislikeAmount() < MAXWUNSCH) {
             formular.addDislike(dislike);
             logger.info("dislike added: {}", dislike);
             formular.setDislike("");
         }
 
-        if(formularFehler.hasErrors()) {
+        if (formularFehler.hasErrors()) {
             // Zurück ins Formular schicken
             return "benutzer/benutzerbearbeiten";
         } else {
@@ -148,7 +147,7 @@ public class BenutzerController {
 
             // Benutzer-Entity setzen
             formular.toBenutzer(benutzer);
-            if(formular.getPassword() != "") {
+            if (formular.getPassword() != "") {
                 benutzer.setPassword(formular.getPassword());
             }
 
@@ -157,7 +156,7 @@ public class BenutzerController {
                 long bnummerNeu = benutzerNeu.getId();
                 logger.info("bnummer", bnummerNeu);
                 return "redirect:/benutzer/" + bnummerNeu;
-            } catch(Exception e) {
+            } catch (Exception e) {
                 logger.error("Fehler beim Speichern", e);
                 m.addAttribute("info", e.getMessage());
                 return "benutzer/benutzerbearbeiten";
@@ -166,17 +165,17 @@ public class BenutzerController {
 
     }
 
-    @GetMapping("/benutzer/{id}/hx/feld/{feldname}")
+    @GetMapping("/{id}/hx/feld/{feldname}")
     public String getMethodName(@PathVariable("id") long id, @PathVariable("feldname") String feldname, Model m) {
-        
+
         Optional<Benutzer> optionalBenutzer = benutzerService.holeBenutzerMitId(id);
         Benutzer b = optionalBenutzer.get();
 
-        if(feldname.equals("email")) {
+        if (feldname.equals("email")) {
             m.addAttribute("wert", b.getMail());
-        } else if(feldname.equals("name")) {
+        } else if (feldname.equals("name")) {
             m.addAttribute("wert", b.getName());
-        } else if(feldname.equals("surname")) {
+        } else if (feldname.equals("surname")) {
             m.addAttribute("wert", b.getSurname());
         }
 
@@ -185,29 +184,30 @@ public class BenutzerController {
         return "benutzer/benutzerliste-zeile :: feldbearbeiten";
     }
 
-    @PutMapping("/benutzer/{id}/hx/feld/{feldname}")
-    public String putMethodName(@RequestParam("wert") String wert, @PathVariable("id") long id, @PathVariable("feldname") String feldname, Model m) {
-        
+    @PutMapping("/{id}/hx/feld/{feldname}")
+    public String putMethodName(@RequestParam("wert") String wert, @PathVariable("id") long id,
+            @PathVariable("feldname") String feldname, Model m) {
+
         m.addAttribute("bnummer", id);
         try {
             benutzerService.aktualisiereBenutzerAttribut(id, feldname, wert);
             m.addAttribute("wert", wert);
             return "benutzer/benutzerliste-zeile :: feldausgeben";
-        } catch(Exception e) {
+        } catch (Exception e) {
 
             Optional<Benutzer> optionalBenutzer = benutzerService.holeBenutzerMitId(id);
             Benutzer b = optionalBenutzer.get();
 
-            if(feldname.equals("email")) {
+            if (feldname.equals("email")) {
                 m.addAttribute("wert", b.getMail());
-            } else if(feldname.equals("name")) {
+            } else if (feldname.equals("name")) {
                 m.addAttribute("wert", b.getName());
-            } else if(feldname.equals("surname")) {
+            } else if (feldname.equals("surname")) {
                 m.addAttribute("wert", b.getSurname());
             }
 
             return "benutzer/benutzerliste-zeile :: feldbearbeiten";
         }
     }
-    
+
 }
