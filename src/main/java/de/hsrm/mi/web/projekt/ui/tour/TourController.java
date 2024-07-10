@@ -26,7 +26,7 @@ import de.hsrm.mi.web.projekt.services.tour.TourService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/admin/tour")
+@RequestMapping("/admin")
 @SessionAttributes(names = { "tour", "formular" })
 public class TourController {
 
@@ -54,7 +54,12 @@ public class TourController {
         m.addAttribute("orte", orte);
     }
 
-    @GetMapping("")
+    @RequestMapping("")
+    public String getAdmin(Model m) {
+        return "redirect:/admin/tour";
+    }
+
+    @GetMapping("/tour")
     public String getTouren(Model m) {
 
         m.addAttribute("info", null);
@@ -65,7 +70,7 @@ public class TourController {
         return "tour/tourliste";
     }
 
-    @GetMapping("/{tnummer}")
+    @GetMapping("/tour/{tnummer}")
     public String getTourBearbeiten(@PathVariable("tnummer") long tnummer, Model m) {
 
         logger.info("GetMapping: /tour/tnummer = {}", tnummer);
@@ -117,7 +122,7 @@ public class TourController {
         }
     }
 
-    @GetMapping("/{tnummer}/del")
+    @GetMapping("/tour/{tnummer}/del")
     public String deleteTour(@PathVariable("tnummer") long tnummer, Model m) {
 
         logger.info("Trying to delete tour with id: " + tnummer);
@@ -126,7 +131,7 @@ public class TourController {
         return "redirect:/admin/tour";
     }
 
-    @PostMapping("/{tnummer}")
+    @PostMapping("/tour/{tnummer}")
     public String postMethodName(
             @PathVariable("tnummer") long tnummer,
             @SessionAttribute("tour") Tour tour,
