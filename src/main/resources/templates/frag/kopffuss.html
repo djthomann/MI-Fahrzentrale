@@ -5,7 +5,7 @@
         <div>
             <img th:src="@{/icons/Logo-Hochschule-RheinMain.png}"/></a>
             <a th:href="@{~/admin/benutzer}" th:text="#{kopf.benutzer}">Benutzer bearbeiten</a>
-            <a th:href="@{~/admin/ort}" >Orte</a>
+            <a sec:authorize="hasRole('CHEF')" th:href="@{~/admin/ort}" >Orte</a>
             <a th:href="@{~/admin/tour}" >Touren</a>
         </div>
 
