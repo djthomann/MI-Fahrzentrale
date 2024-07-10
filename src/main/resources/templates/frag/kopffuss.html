@@ -17,7 +17,9 @@
             <a th:href="@{?sprache=nl}">NL</a>
             <a th:href="@{?sprache=en}">EN</a>
 
+            <a th:href="@{/logout}">Logout</a>
         </nav>
+
 
     </header>
 
@@ -29,6 +31,7 @@
 
     <footer>
 
+        <span sec:authentication="name"></span>
         <a th:href="@{~/kontakt}" th:text="#{fuss.kontakt}">Kontakt</a>
         <a th:href="@{~/impressum}" th:text="#{fuss.impressum}">Impressum</a>
 
