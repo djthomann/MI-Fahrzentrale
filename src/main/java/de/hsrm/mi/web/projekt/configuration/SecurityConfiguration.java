@@ -18,42 +18,47 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Bean
-    PasswordEncoder passwordEncoder() { // @Bean -> Encoder woanders per @Autowired abrufbar
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+        @Bean
+        PasswordEncoder passwordEncoder() { // @Bean -> Encoder woanders per @Autowired abrufbar
+                return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserBuilder userbuilder = User.withDefaultPasswordEncoder(); // Klartext-Passwort codiert speichern
+        // @Bean
+        // public UserDetailsService userDetailsService() {
+        // UserBuilder userbuilder = User.withDefaultPasswordEncoder(); //
+        // Klartext-Passwort codiert speichern
 
-        UserDetails user1 = userbuilder.username("joendhard@diebiffels.de").password("17")
-                .roles("CHEF").build();
+        // UserDetails user1 =
+        // userbuilder.username("joendhard@diebiffels.de").password("17")
+        // .roles("CHEF").build();
 
-        UserDetails user2 = userbuilder.username("detlef@dingenskirchen.de").password("1234")
-                .roles("USER").build();
+        // UserDetails user2 =
+        // userbuilder.username("detlef@dingenskirchen.de").password("1234")
+        // .roles("USER").build();
 
-        return new InMemoryUserDetailsManager(user1, user2);
-    }
+        // return new InMemoryUserDetailsManager(user1, user2);
+        // }
 
-    @Bean
-    SecurityFilterChain filterChainApp(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(toH2Console()).permitAll()
-                .requestMatchers("/admin/ort/*").hasRole(
-                        "CHEF")
-                .requestMatchers("/admin/*").authenticated()
-                .anyRequest().permitAll())
+        @Bean
+        SecurityFilterChain filterChainApp(HttpSecurity http) throws Exception {
+                http.authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers(toH2Console()).permitAll()
+                                .requestMatchers("/admin/ort").hasRole(
+                                                "CHEF")
+                                .requestMatchers("/admin/ort/*").hasRole(
+                                                "CHEF")
+                                .requestMatchers("/admin/*").authenticated()
+                                .anyRequest().permitAll())
 
-                .formLogin(form -> form
-                        .defaultSuccessUrl("/admin/tour", true)
-                        .permitAll())
-                .csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()))
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/admin/benutzer/*/hx/feld/*"))
-                .headers(hdrs -> hdrs.frameOptions(fo -> fo.sameOrigin()))
-                .logout(out -> out.logoutSuccessUrl("/login"));
+                                .formLogin(form -> form
+                                                .defaultSuccessUrl("/admin/tour", true)
+                                                .permitAll())
+                                .csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()))
+                                .csrf(csrf -> csrf.ignoringRequestMatchers("/admin/benutzer/*/hx/feld/*"))
+                                .headers(hdrs -> hdrs.frameOptions(fo -> fo.sameOrigin()))
+                                .logout(out -> out.logoutSuccessUrl("/login"));
 
-        return http.build();
-    }
+                return http.build();
+        }
 
 }

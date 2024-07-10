@@ -1,5 +1,6 @@
 package de.hsrm.mi.web.projekt.ui.tour;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -123,10 +124,21 @@ public class TourController {
     }
 
     @GetMapping("/tour/{tnummer}/del")
-    public String deleteTour(@PathVariable("tnummer") long tnummer, Model m) {
+    public String deleteTour(@PathVariable("tnummer") long tnummer, Model m, Principal prinz) {
 
-        logger.info("Trying to delete tour with id: " + tnummer);
-        tourService.loescheTourMitId(tnummer);
+        Optional<Tour> optionalTour = tourService.holeTourMitId(tnummer);
+
+        if (optionalTour.isPresent()) {
+
+            Tour zuLoeschendeTour = optionalTour.get();
+            if (zuLoeschendeTour.getAnbieter().getMail().equals(prinz.getName())) {
+                logger.info(prinz.getName() + " löscht " + zuLoeschendeTour.toString());
+                tourService.loescheTourMitId(tnummer);
+            } else {
+                logger.info(prinz.getName() + " darf nicht löschen:  " + zuLoeschendeTour.toString());
+            }
+
+        }
 
         return "redirect:/admin/tour";
     }

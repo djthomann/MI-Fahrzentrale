@@ -11,14 +11,17 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import de.hsrm.mi.web.projekt.entities.tour.Tour;
 import de.hsrm.mi.web.projekt.validators.GutesPasswort;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -43,6 +46,7 @@ public class Benutzer {
 
     @NotNull
     @Email
+    @Column(unique = true)
     private String mail;
 
     @NotNull
@@ -51,15 +55,15 @@ public class Benutzer {
     private LocalDate birthday;
 
     @NotNull
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> likes = new HashSet<>();
 
     @NotNull
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> dislikes = new HashSet<>();
 
     @NotNull
-    @GutesPasswort
+    @NotBlank
     private String password;
 
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, mappedBy = "anbieter")

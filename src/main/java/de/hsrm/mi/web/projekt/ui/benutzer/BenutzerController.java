@@ -1,11 +1,13 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +33,9 @@ public class BenutzerController {
 
     @Autowired
     BenutzerService benutzerService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public final int MAXWUNSCH = 5;
 
@@ -148,7 +153,7 @@ public class BenutzerController {
             // Benutzer-Entity setzen
             formular.toBenutzer(benutzer);
             if (formular.getPassword() != "") {
-                benutzer.setPassword(formular.getPassword());
+                benutzer.setPassword(passwordEncoder.encode(formular.getPassword()));
             }
 
             try {

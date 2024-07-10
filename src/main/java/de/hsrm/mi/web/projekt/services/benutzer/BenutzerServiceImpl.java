@@ -16,20 +16,23 @@ import jakarta.transaction.Transactional;
 @Service
 public class BenutzerServiceImpl implements BenutzerService {
 
-    @Autowired private BenutzerRepository benutzerRepository;
+    @Autowired
+    private BenutzerRepository benutzerRepository;
 
     Logger logger = LoggerFactory.getLogger(BenutzerServiceImpl.class);
 
     @Override
     @Transactional
     public List<Benutzer> holeAlleBenutzer() {
-        List<Benutzer> benutzer =  benutzerRepository.findAll(Sort.by("name"));
+        List<Benutzer> benutzer = benutzerRepository.findAll(Sort.by("name"));
 
-        /*if(benutzer.isEmpty()) {
-            logger.info("No Benutzer found, Database is empty");
-        } else {
-            logger.info("Retrieved Benutzer from Database" + benutzer.toString());
-        }*/
+        /*
+         * if(benutzer.isEmpty()) {
+         * logger.info("No Benutzer found, Database is empty");
+         * } else {
+         * logger.info("Retrieved Benutzer from Database" + benutzer.toString());
+         * }
+         */
 
         return benutzer;
     }
@@ -40,13 +43,19 @@ public class BenutzerServiceImpl implements BenutzerService {
 
         Optional<Benutzer> benutzer = benutzerRepository.findById(id);
 
-        if(benutzer.isEmpty()) {
+        if (benutzer.isEmpty()) {
             logger.warn("Could not retrieve Benutzer with id: " + id);
         } else {
             logger.info("Retrieved Benutzer from database: " + benutzer.toString());
         }
 
         return benutzer;
+    }
+
+    @Transactional
+    public Optional<Benutzer> loadUserByUsername(String username) {
+
+        return null;
     }
 
     @Override
@@ -74,24 +83,24 @@ public class BenutzerServiceImpl implements BenutzerService {
     @Override
     @Transactional
     public Benutzer aktualisiereBenutzerAttribut(long id, String feldname, String wert) {
-        
+
         Benutzer b = null;
         Optional<Benutzer> optionalBenutzer = benutzerRepository.findById(id);
-        if(optionalBenutzer.isPresent()) {
+        if (optionalBenutzer.isPresent()) {
             b = optionalBenutzer.get();
         } else {
             return null;
         }
-        
-        if(feldname.equals("email")) {
+
+        if (feldname.equals("email")) {
             b.setMail(wert);
-        } else if(feldname.equals("name")) {
+        } else if (feldname.equals("name")) {
             b.setName(wert);
-        } else if(feldname.equals("surname")) {
+        } else if (feldname.equals("surname")) {
             b.setSurname(wert);
         }
 
         return benutzerRepository.save(b);
     }
-    
+
 }
